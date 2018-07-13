@@ -1,19 +1,9 @@
 //
-//  ASKHealthKit.swift
-//  ASKHealthKit
-//
-//  Created by sato-shin on 2018/07/13.
-//  Copyright © 2018年 com.askendiet. All rights reserved.
+// Copyright (c) 2018 Asken Inc. All rights reserved.
 //
 
 import Foundation
 import HealthKit
-
-public enum ASKHealthSharingStatus: String {
-    case r = "read"
-    case w = "write"
-    case rw = "read and write"
-}
 
 public class ASKHealthKit {
     internal static var store = HKHealthStore()
@@ -25,6 +15,12 @@ public class ASKHealthKit {
     static public var isHealthDataAvailable: Bool {
         return HKHealthStore.isHealthDataAvailable()
     }
+}
+
+public enum ASKHealthSharingStatus: String {
+    case r = "read"
+    case w = "write"
+    case rw = "read and write"
 }
 
 open class ASKHealthStore: NSObject {

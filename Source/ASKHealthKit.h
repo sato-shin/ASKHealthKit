@@ -1,9 +1,5 @@
 //
-//  ASKHealthKit.h
-//  ASKHealthKit
-//
-//  Created by sato-shin on 2018/07/13.
-//  Copyright © 2018年 com.askendiet. All rights reserved.
+// Copyright (c) 2018 Asken Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

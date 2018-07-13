@@ -1,9 +1,5 @@
 //
-//  ASKHealthKitTests.swift
-//  ASKHealthKitTests
-//
-//  Created by sato-shin on 2018/07/13.
-//  Copyright © 2018年 com.askendiet. All rights reserved.
+// Copyright (c) 2018 Asken Inc. All rights reserved.
 //
 
 import XCTest
@@ -17,8 +13,7 @@ class ASKHealthKitTests: XCTestCase {
     
     let end = Date()
     let start = Date(timeIntervalSinceNow: -(60 * 10))
-    
-    
+      
     func testNutrientItems() {
         let energy = Energy(quantity: quantity, time: now)
         XCTAssert(energy.quantity == quantity)
