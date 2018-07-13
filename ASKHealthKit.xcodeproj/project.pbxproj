@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C1590B20F852B500D43991 /* ASKHealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1590A20F852B500D43991 /* ASKHealthKit.swift */; };
+		00C1590D20F8532D00D43991 /* ASKHealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1590C20F8532D00D43991 /* ASKHealthItem.swift */; };
+		00C1591120F8541400D43991 /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591020F8541400D43991 /* Nutrient.swift */; };
+		00C1591320F8545200D43991 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591220F8545200D43991 /* Activity.swift */; };
+		00C1591520F8547100D43991 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591420F8547100D43991 /* Sleep.swift */; };
+		00C1591720F8549700D43991 /* Mindfulness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591620F8549700D43991 /* Mindfulness.swift */; };
+		00C1591920F854C600D43991 /* BodyMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591820F854C600D43991 /* BodyMeasurement.swift */; };
+		00C1591B20F854F100D43991 /* HealthRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591A20F854F100D43991 /* HealthRecord.swift */; };
+		00C1591D20F854FE00D43991 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591C20F854FE00D43991 /* Heart.swift */; };
+		00C1591F20F8552300D43991 /* ReproductiveHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591E20F8552300D43991 /* ReproductiveHealth.swift */; };
+		00C1592120F8553F00D43991 /* ExaminationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592020F8553F00D43991 /* ExaminationResult.swift */; };
+		00C1592320F8557400D43991 /* Vital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592220F8557400D43991 /* Vital.swift */; };
+		00C1592520F8562600D43991 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592420F8562600D43991 /* Workout.swift */; };
 		00FFDEE320F84B34005AB2FE /* ASKHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FFDED920F84B34005AB2FE /* ASKHealthKit.framework */; };
 		00FFDEE820F84B34005AB2FE /* ASKHealthKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */; };
 		00FFDEEA20F84B34005AB2FE /* ASKHealthKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +36,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00C1590A20F852B500D43991 /* ASKHealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASKHealthKit.swift; sourceTree = "<group>"; };
+		00C1590C20F8532D00D43991 /* ASKHealthItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASKHealthItem.swift; sourceTree = "<group>"; };
+		00C1591020F8541400D43991 /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
+		00C1591220F8545200D43991 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		00C1591420F8547100D43991 /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		00C1591620F8549700D43991 /* Mindfulness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mindfulness.swift; sourceTree = "<group>"; };
+		00C1591820F854C600D43991 /* BodyMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyMeasurement.swift; sourceTree = "<group>"; };
+		00C1591A20F854F100D43991 /* HealthRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecord.swift; sourceTree = "<group>"; };
+		00C1591C20F854FE00D43991 /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
+		00C1591E20F8552300D43991 /* ReproductiveHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReproductiveHealth.swift; sourceTree = "<group>"; };
+		00C1592020F8553F00D43991 /* ExaminationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationResult.swift; sourceTree = "<group>"; };
+		00C1592220F8557400D43991 /* Vital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vital.swift; sourceTree = "<group>"; };
+		00C1592420F8562600D43991 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		00FFDED920F84B34005AB2FE /* ASKHealthKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASKHealthKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASKHealthKit.h; sourceTree = "<group>"; };
 		00FFDEDD20F84B34005AB2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +76,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00C1590F20F853F800D43991 /* ASKHealthItems */ = {
+			isa = PBXGroup;
+			children = (
+				00C1591020F8541400D43991 /* Nutrient.swift */,
+				00C1591220F8545200D43991 /* Activity.swift */,
+				00C1592420F8562600D43991 /* Workout.swift */,
+				00C1591420F8547100D43991 /* Sleep.swift */,
+				00C1591620F8549700D43991 /* Mindfulness.swift */,
+				00C1591820F854C600D43991 /* BodyMeasurement.swift */,
+				00C1591A20F854F100D43991 /* HealthRecord.swift */,
+				00C1591C20F854FE00D43991 /* Heart.swift */,
+				00C1591E20F8552300D43991 /* ReproductiveHealth.swift */,
+				00C1592020F8553F00D43991 /* ExaminationResult.swift */,
+				00C1592220F8557400D43991 /* Vital.swift */,
+			);
+			path = ASKHealthItems;
+			sourceTree = "<group>";
+		};
 		00FFDECF20F84B34005AB2FE = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */,
+				00C1590A20F852B500D43991 /* ASKHealthKit.swift */,
+				00C1590C20F8532D00D43991 /* ASKHealthItem.swift */,
+				00C1590F20F853F800D43991 /* ASKHealthItems */,
 				00FFDEDD20F84B34005AB2FE /* Info.plist */,
 			);
 			path = Source;
@@ -148,6 +195,7 @@
 				TargetAttributes = {
 					00FFDED820F84B34005AB2FE = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					00FFDEE120F84B34005AB2FE = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -194,6 +242,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C1591D20F854FE00D43991 /* Heart.swift in Sources */,
+				00C1590D20F8532D00D43991 /* ASKHealthItem.swift in Sources */,
+				00C1591520F8547100D43991 /* Sleep.swift in Sources */,
+				00C1592520F8562600D43991 /* Workout.swift in Sources */,
+				00C1591720F8549700D43991 /* Mindfulness.swift in Sources */,
+				00C1590B20F852B500D43991 /* ASKHealthKit.swift in Sources */,
+				00C1591920F854C600D43991 /* BodyMeasurement.swift in Sources */,
+				00C1592320F8557400D43991 /* Vital.swift in Sources */,
+				00C1591320F8545200D43991 /* Activity.swift in Sources */,
+				00C1591B20F854F100D43991 /* HealthRecord.swift in Sources */,
+				00C1591120F8541400D43991 /* Nutrient.swift in Sources */,
+				00C1591F20F8552300D43991 /* ReproductiveHealth.swift in Sources */,
+				00C1592120F8553F00D43991 /* ExaminationResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,14 +400,15 @@
 		00FFDEEE20F84B34005AB2FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 37PA78LHD7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ASKHealthKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,6 +418,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.askendiet.ASKHealthKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,14 +427,15 @@
 		00FFDEEF20F84B34005AB2FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 37PA78LHD7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ASKHealthKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -389,9 +453,10 @@
 		00FFDEF120F84B34005AB2FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37PA78LHD7;
-				INFOPLIST_FILE = ASKHealthKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,9 +472,10 @@
 		00FFDEF220F84B34005AB2FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37PA78LHD7;
-				INFOPLIST_FILE = ASKHealthKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

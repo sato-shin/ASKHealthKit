@@ -12,8 +12,9 @@
 		00C158EC20F84DB300D43991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EA20F84DB300D43991 /* Main.storyboard */; };
 		00C158EE20F84DB600D43991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C158ED20F84DB600D43991 /* Assets.xcassets */; };
 		00C158F120F84DB600D43991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */; };
-		00C158FC20F84DB600D43991 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158FB20F84DB600D43991 /* ExampleTests.swift */; };
+		00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158FB20F84DB600D43991 /* HealthItemTests.swift */; };
 		00C1590820F84E4100D43991 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C1590720F84E4100D43991 /* HealthKit.framework */; };
+		00C1592720F8577B00D43991 /* ReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592620F8577B00D43991 /* ReadWriteTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +36,11 @@
 		00C158F020F84DB600D43991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00C158F220F84DB600D43991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C158F720F84DB600D43991 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00C158FB20F84DB600D43991 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		00C158FB20F84DB600D43991 /* HealthItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthItemTests.swift; sourceTree = "<group>"; };
 		00C158FD20F84DB600D43991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C1590720F84E4100D43991 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		00C1590E20F853D300D43991 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
+		00C1592620F8577B00D43991 /* ReadWriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +65,9 @@
 		00C158DA20F84DB300D43991 = {
 			isa = PBXGroup;
 			children = (
-				00C158E520F84DB300D43991 /* Example */,
-				00C158FA20F84DB600D43991 /* ExampleTests */,
+				00C1590E20F853D300D43991 /* Example.entitlements */,
+				00C158E520F84DB300D43991 /* Source */,
+				00C158FA20F84DB600D43991 /* Tests */,
 				00C158E420F84DB300D43991 /* Products */,
 				00C1590620F84E4100D43991 /* Frameworks */,
 			);
@@ -78,7 +82,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00C158E520F84DB300D43991 /* Example */ = {
+		00C158E520F84DB300D43991 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				00C158E620F84DB300D43991 /* AppDelegate.swift */,
@@ -88,16 +92,17 @@
 				00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */,
 				00C158F220F84DB600D43991 /* Info.plist */,
 			);
-			path = Example;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		00C158FA20F84DB600D43991 /* ExampleTests */ = {
+		00C158FA20F84DB600D43991 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				00C158FB20F84DB600D43991 /* ExampleTests.swift */,
+				00C158FB20F84DB600D43991 /* HealthItemTests.swift */,
+				00C1592620F8577B00D43991 /* ReadWriteTests.swift */,
 				00C158FD20F84DB600D43991 /* Info.plist */,
 			);
-			path = ExampleTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		00C1590620F84E4100D43991 /* Frameworks */ = {
@@ -223,7 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C158FC20F84DB600D43991 /* ExampleTests.swift in Sources */,
+				00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */,
+				00C1592720F8577B00D43991 /* ReadWriteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,10 +381,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Example/Info.plist;
+				DEVELOPMENT_TEAM = 37PA78LHD7;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,10 +400,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Example/Info.plist;
+				DEVELOPMENT_TEAM = 37PA78LHD7;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -415,13 +421,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ExampleTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.askendiet.ExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.askendiet.ASKHealthKit.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -435,13 +441,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ExampleTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.askendiet.ExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.askendiet.ASKHealthKit.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
