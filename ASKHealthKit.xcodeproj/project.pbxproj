@@ -53,8 +53,8 @@
 		00FFDECF20F84B34005AB2FE = {
 			isa = PBXGroup;
 			children = (
-				00FFDEDB20F84B34005AB2FE /* ASKHealthKit */,
-				00FFDEE620F84B34005AB2FE /* ASKHealthKitTests */,
+				00FFDEDB20F84B34005AB2FE /* Source */,
+				00FFDEE620F84B34005AB2FE /* Tests */,
 				00FFDEDA20F84B34005AB2FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,22 +68,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00FFDEDB20F84B34005AB2FE /* ASKHealthKit */ = {
+		00FFDEDB20F84B34005AB2FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */,
 				00FFDEDD20F84B34005AB2FE /* Info.plist */,
 			);
-			path = ASKHealthKit;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		00FFDEE620F84B34005AB2FE /* ASKHealthKitTests */ = {
+		00FFDEE620F84B34005AB2FE /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */,
 				00FFDEE920F84B34005AB2FE /* Info.plist */,
 			);
-			path = ASKHealthKitTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,10 +339,10 @@
 		00FFDEEE20F84B34005AB2FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 37PA78LHD7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -367,7 +367,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 37PA78LHD7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
