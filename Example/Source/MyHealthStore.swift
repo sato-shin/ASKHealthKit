@@ -20,11 +20,8 @@ class MyHealthStore: ASKHealthStore {
     
     let intermenstrualBleedingStore = HealthItemStore<IntermenstrualBleeding>(sharing: .rw)
     
-    // TODO: blood pressure で同時に扱えるようにする
-    //    let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
-    let bloodPressureDiastolicStore = HealthItemStore<BloodPressureDiastolic>(sharing: .rw)
-    let bloodPressureSystolicStore = HealthItemStore<BloodPressureSystolic>(sharing: .rw)
-    
+    let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
+
     let mindfulTimeStore = HealthItemStore<MindfulTime>(sharing: .rw)
     
     let sleepAnalysisStore = HealthItemStore<SleepAnalysis>(sharing: .rw)

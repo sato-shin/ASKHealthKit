@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		005064BB20F878D50043F16C /* MyHealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005064BA20F878D50043F16C /* MyHealthStore.swift */; };
+		005064BE20F890580043F16C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C1590720F84E4100D43991 /* HealthKit.framework */; };
+		005064BF20F8906E0043F16C /* ASKHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005064BC20F890440043F16C /* ASKHealthKit.framework */; };
+		005064C020F8906E0043F16C /* ASKHealthKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 005064BC20F890440043F16C /* ASKHealthKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00C158E720F84DB300D43991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158E620F84DB300D43991 /* AppDelegate.swift */; };
 		00C158E920F84DB300D43991 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158E820F84DB300D43991 /* ViewController.swift */; };
 		00C158EC20F84DB300D43991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EA20F84DB300D43991 /* Main.storyboard */; };
 		00C158EE20F84DB600D43991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C158ED20F84DB600D43991 /* Assets.xcassets */; };
 		00C158F120F84DB600D43991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */; };
 		00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158FB20F84DB600D43991 /* HealthItemTests.swift */; };
-		00C1590820F84E4100D43991 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C1590720F84E4100D43991 /* HealthKit.framework */; };
 		00C1592720F8577B00D43991 /* ReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592620F8577B00D43991 /* ReadWriteTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +30,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		005064C120F8906E0043F16C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				005064C020F8906E0043F16C /* ASKHealthKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		005064BA20F878D50043F16C /* MyHealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHealthStore.swift; sourceTree = "<group>"; };
+		005064BC20F890440043F16C /* ASKHealthKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASKHealthKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C158E320F84DB300D43991 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C158E620F84DB300D43991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C158E820F84DB300D43991 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C1590820F84E4100D43991 /* HealthKit.framework in Frameworks */,
+				005064BE20F890580043F16C /* HealthKit.framework in Frameworks */,
+				005064BF20F8906E0043F16C /* ASKHealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +129,7 @@
 		00C1590620F84E4100D43991 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				005064BC20F890440043F16C /* ASKHealthKit.framework */,
 				00C1590720F84E4100D43991 /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -126,6 +145,7 @@
 				00C158DF20F84DB300D43991 /* Sources */,
 				00C158E020F84DB300D43991 /* Frameworks */,
 				00C158E120F84DB300D43991 /* Resources */,
+				005064C120F8906E0043F16C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -425,6 +445,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 37PA78LHD7;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,6 +466,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 37PA78LHD7;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

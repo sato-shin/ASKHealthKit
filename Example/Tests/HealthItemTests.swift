@@ -42,12 +42,7 @@ class HealthItemTests: XCTestCase {
         let steps = StepCount(quantity: quantity, time: now)
         XCTAssert(steps.quantity == quantity)
         XCTAssert(steps.time == now)
-        XCTAssert(steps.unitString == "steps")
-        
-        let aStep = StepCount(quantity: 1, time: now)
-        XCTAssert(aStep.quantity == 1)
-        XCTAssert(aStep.time == now)
-        XCTAssert(aStep.unitString == "step")
+        XCTAssert(steps.unitString == "step")
     }
     
     func testDistanceItem() {
@@ -71,7 +66,15 @@ class HealthItemTests: XCTestCase {
         XCTAssert(distanceMi.time == now)
         XCTAssert(distanceMi.unitString == "mi")
     }
-    
+
+    // Workout
+    func testWorkoutItem() {
+        let workout1Detail: ActivityDetail = ActivityDetail(distance: 1000, unit: .meter)
+        let workout1 = Workout(.americanFootball(workout1Detail), start: start, end: end, energyBurned: quantity)
+        XCTAssert(workout1.start == start)
+        XCTAssert(workout1.end == end)
+        XCTAssert(workout1.energyBurned == quantity)
+    }
     
     func testMindfulTimeItem() {
         let item = MindfulTime(start: start, end: end)

@@ -15,51 +15,133 @@ class ReadWriteTests: XCTestCase {
     let start = Date(timeIntervalSinceNow: -(60 * 10))
     
     let store = MyHealthStore()
-    
-    func testNutrientItems() {
-        let expectation = XCTestExpectation()
-        let energy = Energy(quantity: quantity, time: now)
-        store.energyStore.write(energy) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+
+    // Nutrients
+    func testEnergyItem() {
+        let writeExpectation = XCTestExpectation(description: "Write energy into health store")
+        let item = Energy(quantity: quantity, time: now)
+        store.energyStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        
-        let carbohydrate = Carbohydrate(quantity: quantity, time: now)
-        store.carbohydrateStore.write(carbohydrate) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read energy from health store")
+        store.energyStore.readAll { (items: [Energy], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete energy from health store")
+        store.energyStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
+    }
+
+    func testCarbohydrateItem() {
+        let writeExpectation = XCTestExpectation(description: "Write carbohydrate into health store")
+        let item = Carbohydrate(quantity: quantity, time: now)
+        store.carbohydrateStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read carbohydrate from health store")
+        store.carbohydrateStore.readAll { (items: [Carbohydrate], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete carbohydrate from health store")
+        store.carbohydrateStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
     
-    func testWaterItem() {
-        let expectation = XCTestExpectation()
-        let waterL = Water(quantity: quantity, time: now, unit: .litter)
-        store.waterStore.write(waterL) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+    func testWaterLitterItem() {
+        let writeExpectation = XCTestExpectation(description: "Write water (Litter) into health store")
+        Water.defaultUnit = .litter
+        let item = Water(quantity: quantity, time: now)
+        store.waterStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        
-        let waterMl = Water(quantity: quantity, time: now, unit: .milliLitter)
-        store.waterStore.write(waterMl) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read water (Litter) from health store")
+        store.waterStore.readAll { (items: [Water], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete water (Litter) from health store")
+        store.waterStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
-    
+
+    func testWaterImperialOnceItem() {
+        let writeExpectation = XCTestExpectation(description: "Write water (Imperial Once) into health store")
+        Water.defaultUnit = .imperialOnce
+        let item = Water(quantity: quantity, time: now)
+        store.waterStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read water (Imperial Once) from health store")
+        store.waterStore.readAll { (items: [Water], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete water (Imperial Once) from health store")
+        store.waterStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
+    }
+
+    // Activity
     func testStepCountItem() {
-        let writeExpectation = XCTestExpectation(description: "Write step count from health store")
-        let step = StepCount(quantity: quantity, time: now)
-        store.stepCountStore.write(step) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
+        let writeExpectation = XCTestExpectation(description: "Write step count into health store")
+        let item = StepCount(quantity: quantity, time: now)
+        store.stepCountStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
             writeExpectation.fulfill()
         }
         wait(for: [writeExpectation], timeout: 1)
@@ -68,7 +150,8 @@ class ReadWriteTests: XCTestCase {
         store.stepCountStore.readAll { (items: [StepCount], error: Error?) in
             XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
             XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
-            XCTAssert(error == nil)
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
             readExpectation.fulfill()
         }
         wait(for: [readExpectation], timeout: 1)
@@ -82,53 +165,134 @@ class ReadWriteTests: XCTestCase {
         wait(for: [deleteExpectation], timeout: 1)
     }
     
-    func testDistanceItem() {
-        let expectation = XCTestExpectation()
-        let distanceKm = SwimmingDistance(quantity: quantity, time: now, unit: .kilometer)
-        store.swimmingDistanceStore.write(distanceKm) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+    func testSwimmingDistanceItem() {
+        let writeExpectation = XCTestExpectation(description: "Write swimming distance into health store")
+        SwimmingDistance.defaultUnit = .kilometer
+        let item = SwimmingDistance(quantity: quantity, time: now)
+        store.swimmingDistanceStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        
-        let distanceYd = SwimmingDistance(quantity: quantity, time: now, unit: .yard)
-        store.swimmingDistanceStore.write(distanceYd) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation1 = XCTestExpectation(description: "Read swimming distance from health store")
+        store.swimmingDistanceStore.readAll { (items: [SwimmingDistance], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation1.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        
-        let distanceM = CyclingDistance(quantity: quantity, time: now, unit: .meter)
-        store.cyclingDistanceStore.write(distanceM) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [readExpectation1], timeout: 1)
+
+        let readExpectation2 = XCTestExpectation(description: "Read swimming distance from health store")
+        SwimmingDistance.defaultUnit = .meter
+        store.swimmingDistanceStore.readAll { (items: [SwimmingDistance], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity * 1000, "Expect: \(self.quantity * 1000), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation2.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        
-        let distanceMi = CyclingDistance(quantity: quantity, time: now, unit: .mile)
-        store.cyclingDistanceStore.write(distanceMi) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [readExpectation2], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete swimming distance from health store")
+        store.swimmingDistanceStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [deleteExpectation], timeout: 1)
+    }
+
+    func cyclingDistanceItem() {
+        let writeExpectation = XCTestExpectation(description: "Write cycling distance into health store")
+        CyclingDistance.defaultUnit = .mile
+        let item = CyclingDistance(quantity: quantity, time: now)
+        store.cyclingDistanceStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation1 = XCTestExpectation(description: "Read cycling distance from health store")
+        store.cyclingDistanceStore.readAll { (items: [CyclingDistance], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation1.fulfill()
+        }
+        wait(for: [readExpectation1], timeout: 1)
+
+        let readExpectation2 = XCTestExpectation(description: "Read cycling distance from health store")
+        CyclingDistance.defaultUnit = .yard
+        store.cyclingDistanceStore.readAll { (items: [CyclingDistance], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity * 1760, "Expect: \(self.quantity * 1760), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation2.fulfill()
+        }
+        wait(for: [readExpectation2], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete cycling distance from health store")
+        store.cyclingDistanceStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
+    }
+
+    // Workout
+    func testWorkoutItem() {
+        let writeExpectation = XCTestExpectation(description: "Write workout into health store")
+        ActivityDetail.defaultUnit = .kilometer
+        let detail = ActivityDetail(distance: 1)
+        let item = Workout(.americanFootball(detail), start: start, end: end, energyBurned: quantity)
+        store.workoutStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read workout from health store")
+        store.workoutStore.readAll { (items: [Workout], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.start == self.start, "Expect: \(self.start), Actual: \(String(describing: items.first?.start))")
+            XCTAssert(items.first?.end == self.end, "Expect: \(self.end), Actual: \(String(describing: items.first?.end))")
+            XCTAssert(items.first?.energyBurned == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.energyBurned))")
+            XCTAssert(items.first?.activityType.detail == detail, "Expect: \(detail), Actual: \(String(describing: items.first?.activityType.detail))")
+            if case .americanFootball? = items.first?.activityType { }
+            else { XCTAssert(false, "Expect: \(ActivityType.americanFootball(nil)), Actual: \(String(describing: items.first?.activityType))") }
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete workout from health store")
+        store.workoutStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
     
-    
+    // Mindfulness
     func testMindfulTimeItem() {
-        let expectation = XCTestExpectation()
+        let writeExpectation = XCTestExpectation(description: "Write mindful time into health store")
         let item = MindfulTime(start: start, end: end)
         store.mindfulTimeStore.write(item) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [writeExpectation], timeout: 1)
         
-        let readExpectation = XCTestExpectation(description: "Read step count from health store")
+        let readExpectation = XCTestExpectation(description: "Read mindful time from health store")
         store.mindfulTimeStore.readAll { (items: [MindfulTime], error: Error?) in
             XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
             XCTAssert(items.first?.start == self.start, "Expect: \(self.start), Actual: \(String(describing: items.first?.start))")
@@ -138,7 +302,7 @@ class ReadWriteTests: XCTestCase {
         }
         wait(for: [readExpectation], timeout: 1)
         
-        let deleteExpectation = XCTestExpectation(description: "Delete step count from health store")
+        let deleteExpectation = XCTestExpectation(description: "Delete mindful time from health store")
         store.mindfulTimeStore.deleteAll { success, error in
             XCTAssert(success, "Expect: true, Actual: \(success)")
             XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
@@ -148,57 +312,126 @@ class ReadWriteTests: XCTestCase {
     }
     
     func testSleepAnalysisItem() {
-        let expectation = XCTestExpectation()
+        let writeExpectation = XCTestExpectation(description: "Write sleep analysis into health store")
         let item = SleepAnalysis(start: start, end: end, category: .inBed)
         store.sleepAnalysisStore.write(item) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read sleep analysis from health store")
+        store.sleepAnalysisStore.readAll { (items: [SleepAnalysis], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.start == self.start, "Expect: \(self.start), Actual: \(String(describing: items.first?.start))")
+            XCTAssert(items.first?.end == self.end, "Expect: \(self.end), Actual: \(String(describing: items.first?.end))")
+            XCTAssert(items.first?.category == .inBed, "Expect: \(SleepAnalysis.Category.inBed), Actual: \(String(describing: items.first?.category))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete sleep analysis from health store")
+        store.sleepAnalysisStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
     
     // Examination Results
-    func testUvIndexItem() {
-        let expectation = XCTestExpectation()
-        let item = UVExposure(value: 3, start: start, end: end)
+    func testUvExposureItem() {
+        let writeExpectation = XCTestExpectation(description: "Write UV Exposure into health store")
+        let item = UVExposure(value: Int(quantity), start: start, end: end)
         store.uvExposureStore.write(item) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read UV Exposure from health store")
+        store.uvExposureStore.readAll { (items: [UVExposure], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.start == self.start, "Expect: \(self.start), Actual: \(String(describing: items.first?.start))")
+            XCTAssert(items.first?.end == self.end, "Expect: \(self.end), Actual: \(String(describing: items.first?.end))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete UV Exposure from health store")
+        store.uvExposureStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
     
     // Reproductive Health
     func testIntermenstrualBleedingItem() {
-        let expectation = XCTestExpectation()
+        let writeExpectation = XCTestExpectation(description: "Write intermenstrual bleeding into health store")
         let item = IntermenstrualBleeding(time: now)
         store.intermenstrualBleedingStore.write(item) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read intermenstrual bleeding from health store")
+        store.intermenstrualBleedingStore.readAll { (items: [IntermenstrualBleeding], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete intermenstrual bleeding from health store")
+        store.intermenstrualBleedingStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
     
     // Heart
     func testBloodPressureItem() {
-        let expectation = XCTestExpectation()
+        let writeExpectation = XCTestExpectation(description: "Write blood pressure into health store")
         let diastolic = 100
         let systolic = 130
         let item = BloodPressure(diastolic: diastolic, systolic: systolic, time: now)
-        store.bloodPressureDiastolicStore.write(item.diastolic) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        store.bloodPressure.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
-        store.bloodPressureSystolicStore.write(item.systolic) { success, error in
-            XCTAssert(success)
-            XCTAssert(error == nil)
-            expectation.fulfill()
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read blood pressure from health store")
+        store.bloodPressure.readAll { (items: [BloodPressure], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(items.first?.diastolicValue == diastolic, "Expect: \(diastolic), Actual: \(String(describing: items.first?.diastolicValue))")
+            XCTAssert(items.first?.systolicValue == systolic, "Expect: \(systolic), Actual: \(String(describing: items.first?.systolicValue))")
+            XCTAssert(items.first?.diastolic.value == diastolic, "Expect: \(diastolic), Actual: \(String(describing: items.first?.diastolic.value))")
+            XCTAssert(items.first?.systolic.value == systolic, "Expect: \(systolic), Actual: \(String(describing: items.first?.systolic.value))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [readExpectation], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete blood pressure from health store")
+        store.bloodPressure.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
     }
 }

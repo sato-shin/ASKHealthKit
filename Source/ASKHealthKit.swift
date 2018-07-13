@@ -7,12 +7,12 @@ import HealthKit
 
 public class ASKHealthKit {
     internal static var store = HKHealthStore()
-    
-    static public func openHealthApp() {
+
+    public static func openHealthApp() {
         UIApplication.shared.open(URL(string: "x-apple-health://")!)
     }
     
-    static public var isHealthDataAvailable: Bool {
+    public static var isHealthDataAvailable: Bool {
         return HKHealthStore.isHealthDataAvailable()
     }
 }
@@ -36,15 +36,15 @@ open class ASKHealthStore: NSObject {
             
             switch property.sharing {
             case .r:
-                if let type = property.hkObjectType {
+                property.hkObjectType.forEach { type in
                     readItems.insert(type)
                 }
             case .w:
-                if let type = property.hkSampleType{
+                property.hkSampleType.forEach { type in
                     writeItems.insert(type)
                 }
             case .rw:
-                if let type = property.hkSampleType {
+                property.hkSampleType.forEach { type in
                     writeItems.insert(type)
                     readItems.insert(type)
                 }
@@ -55,15 +55,17 @@ open class ASKHealthStore: NSObject {
 }
 
 internal protocol HealthItemStoreProtocol {
-    var hkSampleType: HKSampleType? { get }
-    var hkObjectType: HKObjectType? { get }
+    var hkSampleType: [HKSampleType] { get }
+    var hkObjectType: [HKObjectType] { get }
     var sharing: ASKHealthSharingStatus { get }
 }
 
 open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
     public let sharing: ASKHealthSharingStatus
-    var hkSampleType: HKSampleType? { return T.hkSampleType }
-    var hkObjectType: HKObjectType? { return T.hkObjectType }
+    internal var hkSampleType: [HKSampleType] { return T.hkSampleTypes
+    }
+    internal var hkObjectType: [HKObjectType] { return T.hkObjectTypes
+    }
     
     public init(sharing: ASKHealthSharingStatus) {
         self.sharing = sharing

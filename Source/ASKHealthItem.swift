@@ -9,6 +9,8 @@ public protocol ASKHealthItem {
     // TODO: HK 周りは隠蔽したい。。。
     static var hkSampleType: HKSampleType? { get }
     static var hkObjectType: HKObjectType? { get }
+    static var hkSampleTypes: [HKSampleType] { get }
+    static var hkObjectTypes: [HKObjectType] { get }
     var hkObject: HKObject? { get }
     init?(object: HKObject)
 }
@@ -28,11 +30,17 @@ extension ASKHealthQuantityItem {
     public static var hkObjectType: HKObjectType? {
         return Self.hkSampleType
     }
+    public static var hkSampleTypes: [HKSampleType] {
+        guard let type = HKSampleType.quantityType(forIdentifier: Self.identifier) else { return [] }
+        return [type]
+    }
+    public static var hkObjectTypes: [HKObjectType] {
+        return Self.hkSampleTypes
+    }
     public init?(object: HKObject) {
         guard let object = object as? HKQuantitySample else { return nil }
         self.init(sample: object)
     }
-    
     public var hkObject: HKObject? {
         guard let hkType = HKSampleType.quantityType(forIdentifier: Self.identifier) else { return nil }
         let hkQuantity = HKQuantity(unit: hkUnit, doubleValue: quantity)
@@ -58,11 +66,17 @@ extension ASKHealthCategoryItem {
     public static var hkObjectType: HKObjectType? {
         return Self.hkSampleType
     }
+    public static var hkSampleTypes: [HKSampleType] {
+        guard let type = HKSampleType.categoryType(forIdentifier: Self.identifier) else { return [] }
+        return [type]
+    }
+    public static var hkObjectTypes: [HKObjectType] {
+        return Self.hkSampleTypes
+    }
     public init?(object: HKObject) {
         guard let object = object as? HKCategorySample else { return nil }
         self.init(sample: object)
     }
-    
     public var hkObject: HKObject? {
         guard let hkType = HKSampleType.categoryType(forIdentifier: Self.identifier) else { return nil }
         return HKCategorySample(type: hkType, value: value, start: start, end: end, device: nil, metadata: nil)
@@ -77,17 +91,16 @@ protocol ASKHealthCorrelationItem: ASKHealthItem {
     init?(sample: HKCorrelation)
 }
 extension ASKHealthCorrelationItem {
-    public static var hkSampleType: HKSampleType? {
-        return HKSampleType.correlationType(forIdentifier: Self.identifier)
-    }
-    public static var hkObjectType: HKObjectType? {
-        return Self.hkSampleType
-    }
     public init?(object: HKObject) {
         guard let object = object as? HKCorrelation else { return nil }
         self.init(sample: object)
     }
-    
+    public static var hkSampleType: HKSampleType? {
+        return HKSampleType.correlationType(forIdentifier: Self.identifier)
+    }
+    public static var hkObjectType: HKObjectType? {
+        return hkSampleType
+    }
     public var hkObject: HKObject? {
         guard let hkType = HKCorrelationType.correlationType(forIdentifier: Self.identifier),
             let hkSamples = hkSamples else {

@@ -10,25 +10,34 @@ public struct Workout: ASKHealthItem {
     public let energyBurned: Double?
     public let start: Date
     public let end: Date
-    
+
     public init(_ activityType: ActivityType, start: Date, end: Date, energyBurned: Double? = nil) {
         self.activityType = activityType
         self.energyBurned = energyBurned
         self.start = start
         self.end = end
     }
-    
+
     public static let hkSampleType: HKSampleType? = HKSampleType.workoutType()
     public static var hkObjectType: HKObjectType? { return Workout.hkSampleType }
-    
+    public static let hkSampleTypes: [HKSampleType] = [HKSampleType.workoutType()]
+    public static var hkObjectTypes: [HKObjectType] { return Workout.hkSampleTypes }
+
     public init?(object: HKObject) {
         guard let object = object as? HKWorkout else { return nil }
-        self.activityType = .americanFootball(nil)
+        let distance: ActivityDetail? = {
+            if let distance = object.totalDistance {
+                return ActivityDetail(distance: distance.doubleValue(for: ActivityDetail.defaultUnit.hkUnit))
+            } else {
+                return nil
+            }
+        }()
+        self.activityType = ActivityType.init(type: object.workoutActivityType, detail: distance)
         self.energyBurned = object.totalEnergyBurned?.doubleValue(for: .kilocalorie())
         self.start = object.startDate
         self.end = object.endDate
     }
-    
+
     public var hkObject: HKObject? {
         let energyBurned: HKQuantity? = {
             if let energyBurned = self.energyBurned {
@@ -52,31 +61,47 @@ public struct Workout: ASKHealthItem {
             totalDistance: distance,
             device: nil, metadata: nil)
     }
-    
-    // activity
-    public struct ActivityDetail {
-        let distance: Double
-        let unit: DistanceUnit
-        public init(distance: Double, unit: DistanceUnit) {
-            self.distance = distance
-            self.unit = unit
+}
+
+public enum ActivityType {
+    case americanFootball(ActivityDetail?)
+    case archery
+
+    internal init(type: HKWorkoutActivityType, detail: ActivityDetail?) {
+        switch type {
+        case .americanFootball: self = .americanFootball(detail)
+        case .archery: self = .archery
+        default: fatalError("あとで実装する")
         }
     }
-    
-    public enum ActivityType {
-        case americanFootball(ActivityDetail?)
-        
-        public var detail: (ActivityDetail)? {
-            switch self {
-            case .americanFootball(let detail):
-                return detail
-            }
+
+    public var detail: (ActivityDetail)? {
+        switch self {
+        case .americanFootball(let detail):
+            return detail
+        case .archery:
+            return nil
         }
-        
-        var hkWorkoutActivityType: HKWorkoutActivityType {
-            switch self {
-            case .americanFootball: return .americanFootball
-            }
+    }
+
+    var hkWorkoutActivityType: HKWorkoutActivityType {
+        switch self {
+        case .americanFootball: return .americanFootball
+        case .archery: return .archery
         }
+    }
+}
+
+public struct ActivityDetail: Equatable {
+    public static var defaultUnit: DistanceUnit = .kilometer
+    public let distance: Double
+    public let unit: DistanceUnit
+    public init(distance: Double, unit: DistanceUnit = ActivityDetail.defaultUnit) {
+        self.distance = distance
+        self.unit = unit
+    }
+
+    public static func ==(lhs: ActivityDetail, rhs: ActivityDetail) -> Bool {
+        return (lhs.distance == rhs.distance) && (lhs.unit == rhs.unit)
     }
 }

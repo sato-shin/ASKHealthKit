@@ -13,7 +13,7 @@ class ASKHealthKitTests: XCTestCase {
     
     let end = Date()
     let start = Date(timeIntervalSinceNow: -(60 * 10))
-      
+
     func testNutrientItems() {
         let energy = Energy(quantity: quantity, time: now)
         XCTAssert(energy.quantity == quantity)
@@ -40,20 +40,50 @@ class ASKHealthKitTests: XCTestCase {
         XCTAssert(waterMl.time == now)
         XCTAssert(waterMl.unitString == "mL")
         XCTAssertNotNil(waterMl.hkObject)
+
+        let waterIC = Water(quantity: quantity, time: now, unit: .imperialCup)
+        XCTAssert(waterIC.quantity == quantity)
+        XCTAssert(waterIC.time == now)
+        XCTAssert(waterIC.unitString == "cup")
+        XCTAssertNotNil(waterIC.hkObject)
+
+        let waterIOz = Water(quantity: quantity, time: now, unit: .imperialOnce)
+        XCTAssert(waterIOz.quantity == quantity)
+        XCTAssert(waterIOz.time == now)
+        XCTAssert(waterIOz.unitString == "fl oz")
+        XCTAssertNotNil(waterIOz.hkObject)
+
+        let waterIPt = Water(quantity: quantity, time: now, unit: .imperialPint)
+        XCTAssert(waterIPt.quantity == quantity)
+        XCTAssert(waterIPt.time == now)
+        XCTAssert(waterIPt.unitString == "pt")
+        XCTAssertNotNil(waterIPt.hkObject)
+
+        let waterUsC = Water(quantity: quantity, time: now, unit: .usCup)
+        XCTAssert(waterUsC.quantity == quantity)
+        XCTAssert(waterUsC.time == now)
+        XCTAssert(waterUsC.unitString == "cup")
+        XCTAssertNotNil(waterUsC.hkObject)
+
+        let waterUsOz = Water(quantity: quantity, time: now, unit: .usOnce)
+        XCTAssert(waterUsOz.quantity == quantity)
+        XCTAssert(waterUsOz.time == now)
+        XCTAssert(waterUsOz.unitString == "fl oz")
+        XCTAssertNotNil(waterUsOz.hkObject)
+
+        let waterUsPt = Water(quantity: quantity, time: now, unit: .usPint)
+        XCTAssert(waterUsPt.quantity == quantity)
+        XCTAssert(waterUsPt.time == now)
+        XCTAssert(waterUsPt.unitString == "pt")
+        XCTAssertNotNil(waterUsPt.hkObject)
     }
     
     func testStepCountItem() {
         let step = StepCount(quantity: quantity, time: now)
         XCTAssert(step.quantity == quantity)
         XCTAssert(step.time == now)
-        XCTAssert(step.unitString == "steps")
+        XCTAssert(step.unitString == "step")
         XCTAssertNotNil(step.hkObject)
-        
-        let aStep = StepCount(quantity: 1, time: now)
-        XCTAssert(aStep.quantity == 1)
-        XCTAssert(aStep.time == now)
-        XCTAssert(aStep.unitString == "step")
-        XCTAssertNotNil(aStep.hkObject)
     }
     
     func testDistanceItem() {
@@ -81,16 +111,16 @@ class ASKHealthKitTests: XCTestCase {
         XCTAssert(distanceMi.unitString == "mi")
         XCTAssertNotNil(distanceMi.hkObject)
     }
-    
+
+    // Workout
     func testWorkoutItem() {
-        let workout1Detail: Workout.ActivityDetail = Workout.ActivityDetail(distance: 1000, unit: .meter)
+        let workout1Detail: ActivityDetail = ActivityDetail(distance: 1000, unit: .meter)
         let workout1 = Workout(.americanFootball(workout1Detail), start: start, end: end, energyBurned: quantity)
         XCTAssert(workout1.start == start)
         XCTAssert(workout1.end == end)
         XCTAssert(workout1.energyBurned == quantity)
         XCTAssertNotNil(workout1.hkObject)
     }
-    
     
     func testMindfulTimeItem() {
         let time = MindfulTime(start: start, end: end)

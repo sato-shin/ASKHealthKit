@@ -6,12 +6,13 @@ import Foundation
 import HealthKit
 
 public struct StepCount: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .stepCount
-    let hkUnit: HKUnit = .count()
+    internal static let identifier: HKQuantityTypeIdentifier = .stepCount
+    internal let hkUnit: HKUnit = .count()
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
     public let quantity: Double
     public let time: Date
-    var start: Date { return time }
-    var end: Date { return time }
     
     public init(quantity: Double, time: Date) {
         self.quantity = quantity
@@ -19,10 +20,9 @@ public struct StepCount: ASKHealthQuantityItem {
     }
     
     public var unitString: String {
-        if quantity == 1 { return "step" }
-        else { return "steps" }
+        return "step"
     }
-    
+
     public init?(sample: HKQuantitySample) {
         self.quantity = sample.quantity.doubleValue(for: hkUnit)
         self.time = sample.startDate
@@ -30,45 +30,49 @@ public struct StepCount: ASKHealthQuantityItem {
 }
 
 public struct SwimmingDistance: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .distanceSwimming
-    var hkUnit: HKUnit { return unit.hkUnit }
+    internal static let identifier: HKQuantityTypeIdentifier = .distanceSwimming
+    internal var hkUnit: HKUnit { return unit.hkUnit }
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
+    public static var defaultUnit: DistanceUnit = .meter
     public let quantity: Double
     public let time: Date
-    var start: Date { return time }
-    var end: Date { return time }
     public let unit: DistanceUnit
     
-    public init(quantity: Double, time: Date, unit: DistanceUnit) {
+    public init(quantity: Double, time: Date, unit: DistanceUnit = SwimmingDistance.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
     }
     
     public init?(sample: HKQuantitySample) {
-        self.unit = .meter
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit) // TODO: 単位指定できるように
+        self.unit = SwimmingDistance.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
     }
 }
 
 public struct CyclingDistance: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .distanceCycling
-    var hkUnit: HKUnit { return unit.hkUnit }
+    internal static let identifier: HKQuantityTypeIdentifier = .distanceCycling
+    internal var hkUnit: HKUnit { return unit.hkUnit }
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
+    public static var defaultUnit: DistanceUnit = .kilometer
     public let quantity: Double
     public let time: Date
-    var start: Date { return time }
-    var end: Date { return time }
     public let unit: DistanceUnit
     
-    public init(quantity: Double, time: Date, unit: DistanceUnit) {
+    public init(quantity: Double, time: Date, unit: DistanceUnit = CyclingDistance.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
     }
     
     public init?(sample: HKQuantitySample) {
-        self.unit = .meter
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit) // TODO: 単位指定できるように
+        self.unit = CyclingDistance.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
     }
 }
@@ -79,7 +83,7 @@ public enum DistanceUnit {
     case yard
     case mile
     
-    var hkUnit: HKUnit {
+    internal var hkUnit: HKUnit {
         switch self {
         case .meter: return .meter()
         case .kilometer: return .meterUnit(with: .kilo)

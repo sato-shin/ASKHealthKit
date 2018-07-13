@@ -8,13 +8,14 @@ import HealthKit
 private let bloodPressureUnit: HKUnit = .millimeterOfMercury()
 
 public struct BloodPressure: ASKHealthCorrelationItem {
-    static let identifier: HKCorrelationTypeIdentifier = .bloodPressure
-    var hkSamples: Set<HKSample>? {
+    internal static let identifier: HKCorrelationTypeIdentifier = .bloodPressure
+    internal var hkSamples: Set<HKSample>? {
         guard let ds = diastolic.hkObject as? HKSample, let ss = systolic.hkObject as? HKSample else { return nil }
         return [ds, ss]
     }
-    var start: Date { return time }
-    var end: Date { return time }
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
     public let diastolicValue: Int
     public let systolicValue: Int
     public let time: Date
@@ -31,10 +32,10 @@ public struct BloodPressure: ASKHealthCorrelationItem {
         self.systolic = BloodPressureSystolic(value: systolic, time: time)
     }
     
-    init?(sample: HKCorrelation) {
-        guard let diastolicType = BloodPressureDiastolic.hkObjectType,
+    internal init?(sample: HKCorrelation) {
+        guard let diastolicType = BloodPressureDiastolic.hkObjectTypes.first,
             let diastolicObject = sample.objects(for: diastolicType).first as? HKQuantitySample,
-            let systolicType = BloodPressureSystolic.hkObjectType,
+            let systolicType = BloodPressureSystolic.hkObjectTypes.first,
             let systolicObject = sample.objects(for: systolicType).first as? HKQuantitySample else {
                 return nil
         }
@@ -44,43 +45,52 @@ public struct BloodPressure: ASKHealthCorrelationItem {
             time: sample.startDate
         )
     }
+
+    public static var hkSampleTypes: [HKSampleType] {
+        return BloodPressureDiastolic.hkSampleTypes + BloodPressureSystolic.hkSampleTypes
+    }
+    public static var hkObjectTypes: [HKObjectType] {
+        return hkSampleTypes
+    }
 }
 
 public struct BloodPressureDiastolic: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .bloodPressureDiastolic
-    var hkUnit: HKUnit = bloodPressureUnit
-    var quantity: Double { return Double(value) }
-    var start: Date { return time }
-    var end: Date { return time }
+    internal static let identifier: HKQuantityTypeIdentifier = .bloodPressureDiastolic
+    internal var hkUnit: HKUnit = bloodPressureUnit
+    internal var quantity: Double { return Double(value) }
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
     public var value: Int
     public var time: Date
     
-    init(value: Int, time: Date) {
+    public init(value: Int, time: Date) {
         self.value = value
         self.time = time
     }
     
-    init?(sample: HKQuantitySample) {
+    internal init?(sample: HKQuantitySample) {
         self.value = Int(sample.quantity.doubleValue(for: hkUnit))
         self.time = sample.startDate
     }
 }
 
 public struct BloodPressureSystolic: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .bloodPressureSystolic
-    var hkUnit: HKUnit = bloodPressureUnit
-    var quantity: Double { return Double(value) }
-    var start: Date { return time }
-    var end: Date { return time }
+    internal static let identifier: HKQuantityTypeIdentifier = .bloodPressureSystolic
+    internal var hkUnit: HKUnit = bloodPressureUnit
+    internal var quantity: Double { return Double(value) }
+    internal var start: Date { return time }
+    internal var end: Date { return time }
+
     public var value: Int
     public var time: Date
     
-    init(value: Int, time: Date) {
+    public init(value: Int, time: Date) {
         self.value = value
         self.time = time
     }
     
-    init?(sample: HKQuantitySample) {
+    internal init?(sample: HKQuantitySample) {
         self.value = Int(sample.quantity.doubleValue(for: hkUnit))
         self.time = sample.startDate
     }

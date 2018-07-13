@@ -6,9 +6,10 @@ import Foundation
 import HealthKit
 
 public struct UVExposure: ASKHealthQuantityItem {
-    static let identifier: HKQuantityTypeIdentifier = .uvExposure
-    let hkUnit: HKUnit = .count()
-    var quantity: Double { return Double(value) }
+    internal static let identifier: HKQuantityTypeIdentifier = .uvExposure
+    internal let hkUnit: HKUnit = .count()
+    internal var quantity: Double { return Double(value) }
+
     public var value: Int
     public var start: Date
     public var end: Date
@@ -31,8 +32,9 @@ public struct UVExposure: ASKHealthQuantityItem {
 }
 
 public struct InsulinDelivery: ASKHealthQuantityItem {
-    static var identifier: HKQuantityTypeIdentifier = .insulinDelivery
-    var hkUnit: HKUnit = .internationalUnit()
+    internal static var identifier: HKQuantityTypeIdentifier = .insulinDelivery
+    internal var hkUnit: HKUnit = .internationalUnit()
+
     public let quantity: Double
     public let start: Date
     public let end: Date
@@ -68,14 +70,14 @@ public struct InsulinDelivery: ASKHealthQuantityItem {
         case basal
         case bolus
         
-        var value: Int {
+        internal var value: Int {
             switch self {
             case .basal: return HKInsulinDeliveryReason.basal.rawValue
             case .bolus: return HKInsulinDeliveryReason.bolus.rawValue
             }
         }
         
-        init?(value: Int) {
+        internal init?(value: Int) {
             switch value {
             case HKInsulinDeliveryReason.basal.rawValue: self = .basal
             case HKInsulinDeliveryReason.bolus.rawValue: self = .bolus

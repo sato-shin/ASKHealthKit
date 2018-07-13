@@ -9,12 +9,13 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ASKHealthKitTests.xcscheme</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>00FFDEE120F84B34005AB2FE</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-			<key>isShown</key>
-			<false />
+			<key>primary</key>
+			<true />
 		</dict>
 	</dict>
 </dict>

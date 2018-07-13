@@ -6,8 +6,9 @@ import Foundation
 import HealthKit
 
 public struct SleepAnalysis: ASKHealthCategoryItem {
-    static let identifier: HKCategoryTypeIdentifier = .sleepAnalysis
-    var value: Int { return category.value }
+    internal static let identifier: HKCategoryTypeIdentifier = .sleepAnalysis
+    internal var value: Int { return category.value }
+
     public var start: Date
     public var end: Date
     public var category: Category
@@ -18,7 +19,7 @@ public struct SleepAnalysis: ASKHealthCategoryItem {
         self.category = category
     }
     
-    init?(sample: HKCategorySample) {
+    internal init?(sample: HKCategorySample) {
         guard let category = Category.init(value: sample.value) else { return nil}
         self.start = sample.startDate
         self.end = sample.endDate
@@ -30,7 +31,7 @@ public struct SleepAnalysis: ASKHealthCategoryItem {
         case asleep
         case awake
         
-        var value: Int {
+        internal var value: Int {
             switch self {
             case .inBed: return HKCategoryValueSleepAnalysis.inBed.rawValue
             case .asleep: return HKCategoryValueSleepAnalysis.asleep.rawValue
@@ -38,7 +39,7 @@ public struct SleepAnalysis: ASKHealthCategoryItem {
             }
         }
         
-        init?(value: Int) {
+        internal init?(value: Int) {
             switch value {
             case HKCategoryValueSleepAnalysis.inBed.rawValue: self = .inBed
             case HKCategoryValueSleepAnalysis.asleep.rawValue: self = .asleep
