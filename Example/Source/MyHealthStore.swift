@@ -7,7 +7,7 @@ import ASKHealthKit
 
 class MyHealthStore: ASKHealthStore {
     let energyStore = HealthItemStore<Energy>(sharing: .rw)
-    let carbohydrateStore = HealthItemStore<Carbohydrate>(sharing: .rw)
+    let carbohydrateStore = HealthItemStore<Carbohydrates>(sharing: .rw)
     let waterStore = HealthItemStore<Water>(sharing: .rw)
     
     let stepCountStore = HealthItemStore<StepCount>(sharing: .rw)

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         store.energyStore.write(Energy(quantity: 50, time: now)) { success, error in
             print("Energy writing status: \(success)")
         }
-        store.carbohydrateStore.write(Carbohydrate(quantity: 10, time: now)) { success, error in
+        store.carbohydrateStore.write(Carbohydrates(quantity: 10, time: now)) { success, error in
             print("Carbohydrate writing status: \(success)")
         }
     }

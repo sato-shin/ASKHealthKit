@@ -109,3 +109,16 @@ extension ASKHealthCorrelationItem {
         return HKCorrelation(type: hkType, start: start, end: end, objects: hkSamples, device: nil, metadata: nil)
     }
 }
+
+//
+//public enum HealthIdentifier {
+//    case energy
+//    case carbohydrate
+//    case water
+//
+//    var hkSampleType: HKSampleType? { get }
+//    var hkObjectType: HKObjectType? { get }
+//    var hkSampleTypes: [HKSampleType] { get }
+//    var hkObjectTypes: [HKObjectType] { get }
+//    var hkObject: HKObject? { get }
+//}

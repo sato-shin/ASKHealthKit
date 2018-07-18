@@ -66,11 +66,15 @@ public struct Workout: ASKHealthItem {
 public enum ActivityType {
     case americanFootball(ActivityDetail?)
     case archery
+    case mindAndBody
+    case snowSports
 
     internal init(type: HKWorkoutActivityType, detail: ActivityDetail?) {
         switch type {
         case .americanFootball: self = .americanFootball(detail)
         case .archery: self = .archery
+        case .mindAndBody: self = .mindAndBody
+        case .snowSports: self = .snowSports
         default: fatalError("あとで実装する")
         }
     }
@@ -79,7 +83,9 @@ public enum ActivityType {
         switch self {
         case .americanFootball(let detail):
             return detail
-        case .archery:
+        case .archery,
+             .mindAndBody,
+             .snowSports:
             return nil
         }
     }
@@ -88,6 +94,8 @@ public enum ActivityType {
         switch self {
         case .americanFootball: return .americanFootball
         case .archery: return .archery
+        case .mindAndBody: return .mindAndBody
+        case .snowSports: return .snowSports
         }
     }
 }

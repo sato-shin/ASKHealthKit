@@ -20,7 +20,7 @@ class HealthItemTests: XCTestCase {
         XCTAssert(energy.time == now)
         XCTAssert(energy.unitString == "kcal")
         
-        let carbohydrate = Carbohydrate(quantity: quantity, time: now)
+        let carbohydrate = Carbohydrates(quantity: quantity, time: now)
         XCTAssert(carbohydrate.quantity == quantity)
         XCTAssert(carbohydrate.time == now)
         XCTAssert(carbohydrate.unitString == "g")

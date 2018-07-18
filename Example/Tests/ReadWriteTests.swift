@@ -48,7 +48,7 @@ class ReadWriteTests: XCTestCase {
 
     func testCarbohydrateItem() {
         let writeExpectation = XCTestExpectation(description: "Write carbohydrate into health store")
-        let item = Carbohydrate(quantity: quantity, time: now)
+        let item = Carbohydrates(quantity: quantity, time: now)
         store.carbohydrateStore.write(item) { success, error in
             XCTAssert(success, "Expect: true, Actual: \(success)")
             XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
@@ -57,7 +57,7 @@ class ReadWriteTests: XCTestCase {
         wait(for: [writeExpectation], timeout: 1)
 
         let readExpectation = XCTestExpectation(description: "Read carbohydrate from health store")
-        store.carbohydrateStore.readAll { (items: [Carbohydrate], error: Error?) in
+        store.carbohydrateStore.readAll { (items: [Carbohydrates], error: Error?) in
             XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
             XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
             XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")
@@ -279,6 +279,29 @@ class ReadWriteTests: XCTestCase {
             deleteExpectation.fulfill()
         }
         wait(for: [deleteExpectation], timeout: 1)
+    }
+    func testA() {
+        let writeExpectation = XCTestExpectation(description: "Write workout into health store")
+        let item = Workout((.snowSports), start: start, end: end, energyBurned: quantity)
+        store.workoutStore.write(item) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation = XCTestExpectation(description: "Read workout from health store")
+        store.workoutStore.readAll { (items: [Workout], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.start == self.start, "Expect: \(self.start), Actual: \(String(describing: items.first?.start))")
+            XCTAssert(items.first?.end == self.end, "Expect: \(self.end), Actual: \(String(describing: items.first?.end))")
+            XCTAssert(items.first?.energyBurned == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.energyBurned))")
+            if case .snowSports? = items.first?.activityType { }
+            else { XCTAssert(false, "Expect: \(ActivityType.snowSports), Actual: \(String(describing: items.first?.activityType))") }
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation.fulfill()
+        }
+        wait(for: [readExpectation], timeout: 1)
     }
     
     // Mindfulness
