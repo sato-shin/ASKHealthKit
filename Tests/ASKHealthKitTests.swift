@@ -33,14 +33,14 @@ class ASKHealthKitTests: XCTestCase {
         XCTAssert(protein.unitString == "g")
         XCTAssertNotNil(protein.hkObject)
 
-        let carbohydrate = Carbohydrates(quantity: quantity, time: now)
+        let carbohydrates = Carbohydrates(quantity: quantity, time: now)
         XCTAssert(Carbohydrates.identifier == .dietaryCarbohydrates)
-        XCTAssert(carbohydrate.quantity == quantity)
-        XCTAssert(carbohydrate.time == now)
-        XCTAssert(carbohydrate.start == now)
-        XCTAssert(carbohydrate.end == now)
-        XCTAssert(carbohydrate.unitString == "g")
-        XCTAssertNotNil(carbohydrate.hkObject)
+        XCTAssert(carbohydrates.quantity == quantity)
+        XCTAssert(carbohydrates.time == now)
+        XCTAssert(carbohydrates.start == now)
+        XCTAssert(carbohydrates.end == now)
+        XCTAssert(carbohydrates.unitString == "g")
+        XCTAssertNotNil(carbohydrates.hkObject)
 
         let dietaryFiber = DietaryFiber(quantity: quantity, time: now)
         XCTAssert(DietaryFiber.identifier == .dietaryFiber)
@@ -347,6 +347,15 @@ class ASKHealthKitTests: XCTestCase {
         XCTAssert(zinc.end == now)
         XCTAssert(zinc.unitString == "mg")
         XCTAssertNotNil(zinc.hkObject)
+
+        let caffeine = Caffeine(quantity: quantity, time: now)
+        XCTAssert(Caffeine.identifier == .dietaryCaffeine)
+        XCTAssert(caffeine.quantity == quantity)
+        XCTAssert(caffeine.time == now)
+        XCTAssert(caffeine.start == now)
+        XCTAssert(caffeine.end == now)
+        XCTAssert(caffeine.unitString == "mg")
+        XCTAssertNotNil(caffeine.hkObject)
     }
     
     func testWaterItem() {

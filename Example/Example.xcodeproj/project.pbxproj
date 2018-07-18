@@ -17,7 +17,8 @@
 		00C158EE20F84DB600D43991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C158ED20F84DB600D43991 /* Assets.xcassets */; };
 		00C158F120F84DB600D43991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */; };
 		00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158FB20F84DB600D43991 /* HealthItemTests.swift */; };
-		00C1592720F8577B00D43991 /* ReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1592620F8577B00D43991 /* ReadWriteTests.swift */; };
+		AF7CA8AC69DC18352923D0DE /* ReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA22AEE97393322DDAE35 /* ReadWriteTests.swift */; };
+		AF7CAB2D2BA0AB6FE1B68B41 /* NutrientItemsReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA724B14561FDE3F76754 /* NutrientItemsReadWriteTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +60,8 @@
 		00C158FD20F84DB600D43991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C1590720F84E4100D43991 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		00C1590E20F853D300D43991 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
-		00C1592620F8577B00D43991 /* ReadWriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteTests.swift; sourceTree = "<group>"; };
+		AF7CA22AEE97393322DDAE35 /* ReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteTests.swift; sourceTree = "<group>"; };
+		AF7CA724B14561FDE3F76754 /* NutrientItemsReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutrientItemsReadWriteTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				00C158FB20F84DB600D43991 /* HealthItemTests.swift */,
-				00C1592620F8577B00D43991 /* ReadWriteTests.swift */,
 				00C158FD20F84DB600D43991 /* Info.plist */,
+				AF7CA67CF4D63FA4B1DF1D9C /* ReadWriteTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -133,6 +135,15 @@
 				00C1590720F84E4100D43991 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF7CA67CF4D63FA4B1DF1D9C /* ReadWriteTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF7CA22AEE97393322DDAE35 /* ReadWriteTests.swift */,
+				AF7CA724B14561FDE3F76754 /* NutrientItemsReadWriteTests.swift */,
+			);
+			path = ReadWriteTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */,
-				00C1592720F8577B00D43991 /* ReadWriteTests.swift in Sources */,
+				AF7CA8AC69DC18352923D0DE /* ReadWriteTests.swift in Sources */,
+				AF7CAB2D2BA0AB6FE1B68B41 /* NutrientItemsReadWriteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
