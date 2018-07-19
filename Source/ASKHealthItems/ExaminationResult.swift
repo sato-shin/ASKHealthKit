@@ -31,6 +31,7 @@ public struct UVExposure: ASKHealthQuantityItem {
     }
 }
 
+@available(iOS 11.0, *)
 public struct InsulinDelivery: ASKHealthQuantityItem {
     internal static var identifier: HKQuantityTypeIdentifier = .insulinDelivery
     internal var hkUnit: HKUnit = .internationalUnit()
