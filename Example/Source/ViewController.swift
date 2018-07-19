@@ -7,30 +7,60 @@ import ASKHealthKit
 
 class ViewController: UIViewController {
     
-    let store = MyHealthStore()
+    let store = CustomHealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let store = MyHealthStore()
-        store.requestAuthorization { b, error in  }
+        store.requestAuthorization { success, error in
+            print("Energy writing status: \(success)")
+        }
     }
     
     @IBAction func write(_ sender: Any) {
         let now = Date()
-        store.energyStore.write(Energy(quantity: 50, time: now)) { success, error in
+
+        let energy = Energy(quantity: 50, time: now)
+        store.energyStore.write(energy) { success, error in
             print("Energy writing status: \(success)")
         }
-        store.carbohydrateStore.write(Carbohydrates(quantity: 10, time: now)) { success, error in
+
+        let carbohydrates = Carbohydrates(quantity: 10, time: now)
+        store.carbohydrateStore.write(carbohydrates) { success, error in
             print("Carbohydrate writing status: \(success)")
+        }
+
+        let bloodPressure = BloodPressure(diastolic: 80, systolic: 120, time: now)
+        store.bloodPressureStore.write(bloodPressure) { success, error in
+            print("Blood Pressure writing status: \(success)")
         }
     }
     
     @IBAction func read(_ sender: Any) {
         store.energyStore.readAll { items, error in
             items.forEach { i in
-                print("\(i.time), \(i.quantity)")
+                print("Energy: \(i.time), \(i.quantity)")
+            }
+        }
+
+        store.carbohydrateStore.readAll { items, error in
+            items.forEach { i in
+                print("Carbohydrate: \(i.time), \(i.quantity)")
+            }
+        }
+
+        store.bloodPressureStore.readAll { items, error in
+            items.forEach { i in
+                print("Blood Pressure Diastolic: \(i.time), \(i.diastolic.value)")
+                print("Blood Pressure Systolic : \(i.time), \(i.systolic.value)")
             }
         }
     }
+}
+
+class CustomHealthStore: ASKHealthStore {
+    let energyStore = HealthItemStore<Energy>(sharing: .rw)
+    let carbohydrateStore = HealthItemStore<Carbohydrates>(sharing: .rw)
+
+    let bloodPressureStore = HealthItemStore<BloodPressure>(sharing: .rw)
 }

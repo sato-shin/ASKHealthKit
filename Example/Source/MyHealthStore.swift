@@ -45,20 +45,20 @@ class MyHealthStore: ASKHealthStore {
     let zincStore = HealthItemStore<Zinc>(sharing: .rw)
     let caffeineStore = HealthItemStore<Caffeine>(sharing: .rw)
     let waterStore = HealthItemStore<Water>(sharing: .rw)
-    
+
     let stepCountStore = HealthItemStore<StepCount>(sharing: .rw)
     let swimmingDistanceStore = HealthItemStore<SwimmingDistance>(sharing: .rw)
     let cyclingDistanceStore = HealthItemStore<CyclingDistance>(sharing: .rw)
     let workoutStore = HealthItemStore<Workout>(sharing: .rw)
-    
+
     let uvExposureStore = HealthItemStore<UVExposure>(sharing: .rw)
     let insulinDeliveryStore = HealthItemStore<InsulinDelivery>(sharing: .rw)
-    
+
     let intermenstrualBleedingStore = HealthItemStore<IntermenstrualBleeding>(sharing: .rw)
-    
+
     let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
 
     let mindfulTimeStore = HealthItemStore<MindfulTime>(sharing: .rw)
-    
+
     let sleepAnalysisStore = HealthItemStore<SleepAnalysis>(sharing: .rw)
 }

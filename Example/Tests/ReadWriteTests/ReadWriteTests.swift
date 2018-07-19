@@ -14,7 +14,7 @@ class ReadWriteTests: XCTestCase {
     let end = Date()
     let start = Date(timeIntervalSinceNow: -(60 * 10))
     
-    let store = MyHealthStore()
+    let store = CustomHealthStore()
 
     // Activity
     func testStepCountItem() {
