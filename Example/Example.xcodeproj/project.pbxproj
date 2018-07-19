@@ -17,7 +17,6 @@
 		00C158EE20F84DB600D43991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C158ED20F84DB600D43991 /* Assets.xcassets */; };
 		00C158F120F84DB600D43991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */; };
 		00C158FC20F84DB600D43991 /* HealthItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C158FB20F84DB600D43991 /* HealthItemTests.swift */; };
-		AF7CA25F59341E1C80D1D3A5 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA484BB5DC1C11ADE5DD4 /* DemoViewController.swift */; };
 		AF7CA8AC69DC18352923D0DE /* ReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA22AEE97393322DDAE35 /* ReadWriteTests.swift */; };
 		AF7CAB2D2BA0AB6FE1B68B41 /* NutrientItemsReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA724B14561FDE3F76754 /* NutrientItemsReadWriteTests.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +61,6 @@
 		00C1590720F84E4100D43991 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		00C1590E20F853D300D43991 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		AF7CA22AEE97393322DDAE35 /* ReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteTests.swift; sourceTree = "<group>"; };
-		AF7CA484BB5DC1C11ADE5DD4 /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		AF7CA724B14561FDE3F76754 /* NutrientItemsReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutrientItemsReadWriteTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +114,6 @@
 				00C158ED20F84DB600D43991 /* Assets.xcassets */,
 				00C158EF20F84DB600D43991 /* LaunchScreen.storyboard */,
 				00C158F220F84DB600D43991 /* Info.plist */,
-				AF7CA484BB5DC1C11ADE5DD4 /* DemoViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 				00C158E920F84DB300D43991 /* ViewController.swift in Sources */,
 				00C158E720F84DB300D43991 /* AppDelegate.swift in Sources */,
 				005064BB20F878D50043F16C /* MyHealthStore.swift in Sources */,
-				AF7CA25F59341E1C80D1D3A5 /* DemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

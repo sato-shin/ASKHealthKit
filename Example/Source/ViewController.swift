@@ -7,7 +7,7 @@ import ASKHealthKit
 
 class ViewController: UIViewController {
     
-    let store = CustomHealthStore()
+    let store = MyHealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +56,4 @@ class ViewController: UIViewController {
             }
         }
     }
-}
-
-class CustomHealthStore: ASKHealthStore {
-    let energyStore = HealthItemStore<Energy>(sharing: .rw)
-    let carbohydrateStore = HealthItemStore<Carbohydrates>(sharing: .rw)
-
-    let bloodPressureStore = HealthItemStore<BloodPressure>(sharing: .rw)
 }

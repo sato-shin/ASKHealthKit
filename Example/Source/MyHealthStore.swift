@@ -56,7 +56,7 @@ class MyHealthStore: ASKHealthStore {
 
     let intermenstrualBleedingStore = HealthItemStore<IntermenstrualBleeding>(sharing: .rw)
 
-    let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
+    let bloodPressureStore = HealthItemStore<BloodPressure>(sharing: .rw)
 
     let mindfulTimeStore = HealthItemStore<MindfulTime>(sharing: .rw)
 
