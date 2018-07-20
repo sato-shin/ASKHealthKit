@@ -76,19 +76,3 @@ public struct CyclingDistance: ASKHealthQuantityItem {
         self.time = sample.startDate
     }
 }
-
-public enum DistanceUnit {
-    case meter
-    case kilometer
-    case yard
-    case mile
-    
-    internal var hkUnit: HKUnit {
-        switch self {
-        case .meter: return .meter()
-        case .kilometer: return .meterUnit(with: .kilo)
-        case .yard: return .yard()
-        case .mile: return .mile()
-        }
-    }
-}

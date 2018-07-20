@@ -70,7 +70,7 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
     public init(sharing: ASKHealthSharingStatus) {
         self.sharing = sharing
     }
-    
+
     public func write(_ item: T, withCompletion completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         guard let object = item.hkObject else { return }
         ASKHealthKit.store.save(object, withCompletion: completion)

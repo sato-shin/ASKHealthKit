@@ -43,85 +43,121 @@ public struct BodyMassIndex: ASKHealthQuantityItem {
         self.quantity = sample.quantity.doubleValue(for: hkUnit)
         self.time = sample.startDate
     }
+
+    public var unitString: String {
+        return ""
+    }
 }
 
 public struct LeanBodyMass: ASKHealthQuantityItem {
     internal static let identifier: HKQuantityTypeIdentifier = .leanBodyMass
-    internal let hkUnit: HKUnit = .gramUnit(with: .kilo)
+    internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
     internal var end: Date { return time }
 
+    public static var defaultUnit: WeightUnit = .kilogram
     public let quantity: Double
     public let time: Date
+    public let unit: WeightUnit
 
-    public init(quantity: Double, time: Date) {
+    public init(quantity: Double, time: Date, unit: WeightUnit = LeanBodyMass.defaultUnit) {
         self.quantity = quantity
         self.time = time
+        self.unit = unit
     }
 
     public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+        self.unit = LeanBodyMass.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
+    }
+
+    public var unitString: String {
+        return unit.string
     }
 }
 
 public struct BodyHeight: ASKHealthQuantityItem {
     internal static let identifier: HKQuantityTypeIdentifier = .height
-    internal let hkUnit: HKUnit = .meterUnit(with: .centi)
+    internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
     internal var end: Date { return time }
 
+    public static var defaultUnit: LengthUnit = .centimeter
     public let quantity: Double
     public let time: Date
+    public let unit: LengthUnit
 
-    public init(quantity: Double, time: Date) {
+    public init(quantity: Double, time: Date, unit: LengthUnit = BodyHeight.defaultUnit) {
         self.quantity = quantity
         self.time = time
+        self.unit = unit
     }
 
     public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+        self.unit = BodyHeight.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
+    }
+
+    public var unitString: String {
+        return unit.string
     }
 }
 
 public struct BodyMass: ASKHealthQuantityItem {
     internal static let identifier: HKQuantityTypeIdentifier = .bodyMass
-    internal let hkUnit: HKUnit = .gramUnit(with: .kilo)
+    internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
     internal var end: Date { return time }
 
+    public static var defaultUnit: WeightUnit = .kilogram
     public let quantity: Double
     public let time: Date
+    public let unit: WeightUnit
 
-    public init(quantity: Double, time: Date) {
+    public init(quantity: Double, time: Date, unit: WeightUnit = BodyMass.defaultUnit) {
         self.quantity = quantity
         self.time = time
+        self.unit = unit
     }
 
     public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+        self.unit = BodyMass.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
+    }
+
+    public var unitString: String {
+        return unit.string
     }
 }
 
 @available(iOS 11.0, *)
 public struct WaistCircumference: ASKHealthQuantityItem {
     internal static let identifier: HKQuantityTypeIdentifier = .waistCircumference
-    internal let hkUnit: HKUnit = .meterUnit(with: .centi)
+    internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
     internal var end: Date { return time }
 
+    public static let defaultUnit: LengthUnit = .centimeter
     public let quantity: Double
     public let time: Date
+    public let unit: LengthUnit
 
-    public init(quantity: Double, time: Date) {
+    public init(quantity: Double, time: Date, unit: LengthUnit = WaistCircumference.defaultUnit) {
         self.quantity = quantity
         self.time = time
+        self.unit = unit
     }
 
     public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+        self.unit = WaistCircumference.defaultUnit
+        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
         self.time = sample.startDate
+    }
+
+    public var unitString: String {
+        return unit.string
     }
 }

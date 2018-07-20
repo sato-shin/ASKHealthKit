@@ -792,37 +792,3 @@ public struct Water: ASKHealthQuantityItem {
         return unit.string
     }
 }
-
-public enum WaterUnit {
-    case litter
-    case milliLitter
-    case imperialCup
-    case imperialOnce
-    case imperialPint
-    case usCup
-    case usOnce
-    case usPint
-    
-    internal var hkUnit: HKUnit {
-        switch self {
-        case .litter: return .literUnit(with: .none)
-        case .milliLitter: return .literUnit(with: .milli)
-        case .imperialCup: return .cupImperial()
-        case .imperialOnce: return .fluidOunceImperial()
-        case .imperialPint: return .pintImperial()
-        case .usCup: return .cupUS()
-        case .usOnce: return .fluidOunceUS()
-        case .usPint: return .pintUS()
-        }
-    }
-
-    internal var string: String {
-        switch self {
-        case .litter: return "L"
-        case .milliLitter: return "mL"
-        case .imperialCup, .usCup: return "cup"
-        case .imperialOnce, .usOnce: return "fl oz"
-        case .imperialPint, .usPint: return "pt"
-        }
-    }
-}
