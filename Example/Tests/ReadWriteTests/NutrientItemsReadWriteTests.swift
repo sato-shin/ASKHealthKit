@@ -14,7 +14,7 @@ class NutrientItemsReadWriteTests: XCTestCase {
     let end = Date()
     let start = Date(timeIntervalSinceNow: -(60 * 10))
 
-    let store = MyHealthStore()
+    let store = HealthStore()
 
     func testEnergyItem() {
         let writeExpectation = XCTestExpectation(description: "Write energy into health store")

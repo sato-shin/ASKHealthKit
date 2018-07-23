@@ -5,7 +5,7 @@
 import Foundation
 import ASKHealthKit
 
-class MyHealthStore: ASKHealthStore {
+class HealthStore: ASKHealthStore {
     let energyStore = HealthItemStore<Energy>(sharing: .rw)
     let proteinStore = HealthItemStore<Protein>(sharing: .rw)
     let carbohydrateStore = HealthItemStore<Carbohydrates>(sharing: .rw)

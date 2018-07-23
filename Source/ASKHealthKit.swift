@@ -71,20 +71,28 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
         self.sharing = sharing
     }
 
+    public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+        let objects = items.compactMap { $0.hkObject }
+        ASKHealthKit.store.save(objects, withCompletion: completion)
+    }
+
     public func write(_ item: T, withCompletion completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        guard let object = item.hkObject else { return }
+        guard let object = item.hkObject else {
+            completion(false, NSError(domain: "", code: HKError.errorInvalidArgument.rawValue))
+            return
+        }
         ASKHealthKit.store.save(object, withCompletion: completion)
     }
     
-    public func readAll(_ completion: @escaping (_ items: [T], _ error: Error?) -> Void) {
+    public func read(start: Date?, end: Date?, limit: Int?, _ completion: @escaping (_ items: [T], _ error: Error?) -> Void) {
         guard let type = T.hkSampleType else {
             completion([], NSError(domain: "", code: HKError.errorInvalidArgument.rawValue))
             return
         }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: nil, end: nil)
-        let limit = HKObjectQueryNoLimit
-        let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
+
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let limit = limit ?? HKObjectQueryNoLimit
+        let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
         var objects = [T]()
         let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
             samples?.forEach { (sample: HKSample) in
@@ -93,10 +101,18 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
             }
             completion(objects, nil)
         }
-        
+
         ASKHealthKit.store.execute(query)
     }
-    
+
+    public func readLatest(from date: Date, _ completion: @escaping (_ items: [T], _ error: Error?) -> Void) {
+        read(start: nil, end: date, limit: 1, completion)
+    }
+
+    public func readAll(_ completion: @escaping (_ items: [T], _ error: Error?) -> Void) {
+        read(start: nil, end: nil, limit: nil, completion)
+    }
+
     public func deleteAll(_ completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         guard let type = T.hkObjectType else {
             completion(false, NSError(domain: "", code: HKError.noError.rawValue))

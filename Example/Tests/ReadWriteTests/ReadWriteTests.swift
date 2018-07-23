@@ -10,11 +10,66 @@ class ReadWriteTests: XCTestCase {
     
     let quantity = Double(10)
     let now = Date()
-    
+
     let end = Date()
     let start = Date(timeIntervalSinceNow: -(60 * 10))
-    
-    let store = CustomHealthStore()
+
+    let store = HealthStore()
+
+    func testWriteAndRead() {
+        let writeExpectation = XCTestExpectation(description: "Write item into health store")
+        let originItems = [
+            Energy(quantity: quantity, time: now),
+            Energy(quantity: quantity*2, time: now.addingTimeInterval(-60*60*24)),
+            Energy(quantity: quantity*3, time: now.addingTimeInterval(-60*60*24*2)),
+            Energy(quantity: quantity*4, time: now.addingTimeInterval(-60*60*24*3)),
+            Energy(quantity: quantity*5, time: now.addingTimeInterval(60*60*24)),
+        ]
+        store.energyStore.write(originItems) { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            writeExpectation.fulfill()
+        }
+        wait(for: [writeExpectation], timeout: 1)
+
+        let readExpectation1 = XCTestExpectation(description: "Read item from health store")
+        store.energyStore.readAll { (items: [Energy], error: Error?) in
+            XCTAssert(items.count == originItems.count, "Expect: \(originItems.count), Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity*4, "Expect: \(self.quantity*4), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now.addingTimeInterval(60*60*24), "Expect: \(self.now.addingTimeInterval(60*60*24)), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation1.fulfill()
+        }
+        wait(for: [readExpectation1], timeout: 1)
+
+        let readExpectation2 = XCTestExpectation(description: "Read item from health store")
+        store.energyStore.readLatest(from: now.addingTimeInterval((60*60*24)-1)) { (items: [Energy], error: Error?) in
+            XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity*4), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation2.fulfill()
+        }
+        wait(for: [readExpectation2], timeout: 1)
+
+        let readExpectation3 = XCTestExpectation(description: "Read item from health store")
+        store.energyStore.read(start: now.addingTimeInterval((-60*60*24*3)+1), end: now, limit: 2) { (items: [Energy], error: Error?) in
+            XCTAssert(items.count == 2, "Expect: 2, Actual: \(items.count)")
+            XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity*4), Actual: \(String(describing: items.first?.quantity))")
+            XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            readExpectation3.fulfill()
+        }
+        wait(for: [readExpectation3], timeout: 1)
+
+        let deleteExpectation = XCTestExpectation(description: "Delete item from health store")
+        store.energyStore.deleteAll { success, error in
+            XCTAssert(success, "Expect: true, Actual: \(success)")
+            XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
+            deleteExpectation.fulfill()
+        }
+        wait(for: [deleteExpectation], timeout: 1)
+    }
 
     // Activity
     func testStepCountItem() {
@@ -287,7 +342,7 @@ class ReadWriteTests: XCTestCase {
         let diastolic = 100
         let systolic = 130
         let item = BloodPressure(diastolic: diastolic, systolic: systolic, time: now)
-        store.bloodPressure.write(item) { success, error in
+        store.bloodPressureStore.write(item) { success, error in
             XCTAssert(success, "Expect: true, Actual: \(success)")
             XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
             writeExpectation.fulfill()
@@ -295,7 +350,7 @@ class ReadWriteTests: XCTestCase {
         wait(for: [writeExpectation], timeout: 1)
 
         let readExpectation = XCTestExpectation(description: "Read blood pressure from health store")
-        store.bloodPressure.readAll { (items: [BloodPressure], error: Error?) in
+        store.bloodPressureStore.readAll { (items: [BloodPressure], error: Error?) in
             XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
             XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.time))")
             XCTAssert(items.first?.diastolicValue == diastolic, "Expect: \(diastolic), Actual: \(String(describing: items.first?.diastolicValue))")
@@ -308,7 +363,7 @@ class ReadWriteTests: XCTestCase {
         wait(for: [readExpectation], timeout: 1)
 
         let deleteExpectation = XCTestExpectation(description: "Delete blood pressure from health store")
-        store.bloodPressure.deleteAll { success, error in
+        store.bloodPressureStore.deleteAll { success, error in
             XCTAssert(success, "Expect: true, Actual: \(success)")
             XCTAssert(error == nil, "Error occurred: \(error!.localizedDescription)")
             deleteExpectation.fulfill()

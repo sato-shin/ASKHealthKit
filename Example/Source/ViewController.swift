@@ -7,7 +7,7 @@ import ASKHealthKit
 
 class ViewController: UIViewController {
     
-    let store = MyHealthStore()
+    let store = HealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
