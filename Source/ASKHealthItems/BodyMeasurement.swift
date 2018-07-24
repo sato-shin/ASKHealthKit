@@ -15,12 +15,12 @@ public struct BodyFatPercentage: ASKHealthQuantityItem {
     public let time: Date
 
     public init(quantity: Double, time: Date) {
-        self.quantity = quantity
+        self.quantity = quantity / 100
         self.time = time
     }
 
     public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+        self.quantity = sample.quantity.doubleValue(for: hkUnit) * 100
         self.time = sample.startDate
     }
 }
