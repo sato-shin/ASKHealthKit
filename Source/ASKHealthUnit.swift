@@ -85,6 +85,28 @@ public enum DistanceUnit {
     }
 }
 
+public enum NutrientUnit {
+    case g
+    case mg
+    case mcg
+
+    internal var hkUnit: HKUnit {
+        switch self {
+        case .g: return .gramUnit(with: .none)
+        case .mg: return .gramUnit(with: .milli)
+        case .mcg: return .gramUnit(with: .micro)
+        }
+    }
+
+    internal var string: String {
+        switch self {
+        case .g: return "g"
+        case .mg: return "mg"
+        case .mcg: return "mcg"
+        }
+    }
+}
+
 public enum WaterUnit {
     case litter
     case milliLitter

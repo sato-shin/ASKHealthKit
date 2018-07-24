@@ -409,8 +409,8 @@ class ASKHealthKitTests: XCTestCase {
     }
     
     func testActivityItems() {
-        let step = StepCount(quantity: quantity, time: now)
-        XCTAssert(step.quantity == quantity)
+        let step = StepCount(value: Int(quantity), time: now)
+        XCTAssert(step.value == Int(quantity))
         XCTAssert(step.time == now)
         XCTAssert(step.start == now)
         XCTAssert(step.end == now)
@@ -478,7 +478,8 @@ class ASKHealthKitTests: XCTestCase {
         XCTAssert(index.unitString == "")
         XCTAssertNotNil(index.hkObject)
     }
-    
+
+    @available(iOS 11.0, *)
     func testInsulinDeliveryItem() {
         let item = InsulinDelivery(quantity: quantity, start: start, end: end, purpose: .basal)
         XCTAssert(item.quantity == quantity)
