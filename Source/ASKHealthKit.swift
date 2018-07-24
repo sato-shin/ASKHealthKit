@@ -119,7 +119,7 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
         ASKHealthKit.store.execute(query)
     }
 
-    public func read(at date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
+    public func read(in date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
         read(start: nil, end: date, limit: 1, completion)
     }
 
