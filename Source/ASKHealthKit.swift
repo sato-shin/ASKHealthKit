@@ -131,15 +131,19 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
         read(start: nil, end: nil, limit: nil, completion)
     }
 
-    public func deleteAll(_ completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+    public func delete(start: Date?, end: Date?, _ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
         guard let type = T.hkObjectType else {
-            completion(false, .notFoundObject)
+            completion(false, 0, .notFoundObject)
             return
         }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: nil, end: nil)
-        ASKHealthKit.store.deleteObjects(of: type, predicate: predicate) { success, _, error in
-            completion(success, ASKHealthError(from: error))
+
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        ASKHealthKit.store.deleteObjects(of: type, predicate: predicate) { success, count, error in
+            completion(success, count, ASKHealthError(from: error))
         }
+    }
+
+    public func deleteAll(_ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
+        delete(start: nil, end: nil, completion)
     }
 }
