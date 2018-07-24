@@ -10,12 +10,13 @@ public struct StepCount: ASKHealthQuantityItem {
     internal let hkUnit: HKUnit = .count()
     internal var start: Date { return time }
     internal var end: Date { return time }
+    internal let quantity: Double
 
-    public let quantity: Double
+    public var value: Int { return Int(quantity) }
     public let time: Date
     
-    public init(quantity: Double, time: Date) {
-        self.quantity = quantity
+    public init(value: Int, time: Date) {
+        self.quantity = Double(value)
         self.time = time
     }
     
