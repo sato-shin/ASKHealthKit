@@ -21,7 +21,6 @@ public enum ASKHealthError: Error {
     case noError
 
     init(from error: Error?) {
-        print(error)
         if let error = error as? HKError {
             switch error.errorCode {
             case HKError.noError.rawValue:                           self = .noError

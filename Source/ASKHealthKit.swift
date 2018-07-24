@@ -105,7 +105,7 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
         let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
         var objects = [T]()
         let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
-            guard error != nil else {
+            guard error == nil else {
                 completion([], ASKHealthError(from: error))
                 return
             }
