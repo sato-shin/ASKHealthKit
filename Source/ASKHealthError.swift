@@ -39,4 +39,8 @@ public enum ASKHealthError: Error {
             self = .noError
         }
     }
+
+    var localizedDescription: String {
+        return ""
+    }
 }

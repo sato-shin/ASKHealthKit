@@ -24,6 +24,7 @@ public enum ASKHealthSharingStatus: String {
 }
 
 open class ASKHealthStore: NSObject {
+
     public func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         var count: UInt32 = 0
         let ivars = class_copyIvarList(self.classForCoder, &count)
@@ -72,8 +73,16 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
         self.sharing = sharing
     }
 
+    public var authorizationStatus: HealthAuthorizationStatus {
+        return HealthAuthorizationStatus(from: ASKHealthKit.store.authorizationStatus(for: T.hkObjectType!))
+    }
+
     public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         let objects = items.compactMap { $0.hkObject }
+        guard objects.count > 0 else {
+            completion(false, .notFoundObject)
+            return
+        }
         ASKHealthKit.store.save(objects) { success, error in
             completion(success, ASKHealthError(from: error))
         }
@@ -145,5 +154,20 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
 
     public func deleteAll(_ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
         delete(start: nil, end: nil, completion)
+    }
+}
+
+public enum HealthAuthorizationStatus {
+    case notDetermined
+    case sharingDenied
+    case sharingAuthorized
+    case sharingAuthorizedPartially
+
+    init(from status: HKAuthorizationStatus) {
+        switch status {
+        case .notDetermined: self = .notDetermined
+        case .sharingDenied: self = .sharingDenied
+        case .sharingAuthorized: self = .sharingAuthorized
+        }
     }
 }
