@@ -5,6 +5,7 @@
 import Foundation
 import HealthKit
 
+
 public protocol ASKHealthItem {
     // TODO: HK 周りは隠蔽したい。。。
     static var hkSampleType: HKSampleType? { get }
@@ -109,16 +110,3 @@ extension ASKHealthCorrelationItem {
         return HKCorrelation(type: hkType, start: start, end: end, objects: hkSamples, device: nil, metadata: nil)
     }
 }
-
-//
-//public enum HealthIdentifier {
-//    case energy
-//    case carbohydrate
-//    case water
-//
-//    var hkSampleType: HKSampleType? { get }
-//    var hkObjectType: HKObjectType? { get }
-//    var hkSampleTypes: [HKSampleType] { get }
-//    var hkObjectTypes: [HKObjectType] { get }
-//    var hkObject: HKObject? { get }
-//}

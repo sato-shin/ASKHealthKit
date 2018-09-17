@@ -140,3 +140,23 @@ public enum WaterUnit {
         }
     }
 }
+
+public enum EnergyUnit {
+    case kilocalorie
+
+    var hkUnit: HKUnit {
+        switch self {
+        case .kilocalorie: return .kilocalorie()
+        }
+    }
+}
+
+public enum BloodPressureUnit {
+    case millimeterOfMercury
+
+    var hkUnit: HKUnit {
+        switch self {
+        case .millimeterOfMercury: return .millimeterOfMercury()
+        }
+    }
+}

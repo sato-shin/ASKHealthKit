@@ -5,23 +5,38 @@
 import Foundation
 import HealthKit
 
-public struct Energy: ASKHealthQuantityItem {
-    internal static let identifier: HKQuantityTypeIdentifier = .dietaryEnergyConsumed
-    internal let hkUnit: HKUnit = .kilocalorie()
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct Energy: HealthQuantityItem, QuantityObjectConvertable {
+    public typealias ValueType = Double
+    public typealias UnitType = EnergyUnit
+    public typealias TimeType = Date
 
-    public let quantity: Double
-    public let time: Date
-    
-    public init(quantity: Double, time: Date) {
-        self.quantity = quantity
+    public static let defaultUnit: UnitType = .kilocalorie
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, time: TimeType, unit: UnitType) {
+        self.value = value
         self.time = time
+        self.unit = unit
     }
-    
-    public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
-        self.time = sample.startDate
+
+    // convertable implements
+    internal static var id: HKQuantityTypeIdentifier = .dietaryEnergyConsumed
+    internal var data: HKQuantity {
+        return HKQuantity(unit: unit.hkUnit, doubleValue: value)
+    }
+    internal var date: DateInterval {
+        return DateInterval(start: time, end: time)
+    }
+    internal init?(object: HKObject) {
+        guard let object = object as? HKQuantitySample else {
+            return nil
+        }
+        let unit = Energy.defaultUnit
+        self.value = object.quantity.doubleValue(for: unit.hkUnit)
+        self.unit = unit
+        self.time = object.startDate
     }
 }
 
