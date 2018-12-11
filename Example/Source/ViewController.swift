@@ -18,8 +18,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func write(_ sender: Any) {
-        let energy = Energy(value: 0, time: Date())
+        let energy = EnergyConsumed(value: 10, time: Date())
+        store.energyStore.write([energy]) { success, error in
+            print(success)
+        }
+        
         let bleeding = IntermenstrualBleeding(time: Date())
+        store.intermenstrualBleedingStore.write([bleeding]) { success, error in
+            print(success)
+        }
+
+        let mindful = MindfulTime(time: DateInterval(start: Date(), duration: 300))
+        store.mindfulTime.write([mindful]) { success, error in
+            print(success)
+        }
+
+        let sleep = SleepAnalysis(value: .asleep, time: DateInterval(start: Date(), duration: 200))
+        store.sleepAnalysis.write([sleep]) { success, error in
+            print(success)
+        }
+
+        let bloodPressure = BloodPressure(diastolic: 80, systolic: 100, time: Date())
+        store.bloodPressure.write([bloodPressure]) { success, error in
+            print(success)
+        }
     }
     
     @IBAction func read(_ sender: Any) {

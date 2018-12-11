@@ -141,22 +141,26 @@ public enum WaterUnit {
     }
 }
 
-public enum EnergyUnit {
+public enum EnergyUnit: HealthUnitConvertible {
     case kilocalorie
 
-    var hkUnit: HKUnit {
+    public var hkUnit: HKUnit {
         switch self {
         case .kilocalorie: return .kilocalorie()
         }
     }
 }
 
-public enum BloodPressureUnit {
+public enum BloodPressureUnit: HealthUnitConvertible {
     case millimeterOfMercury
 
-    var hkUnit: HKUnit {
+    public var hkUnit: HKUnit {
         switch self {
         case .millimeterOfMercury: return .millimeterOfMercury()
         }
     }
+}
+
+public protocol HealthUnitConvertible {
+    var hkUnit: HKUnit { get }
 }

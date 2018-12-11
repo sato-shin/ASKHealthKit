@@ -5,26 +5,17 @@
 import Foundation
 import HealthKit
 
-public struct IntermenstrualBleeding: HealthCategoryItem, CategoryObjectConvertable {
-    public typealias ValueType = NotApplicableCategory
+public struct IntermenstrualBleeding: HealthCategoryItem {
+    public static let id: HKCategoryTypeIdentifier = .intermenstrualBleeding
+
+    public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date
-    public let time: TimeType
+
     public let value: ValueType
+    public let time: TimeType
 
     public init(value: ValueType, time: TimeType) {
         self.value = value
         self.time = time
-    }
-
-    internal static let id: HKCategoryTypeIdentifier = .intermenstrualBleeding
-    internal var data: Int {
-        return value.rawValue
-    }
-    internal var date: DateInterval {
-        return DateInterval(start: time, end: time)
-    }
-
-    init?(object: HKObject) {
-        return nil
     }
 }

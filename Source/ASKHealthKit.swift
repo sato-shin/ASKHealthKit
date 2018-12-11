@@ -32,19 +32,19 @@ open class ASKHealthStore: NSObject {
         
         for i in (0..<Int(count)) {
             guard let ivar = ivars?[i] else { continue }
-            guard let property = object_getIvar(self, ivar) as? HealthItemStoreProtocol else { continue }
+            guard let property = object_getIvar(self, ivar) as? ItemStoreProtocol else { continue }
             
             switch property.sharing {
             case .r:
-                property.hkObjectType.forEach { type in
+                property.hkObjectTypes.forEach { type in
                     readItems.insert(type)
                 }
             case .w:
-                property.hkSampleType.forEach { type in
+                property.hkSampleTypes.forEach { type in
                     writeItems.insert(type)
                 }
             case .rw:
-                property.hkSampleType.forEach { type in
+                property.hkSampleTypes.forEach { type in
                     writeItems.insert(type)
                     readItems.insert(type)
                 }

@@ -5,47 +5,17 @@
 import Foundation
 import HealthKit
 
-public struct SleepAnalysis: ASKHealthCategoryItem {
-    internal static let identifier: HKCategoryTypeIdentifier = .sleepAnalysis
-    internal var value: Int { return category.value }
+public struct SleepAnalysis: HealthCategoryItem {
+    public static let id: HKCategoryTypeIdentifier = .sleepAnalysis
 
-    public var start: Date
-    public var end: Date
-    public var category: Category
-    
-    public init(start: Date, end: Date, category: Category) {
-        self.start = start
-        self.end = end
-        self.category = category
-    }
-    
-    internal init?(sample: HKCategorySample) {
-        guard let category = Category.init(value: sample.value) else { return nil}
-        self.start = sample.startDate
-        self.end = sample.endDate
-        self.category = category
-    }
-    
-    public enum Category {
-        case inBed
-        case asleep
-        case awake
-        
-        internal var value: Int {
-            switch self {
-            case .inBed: return HKCategoryValueSleepAnalysis.inBed.rawValue
-            case .asleep: return HKCategoryValueSleepAnalysis.asleep.rawValue
-            case .awake: return HKCategoryValueSleepAnalysis.awake.rawValue
-            }
-        }
-        
-        internal init?(value: Int) {
-            switch value {
-            case HKCategoryValueSleepAnalysis.inBed.rawValue: self = .inBed
-            case HKCategoryValueSleepAnalysis.asleep.rawValue: self = .asleep
-            case HKCategoryValueSleepAnalysis.awake.rawValue: self = .awake
-            default: return nil
-            }
-        }
+    public typealias ValueType = Category.SleepAnalysis
+    public typealias TimeType = DateInterval
+
+    public var value: Category.SleepAnalysis
+    public var time: DateInterval
+
+    public init(value: ValueType, time: TimeType) {
+        self.value = value
+        self.time = time
     }
 }

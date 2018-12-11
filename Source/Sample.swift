@@ -4,130 +4,6 @@
 
 import HealthKit
 
-protocol HealthObjectConvertable {
-    static var hkObjectTypes: Set<HKObjectType> { get }
-    static var hkSampleTypes: Set<HKSampleType> { get }
-
-    var hkObjects: [HKObject] { get }
-    var hkSamples: [HKSample] { get }
-
-    init?(object: HKObject)
-}
-
-protocol QuantityObjectConvertable: HealthObjectConvertable {
-    static var id: HKQuantityTypeIdentifier { get }
-    
-    var data: HKQuantity { get }
-    var date: DateInterval { get }
-}
-
-extension QuantityObjectConvertable {
-    internal static var hkObjectTypes: Set<HKObjectType> {
-        return hkSampleTypes
-    }
-
-    internal static var hkSampleTypes: Set<HKSampleType> {
-        return [HKQuantityType.quantityType(forIdentifier: Self.id)!]
-    }
-
-    internal var hkObjects: [HKObject] {
-        return hkSamples
-    }
-
-    internal var hkSamples: [HKSample] {
-        return [
-            HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: Self.id)!,
-                    quantity: data, start: date.start, end: date.end,
-                    device: nil, metadata: nil)
-        ]
-    }
-}
-
-protocol CategoryObjectConvertable: HealthObjectConvertable {
-    static var id: HKCategoryTypeIdentifier { get }
-
-    var data: Int { get }
-    var date: DateInterval { get }
-}
-extension CategoryObjectConvertable {
-    internal static var hkObjectTypes: Set<HKObjectType> {
-        return hkSampleTypes
-    }
-
-    internal static var hkSampleTypes: Set<HKSampleType> {
-        return [HKCategoryType.categoryType(forIdentifier: Self.id)!]
-    }
-
-    internal var hkObjects: [HKObject] {
-        return hkSamples
-    }
-
-    internal var hkSamples: [HKSample] {
-        return [
-            HKCategorySample(type: HKCategoryType.categoryType(forIdentifier: Self.id)!,
-                             value: data, start: date.start, end: date.end,
-                             device: nil, metadata: nil)
-        ]
-    }
-}
-
-//extension HealthStorableItem where HealthDateTypeIdentifier == HKCharacteristicTypeIdentifier {
-//    typealias HealthDataType = Void
-//
-//    internal static var hkObjectTypes: Set<HKObjectType> {
-//        return [HKCharacteristicType.characteristicType(forIdentifier: Self.id)!]
-//    }
-//
-//    internal static var hkSampleTypes: Set<HKSampleType> {
-//        return []
-//    }
-//
-//    internal var hkObjects: [HKObject] {
-//        return []
-//    }
-//    internal var hkSamples: [HKSample] {
-//        return []
-//    }
-//}
-//extension HealthStorableItem where HealthDateTypeIdentifier == HKCorrelationTypeIdentifier {
-//}
-
-public protocol HealthQuantityItem {
-    associatedtype ValueType
-    associatedtype UnitType
-    associatedtype TimeType
-
-    static var defaultUnit: UnitType { get }
-
-    var value: ValueType { get }
-    var unit: UnitType { get }
-    var time: TimeType { get }
-
-    init(value: ValueType, time: TimeType, unit: UnitType)
-}
-extension HealthQuantityItem {
-    public init(value: ValueType, time: TimeType) {
-        self.init(value: value, time: time, unit: Self.defaultUnit)
-    }
-}
-
-public protocol HealthCategoryItem {
-    associatedtype ValueType
-    associatedtype TimeType
-    var value: ValueType { get }
-    var time: TimeType { get }
-    init(value: ValueType, time: TimeType)
-}
-extension HealthCategoryItem where ValueType == NotApplicableCategory {
-    public init(time: TimeType) {
-        self.init(value: NotApplicableCategory(), time: time)
-    }
-}
-
-public struct NotApplicableCategory {
-    internal let rawValue: Int = HKCategoryValue.notApplicable.rawValue
-}
-
 class Store: NSObject {
     public func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         var count: UInt32 = 0
@@ -168,7 +44,7 @@ protocol ItemStoreProtocol {
     var hkObjectTypes: Set<HKObjectType> { get }
 }
 
-public class ItemStore<T: HealthObjectConvertable>: ItemStoreProtocol {
+public class ItemStore<T: HealthItem>: ItemStoreProtocol {
     public let sharing: ASKHealthSharingStatus
     public init(sharing: ASKHealthSharingStatus) {
         self.sharing = sharing
@@ -189,9 +65,10 @@ public class ItemStore<T: HealthObjectConvertable>: ItemStoreProtocol {
                     return
                 }
                 samples?.forEach { (sample: HKSample) in
-                    guard let object = T(object: sample) else {
+                    guard let sample = sample as? HKQuantitySample else {
                         return
                     }
+                    let object = T.convert(object: sample)
                     objects.append(object)
                 }
                 completion(objects, nil)
@@ -201,7 +78,7 @@ public class ItemStore<T: HealthObjectConvertable>: ItemStoreProtocol {
     }
 
     public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
-        let objects = items.flatMap { $0.hkObjects }
+        let objects = items.map { $0.hkObject }
         ASKHealthKit.store.save(objects) { (success: Bool, error: Error?) in
             let e = success ? nil : ASKHealthError(from: error)
             completion(success, e)
