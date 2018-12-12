@@ -45,5 +45,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func read(_ sender: Any) {
+        store.sleepAnalysis.read(start: nil, end: nil, limit: nil) { items, error in
+            print(items)
+        }
+        store.bloodPressure.read(start: nil, end: nil, limit: nil) { items, error in
+            print(items)
+        }
     }
 }

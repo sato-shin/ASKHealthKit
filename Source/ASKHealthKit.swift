@@ -29,22 +29,24 @@ open class ASKHealthStore: NSObject {
         let ivars = class_copyIvarList(self.classForCoder, &count)
         var writeItems = Set<HKSampleType>()
         var readItems = Set<HKObjectType>()
-        
+
         for i in (0..<Int(count)) {
-            guard let ivar = ivars?[i] else { continue }
-            guard let property = object_getIvar(self, ivar) as? ItemStoreProtocol else { continue }
-            
+            guard let ivar = ivars?[i],
+                  let property = object_getIvar(self, ivar) as? HealthItemStoreProtocol else {
+                continue
+            }
+
             switch property.sharing {
             case .r:
-                property.hkObjectTypes.forEach { type in
+                property.readableAuthorizationTypes.forEach { type in
                     readItems.insert(type)
                 }
             case .w:
-                property.hkSampleTypes.forEach { type in
+                property.writableAuthorizationTypes.forEach { type in
                     writeItems.insert(type)
                 }
             case .rw:
-                property.hkSampleTypes.forEach { type in
+                property.writableAuthorizationTypes.forEach { type in
                     writeItems.insert(type)
                     readItems.insert(type)
                 }
@@ -58,64 +60,53 @@ open class ASKHealthStore: NSObject {
 }
 
 internal protocol HealthItemStoreProtocol {
-    var hkSampleType: [HKSampleType] { get }
-    var hkObjectType: [HKObjectType] { get }
+    var writableAuthorizationTypes: Set<HKSampleType> { get }
+    var readableAuthorizationTypes: Set<HKObjectType> { get }
     var sharing: ASKHealthSharingStatus { get }
 }
 
-open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
+open class HealthItemStore<T: HealthItem>: HealthItemStoreProtocol {
     public let sharing: ASKHealthSharingStatus
-    internal var hkSampleType: [HKSampleType] { return T.hkSampleTypes }
-    internal var hkObjectType: [HKObjectType] { return T.hkObjectTypes }
-    
     public init(sharing: ASKHealthSharingStatus) {
         self.sharing = sharing
     }
 
+    var writableAuthorizationTypes: Set<HKSampleType> {
+        return T.writableAuthorizationTypes
+    }
+
+    var readableAuthorizationTypes: Set<HKObjectType> {
+        return T.readableAuthorizationTypes
+    }
+
     public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
-        let objects = items.compactMap { $0.hkObject }
+        let objects: [HKObject] = items.map { $0.hkObject }
         ASKHealthKit.store.save(objects) { success, error in
-            completion(success, ASKHealthError(from: error))
+            let e = success ? nil : ASKHealthError(from: error)
+            completion(success, e)
         }
     }
 
     public func write(_ item: T, withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
-        guard let object = item.hkObject else {
-            completion(false, .notFoundObject)
-            return
-        }
-
-        ASKHealthKit.store.save(object) { success, error in
-            if success {
-                completion(success, nil)
-            } else {
-                completion(success, ASKHealthError(from: error))
-            }
-        }
+        write([item], withCompletion: completion)
     }
     
     public func read(start: Date?, end: Date?, limit: Int?, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-        guard let type = T.hkSampleType else {
-            completion([], .notFoundObject)
-            return
-        }
-
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
         let limit = limit ?? HKObjectQueryNoLimit
         let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
         var objects = [T]()
-        let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
+        let query = HKSampleQuery(sampleType:T.hkSampleType, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
             guard error == nil else {
                 completion([], ASKHealthError(from: error))
                 return
             }
             samples?.forEach { (sample: HKSample) in
-                guard let object = T(object: sample) else { return }
+                let object = T.convert(object: sample)
                 objects.append(object)
             }
             completion(objects, nil)
         }
-
         ASKHealthKit.store.execute(query)
     }
 
@@ -132,13 +123,8 @@ open class HealthItemStore<T: ASKHealthItem>: HealthItemStoreProtocol {
     }
 
     public func delete(start: Date?, end: Date?, _ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
-        guard let type = T.hkObjectType else {
-            completion(false, 0, .notFoundObject)
-            return
-        }
-
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-        ASKHealthKit.store.deleteObjects(of: type, predicate: predicate) { success, count, error in
+        ASKHealthKit.store.deleteObjects(of: T.hkObjectType, predicate: predicate) { success, count, error in
             completion(success, count, ASKHealthError(from: error))
         }
     }

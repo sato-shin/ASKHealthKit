@@ -69,9 +69,9 @@ public struct BloodPressure: HealthCorrelationItem {
 
     public static func convert(object: HKObject) -> BloodPressure {
         let object = object as! HKCorrelation
-        let diastolicType = BloodPressureDiastolic.hkObjectTypes.first!
+        let diastolicType = BloodPressureDiastolic.hkObjectType
         let diastolicObject = object.objects(for: diastolicType).first as! HKQuantitySample
-        let systolicType = BloodPressureSystolic.hkObjectTypes.first!
+        let systolicType = BloodPressureSystolic.hkObjectType
         let systolicObject = object.objects(for: systolicType).first as! HKQuantitySample
         return BloodPressure(
                 diastolic: Int(diastolicObject.quantity.doubleValue(for: BloodPressureDiastolic.defaultUnit.hkUnit)),
@@ -80,15 +80,13 @@ public struct BloodPressure: HealthCorrelationItem {
         )
     }
 
-    public static var hkObjectTypes: Set<HKObjectType> {
-        return hkSampleTypes
-    }
-
-    public static var hkSampleTypes: Set<HKSampleType> {
-        return BloodPressureDiastolic.hkSampleTypes.union(BloodPressureSystolic.hkSampleTypes)
-    }
-
     public var data: Set<HKSample> {
         return [value.diastolic.hkSample, value.systolic.hkSample]
+    }
+    public static var writableAuthorizationTypes: Set<HKSampleType> {
+        return BloodPressureDiastolic.writableAuthorizationTypes.union(BloodPressureSystolic.writableAuthorizationTypes)
+    }
+    public static var readableAuthorizationTypes: Set<HKObjectType> {
+        return BloodPressureDiastolic.readableAuthorizationTypes.union(BloodPressureSystolic.readableAuthorizationTypes)
     }
 }

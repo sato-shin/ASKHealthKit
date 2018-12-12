@@ -27,12 +27,20 @@ extension HealthQuantityItem {
         self.init(value: value, unit: Self.defaultUnit, time: time)
     }
 
-    public static var hkObjectTypes: Set<HKObjectType> {
-        return hkSampleTypes
+    public static var readableAuthorizationTypes: Set<HKObjectType> {
+        return writableAuthorizationTypes
     }
 
-    public static var hkSampleTypes: Set<HKSampleType> {
-        return [HKSampleType.quantityType(forIdentifier: Self.id)!]
+    public static var writableAuthorizationTypes: Set<HKSampleType> {
+        return [hkSampleType]
+    }
+
+    public static var hkObjectType: HKObjectType {
+        return hkSampleType
+    }
+
+    public static var hkSampleType: HKSampleType {
+        return HKSampleType.quantityType(forIdentifier: Self.id)!
     }
 
     public var hkObject: HKObject {

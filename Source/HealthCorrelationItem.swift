@@ -20,9 +20,18 @@ public protocol HealthCorrelationItem: HealthItem {
     var date: DateInterval { get }
 }
 extension HealthCorrelationItem {
+    public static var hkObjectType: HKObjectType {
+        return hkSampleType
+    }
+
+    public static var hkSampleType: HKSampleType {
+        return HKSampleType.correlationType(forIdentifier: Self.id)!
+    }
+
     public var hkObject: HKObject {
         return hkSample
     }
+
     public var hkSample: HKSample {
         return HKCorrelation(
                 type: HKCorrelationType.correlationType(forIdentifier: Self.id)!,

@@ -20,12 +20,20 @@ public protocol HealthCategoryItem: HealthItem {
     var date: DateInterval { get }
 }
 extension HealthCategoryItem {
-    public static var hkObjectTypes: Set<HKObjectType> {
-        return hkSampleTypes
+    public static var hkObjectType: HKObjectType {
+        return hkSampleType
     }
 
-    public static var hkSampleTypes: Set<HKSampleType> {
-        return [HKSampleType.categoryType(forIdentifier: Self.id)!]
+    public static var hkSampleType: HKSampleType {
+        return HKSampleType.categoryType(forIdentifier: Self.id)!
+    }
+
+    public static var readableAuthorizationTypes: Set<HKObjectType> {
+        return writableAuthorizationTypes
+    }
+
+    public static var writableAuthorizationTypes: Set<HKSampleType> {
+        return [hkSampleType]
     }
 
     public var hkObject: HKObject {
