@@ -35,6 +35,24 @@ public enum WeightUnit: ASKHealthUnit {
     }
 }
 
+public enum CountUnit: HealthUnitConvertible {
+    case count
+    public var hkUnit: HKUnit {
+        switch self {
+        case .count: return .count()
+        }
+    }
+}
+
+public enum TimeUnit: HealthUnitConvertible {
+    case minute
+    public var hkUnit: HKUnit {
+        switch self {
+        case .minute: return .minute()
+        }
+    }
+}
+
 public enum LengthUnit: ASKHealthUnit {
     case centimeter
     case meter
@@ -60,13 +78,13 @@ public enum LengthUnit: ASKHealthUnit {
     }
 }
 
-public enum DistanceUnit {
+public enum DistanceUnit: HealthUnitConvertible {
     case meter
     case kilometer
     case yard
     case mile
 
-    internal var hkUnit: HKUnit {
+    public var hkUnit: HKUnit {
         switch self {
         case .meter: return .meter()
         case .kilometer: return .meterUnit(with: .kilo)
@@ -81,6 +99,18 @@ public enum DistanceUnit {
         case .kilometer: return "km"
         case .yard: return "yd"
         case .mile: return "mi"
+        }
+    }
+}
+
+public enum VO2MaxUnit: HealthUnitConvertible {
+    case ml_KgMin
+    public var hkUnit: HKUnit {
+        switch self {
+        case .ml_KgMin:
+            let denom = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
+            let numer = HKUnit.literUnit(with: .milli)
+            return numer.unitDivided(by: denom)
         }
     }
 }

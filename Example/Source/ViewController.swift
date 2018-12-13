@@ -7,7 +7,7 @@ import ASKHealthKit
 
 class ViewController: UIViewController {
     
-    let store = HealthStore()
+    let store = MyHealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +42,20 @@ class ViewController: UIViewController {
         store.bloodPressure.write([bloodPressure]) { success, error in
             print(success)
         }
+
+        let pushCount = WheelchairPushCount(value: 10, time: Date())
+        store.wheelchairPushCount.write([pushCount]) { success, error in
+            print(success)
+        }
+
+        let vo2max = VO2Max(value: 10, time: Date())
+        store.vo2max.write([vo2max]) { success, error in
+            print(success)
+        }
     }
     
     @IBAction func read(_ sender: Any) {
-        store.sleepAnalysis.read(start: nil, end: nil, limit: nil) { items, error in
-            print(items)
-        }
-        store.bloodPressure.read(start: nil, end: nil, limit: nil) { items, error in
+        store.appleStandHour.read(start: nil, end: nil, limit: nil) { items, error in
             print(items)
         }
     }

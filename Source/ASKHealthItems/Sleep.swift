@@ -11,8 +11,8 @@ public struct SleepAnalysis: HealthCategoryItem {
     public typealias ValueType = Category.SleepAnalysis
     public typealias TimeType = DateInterval
 
-    public var value: Category.SleepAnalysis
-    public var time: DateInterval
+    public let value: ValueType
+    public let time: TimeType
 
     public init(value: ValueType, time: TimeType) {
         self.value = value

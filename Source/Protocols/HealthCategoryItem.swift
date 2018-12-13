@@ -46,17 +46,14 @@ extension HealthCategoryItem {
                 device: nil, metadata: nil)
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable {
-    public init(time: TimeType) {
-        self.init(value: Category.NotApplicable(), time: time)
-    }
+extension HealthCategoryItem where ValueType: HealthCategoryValueProtocol {
     public var data: Int {
         return value.rawValue
     }
 }
-extension HealthCategoryItem where ValueType == Category.SleepAnalysis {
-    public var data: Int {
-        return value.rawValue
+extension HealthCategoryItem where ValueType == Category.NotApplicable {
+    public init(time: TimeType) {
+        self.init(value: Category.NotApplicable(), time: time)
     }
 }
 extension HealthCategoryItem where TimeType == Date {
@@ -90,16 +87,16 @@ extension HealthCategoryItem where ValueType == Category.SleepAnalysis, TimeType
 }
 
 public struct Category {
-    public struct NotApplicable {
-        internal let rawValue: Int = HKCategoryValue.notApplicable.rawValue
+    public struct NotApplicable: HealthCategoryValueProtocol {
+        public let rawValue: Int = HKCategoryValue.notApplicable.rawValue
     }
 
-    public enum SleepAnalysis {
+    public enum SleepAnalysis: HealthCategoryValueProtocol {
         case inBed
         case asleep
         case awake
 
-        internal var rawValue: Int {
+        public var rawValue: Int {
             switch self {
             case .inBed: return HKCategoryValueSleepAnalysis.inBed.rawValue
             case .asleep: return HKCategoryValueSleepAnalysis.asleep.rawValue
@@ -116,5 +113,28 @@ public struct Category {
             }
         }
     }
+
+    public enum AppleStandHour: HealthCategoryValueProtocol {
+        case idle
+        case stood
+
+        public var rawValue: Int {
+            switch self {
+            case .idle: return HKCategoryValueAppleStandHour.idle.rawValue
+            case .stood: return HKCategoryValueAppleStandHour.stood.rawValue
+            }
+        }
+
+        internal init?(value: Int) {
+            switch value {
+            case HKCategoryValueAppleStandHour.idle.rawValue: self = .idle
+            case HKCategoryValueAppleStandHour.stood.rawValue: self = .stood
+            default: return nil
+            }
+        }
+    }
 }
 
+public protocol HealthCategoryValueProtocol {
+    var rawValue: Int { get }
+}

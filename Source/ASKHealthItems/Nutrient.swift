@@ -7,7 +7,7 @@ import HealthKit
 public struct EnergyIntake: HealthQuantityItem {
     public static let id: HKQuantityTypeIdentifier = .dietaryEnergyConsumed
 
-    public typealias ValueType = Int
+    public typealias ValueType = Double
     public typealias UnitType = EnergyUnit
     public typealias TimeType = Date
 
