@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func write(_ sender: Any) {
-        let energy = EnergyConsumed(value: 10, time: Date())
+        let energy = EnergyIntake(value: 10, time: Date())
         store.energyStore.write([energy]) { success, error in
             print(success)
         }

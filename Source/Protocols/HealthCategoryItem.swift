@@ -15,7 +15,6 @@ public protocol HealthCategoryItem: HealthItem {
 
     init(value: ValueType, time: TimeType)
 
-    static func convert(object: HKObject) -> Self
     var data: Int { get }
     var date: DateInterval { get }
 }

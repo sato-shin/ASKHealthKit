@@ -18,7 +18,6 @@ public protocol HealthQuantityItem: HealthItem {
 
     init(value: ValueType, unit: UnitType, time: TimeType)
 
-    static func convert(object: HKObject) -> Self
     var data: HKQuantity { get }
     var date: DateInterval { get }
 }

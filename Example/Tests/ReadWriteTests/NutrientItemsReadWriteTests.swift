@@ -27,7 +27,7 @@ class NutrientItemsReadWriteTests: XCTestCase {
         wait(for: [writeExpectation], timeout: 1)
 
         let readExpectation = XCTestExpectation(description: "Read energy from health store")
-        store.energyStore.readAll { (items: [EnergyConsumed], error: Error?) in
+        store.energyStore.readAll { (items: [EnergyIntake], error: Error?) in
             XCTAssert(items.count == 1, "Expect: 1, Actual: \(items.count)")
             XCTAssert(items.first?.quantity == self.quantity, "Expect: \(self.quantity), Actual: \(String(describing: items.first?.quantity))")
             XCTAssert(items.first?.time == self.now, "Expect: \(self.now), Actual: \(String(describing: items.first?.quantity))")

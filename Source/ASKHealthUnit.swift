@@ -85,12 +85,12 @@ public enum DistanceUnit {
     }
 }
 
-public enum NutrientUnit {
+public enum NutrientUnit: HealthUnitConvertible {
     case g
     case mg
     case mcg
 
-    internal var hkUnit: HKUnit {
+    public var hkUnit: HKUnit {
         switch self {
         case .g: return .gramUnit(with: .none)
         case .mg: return .gramUnit(with: .milli)
@@ -107,7 +107,7 @@ public enum NutrientUnit {
     }
 }
 
-public enum WaterUnit {
+public enum WaterUnit: HealthUnitConvertible {
     case litter
     case milliLitter
     case imperialCup
@@ -117,7 +117,7 @@ public enum WaterUnit {
     case usOnce
     case usPint
 
-    internal var hkUnit: HKUnit {
+    public var hkUnit: HKUnit {
         switch self {
         case .litter: return .literUnit(with: .none)
         case .milliLitter: return .literUnit(with: .milli)

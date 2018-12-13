@@ -6,7 +6,7 @@ import Foundation
 import ASKHealthKit
 
 class HealthStore: ASKHealthStore {
-    let energyStore = HealthItemStore<EnergyConsumed>(sharing: .rw)
+    let energyStore = HealthItemStore<EnergyIntake>(sharing: .rw)
     let intermenstrualBleedingStore = HealthItemStore<IntermenstrualBleeding>(sharing: .rw)
     let sleepAnalysis = HealthItemStore<SleepAnalysis>(sharing: .rw)
     let mindfulTime = HealthItemStore<MindfulTime>(sharing: .rw)

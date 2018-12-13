@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct UVExposure: ASKHealthQuantityItem {
+public struct UVExposure {
     internal static let identifier: HKQuantityTypeIdentifier = .uvExposure
     internal let hkUnit: HKUnit = .count()
     internal var quantity: Double { return Double(value) }
@@ -32,7 +32,7 @@ public struct UVExposure: ASKHealthQuantityItem {
 }
 
 @available(iOS 11.0, *)
-public struct InsulinDelivery: ASKHealthQuantityItem {
+public struct InsulinDelivery {
     internal static var identifier: HKQuantityTypeIdentifier = .insulinDelivery
     internal var hkUnit: HKUnit = .internationalUnit()
 

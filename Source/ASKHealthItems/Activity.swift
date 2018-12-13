@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct StepCount: ASKHealthQuantityItem {
+public struct StepCount {
     internal static let identifier: HKQuantityTypeIdentifier = .stepCount
     internal let hkUnit: HKUnit = .count()
     internal var start: Date { return time }
@@ -30,7 +30,7 @@ public struct StepCount: ASKHealthQuantityItem {
     }
 }
 
-public struct SwimmingDistance: ASKHealthQuantityItem {
+public struct SwimmingDistance {
     internal static let identifier: HKQuantityTypeIdentifier = .distanceSwimming
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
@@ -54,7 +54,7 @@ public struct SwimmingDistance: ASKHealthQuantityItem {
     }
 }
 
-public struct CyclingDistance: ASKHealthQuantityItem {
+public struct CyclingDistance {
     internal static let identifier: HKQuantityTypeIdentifier = .distanceCycling
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }

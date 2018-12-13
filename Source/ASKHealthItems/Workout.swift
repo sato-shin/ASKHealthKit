@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct Workout: ASKHealthItem {
+public struct Workout {
     public let activityType: ActivityType
     public let energyBurned: Double?
     public let start: Date

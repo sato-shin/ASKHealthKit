@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00C1590B20F852B500D43991 /* ASKHealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1590A20F852B500D43991 /* ASKHealthKit.swift */; };
-		00C1590D20F8532D00D43991 /* ASKHealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1590C20F8532D00D43991 /* ASKHealthItem.swift */; };
 		00C1591120F8541400D43991 /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591020F8541400D43991 /* Nutrient.swift */; };
 		00C1591320F8545200D43991 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591220F8545200D43991 /* Activity.swift */; };
 		00C1591520F8547100D43991 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1591420F8547100D43991 /* Sleep.swift */; };
@@ -23,11 +22,11 @@
 		00FFDEE320F84B34005AB2FE /* ASKHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FFDED920F84B34005AB2FE /* ASKHealthKit.framework */; };
 		00FFDEE820F84B34005AB2FE /* ASKHealthKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */; };
 		00FFDEEA20F84B34005AB2FE /* ASKHealthKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AF7CA2EC367B056806D8FEBC /* HealthQuantityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAA87DEA53799606F955E /* HealthQuantityItem.swift */; };
-		AF7CA406A83537166F68ADB7 /* HealthCorrelationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA88681A1DDF08DDC98F8 /* HealthCorrelationItem.swift */; };
 		AF7CA4BD428D26093F7D3B83 /* ASKHealthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */; };
-		AF7CABE05C5F6EEB08757194 /* HealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAA0CFBE2ED7085529D7E /* HealthItem.swift */; };
-		AF7CAE3E78315E04BD01EE34 /* HealthCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA0DF7E868F2E1E9ADACE /* HealthCategoryItem.swift */; };
+		AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */; };
+		AF7CA5BDB46F586FE6BC25BC /* HealthCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA2C4AB13FD6C666A4D15 /* HealthCategoryItem.swift */; };
+		AF7CAABA71DCA0BE88D82034 /* HealthQuantityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA38FD7E01A9FA3601D8F /* HealthQuantityItem.swift */; };
+		AF7CAD0880F3DDE1032E427D /* HealthCorrelationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA583B74FD0381A6F33BE /* HealthCorrelationItem.swift */; };
 		AF7CAE747D008CD93E90B662 /* ASKHealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA273B3FA72B4AECAD4BD /* ASKHealthError.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		00C1590A20F852B500D43991 /* ASKHealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASKHealthKit.swift; sourceTree = "<group>"; };
-		00C1590C20F8532D00D43991 /* ASKHealthItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASKHealthItem.swift; sourceTree = "<group>"; };
 		00C1591020F8541400D43991 /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		00C1591220F8545200D43991 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		00C1591420F8547100D43991 /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -61,12 +59,12 @@
 		00FFDEE220F84B34005AB2FE /* ASKHealthKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASKHealthKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASKHealthKitTests.swift; sourceTree = "<group>"; };
 		00FFDEE920F84B34005AB2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF7CA0DF7E868F2E1E9ADACE /* HealthCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCategoryItem.swift; sourceTree = "<group>"; };
 		AF7CA273B3FA72B4AECAD4BD /* ASKHealthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthError.swift; sourceTree = "<group>"; };
-		AF7CA88681A1DDF08DDC98F8 /* HealthCorrelationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCorrelationItem.swift; sourceTree = "<group>"; };
-		AF7CAA0CFBE2ED7085529D7E /* HealthItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthItem.swift; sourceTree = "<group>"; };
-		AF7CAA87DEA53799606F955E /* HealthQuantityItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthQuantityItem.swift; sourceTree = "<group>"; };
+		AF7CA2C4AB13FD6C666A4D15 /* HealthCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCategoryItem.swift; sourceTree = "<group>"; };
+		AF7CA38FD7E01A9FA3601D8F /* HealthQuantityItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthQuantityItem.swift; sourceTree = "<group>"; };
+		AF7CA583B74FD0381A6F33BE /* HealthCorrelationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCorrelationItem.swift; sourceTree = "<group>"; };
 		AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthUnit.swift; sourceTree = "<group>"; };
+		AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,15 +127,11 @@
 			children = (
 				00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */,
 				00C1590A20F852B500D43991 /* ASKHealthKit.swift */,
-				00C1590C20F8532D00D43991 /* ASKHealthItem.swift */,
 				00C1590F20F853F800D43991 /* ASKHealthItems */,
 				00FFDEDD20F84B34005AB2FE /* Info.plist */,
 				AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */,
 				AF7CA273B3FA72B4AECAD4BD /* ASKHealthError.swift */,
-				AF7CAA87DEA53799606F955E /* HealthQuantityItem.swift */,
-				AF7CA0DF7E868F2E1E9ADACE /* HealthCategoryItem.swift */,
-				AF7CAA0CFBE2ED7085529D7E /* HealthItem.swift */,
-				AF7CA88681A1DDF08DDC98F8 /* HealthCorrelationItem.swift */,
+				AF7CA0219DB9BA6847AC792E /* Protocols */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -149,6 +143,17 @@
 				00FFDEE920F84B34005AB2FE /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		AF7CA0219DB9BA6847AC792E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AF7CA38FD7E01A9FA3601D8F /* HealthQuantityItem.swift */,
+				AF7CA583B74FD0381A6F33BE /* HealthCorrelationItem.swift */,
+				AF7CA2C4AB13FD6C666A4D15 /* HealthCategoryItem.swift */,
+				AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C1591D20F854FE00D43991 /* Heart.swift in Sources */,
-				00C1590D20F8532D00D43991 /* ASKHealthItem.swift in Sources */,
 				00C1591520F8547100D43991 /* Sleep.swift in Sources */,
 				00C1592520F8562600D43991 /* Workout.swift in Sources */,
 				00C1591720F8549700D43991 /* Mindfulness.swift in Sources */,
@@ -275,10 +279,10 @@
 				00C1592120F8553F00D43991 /* ExaminationResult.swift in Sources */,
 				AF7CA4BD428D26093F7D3B83 /* ASKHealthUnit.swift in Sources */,
 				AF7CAE747D008CD93E90B662 /* ASKHealthError.swift in Sources */,
-				AF7CA2EC367B056806D8FEBC /* HealthQuantityItem.swift in Sources */,
-				AF7CAE3E78315E04BD01EE34 /* HealthCategoryItem.swift in Sources */,
-				AF7CABE05C5F6EEB08757194 /* HealthItem.swift in Sources */,
-				AF7CA406A83537166F68ADB7 /* HealthCorrelationItem.swift in Sources */,
+				AF7CAABA71DCA0BE88D82034 /* HealthQuantityItem.swift in Sources */,
+				AF7CAD0880F3DDE1032E427D /* HealthCorrelationItem.swift in Sources */,
+				AF7CA5BDB46F586FE6BC25BC /* HealthCategoryItem.swift in Sources */,
+				AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

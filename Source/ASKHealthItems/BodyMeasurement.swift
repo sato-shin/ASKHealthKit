@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct BodyFatPercentage: ASKHealthQuantityItem {
+public struct BodyFatPercentage {
     internal static let identifier: HKQuantityTypeIdentifier = .bodyFatPercentage
     internal let hkUnit: HKUnit = .percent()
     internal var start: Date { return time }
@@ -25,7 +25,7 @@ public struct BodyFatPercentage: ASKHealthQuantityItem {
     }
 }
 
-public struct BodyMassIndex: ASKHealthQuantityItem {
+public struct BodyMassIndex {
     internal static let identifier: HKQuantityTypeIdentifier = .bodyMassIndex
     internal let hkUnit: HKUnit = .count()
     internal var start: Date { return time }
@@ -49,7 +49,7 @@ public struct BodyMassIndex: ASKHealthQuantityItem {
     }
 }
 
-public struct LeanBodyMass: ASKHealthQuantityItem {
+public struct LeanBodyMass {
     internal static let identifier: HKQuantityTypeIdentifier = .leanBodyMass
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
@@ -77,7 +77,7 @@ public struct LeanBodyMass: ASKHealthQuantityItem {
     }
 }
 
-public struct BodyHeight: ASKHealthQuantityItem {
+public struct BodyHeight {
     internal static let identifier: HKQuantityTypeIdentifier = .height
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
@@ -105,7 +105,7 @@ public struct BodyHeight: ASKHealthQuantityItem {
     }
 }
 
-public struct BodyMass: ASKHealthQuantityItem {
+public struct BodyMass {
     internal static let identifier: HKQuantityTypeIdentifier = .bodyMass
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }
@@ -134,7 +134,7 @@ public struct BodyMass: ASKHealthQuantityItem {
 }
 
 @available(iOS 11.0, *)
-public struct WaistCircumference: ASKHealthQuantityItem {
+public struct WaistCircumference {
     internal static let identifier: HKQuantityTypeIdentifier = .waistCircumference
     internal var hkUnit: HKUnit { return unit.hkUnit }
     internal var start: Date { return time }

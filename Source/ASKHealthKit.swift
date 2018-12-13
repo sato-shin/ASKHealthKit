@@ -2,7 +2,7 @@
 // Copyright (c) 2018 Asken Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import HealthKit
 
 public class ASKHealthKit {
