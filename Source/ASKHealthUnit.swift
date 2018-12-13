@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-protocol ASKHealthUnit {
+internal protocol ASKHealthUnit {
     var hkUnit: HKUnit { get }
     var string: String { get }
 }

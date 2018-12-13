@@ -63,12 +63,12 @@ extension HealthQuantityItem where TimeType == DateInterval {
         return time
     }
 }
-extension HealthQuantityItem where ValueType == Double, UnitType == HealthUnitConvertible {
+extension HealthQuantityItem where ValueType == Double, UnitType: HealthUnitConvertible {
     public var data: HKQuantity {
         return HKQuantity(unit: unit.hkUnit, doubleValue: value)
     }
 }
-extension HealthQuantityItem where ValueType == Double, UnitType == HealthUnitConvertible, TimeType == Date {
+extension HealthQuantityItem where ValueType == Double, UnitType: HealthUnitConvertible, TimeType == Date {
     public static func convert(object: HKObject) -> Self {
         let object = object as! HKQuantitySample
         return Self.init(value: object.quantity.doubleValue(for: defaultUnit.hkUnit), time: object.startDate)

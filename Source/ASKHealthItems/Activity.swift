@@ -5,28 +5,22 @@
 import Foundation
 import HealthKit
 
-public struct StepCount {
-    internal static let identifier: HKQuantityTypeIdentifier = .stepCount
-    internal let hkUnit: HKUnit = .count()
-    internal var start: Date { return time }
-    internal var end: Date { return time }
-    internal let quantity: Double
+public struct StepCount: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .stepCount
 
-    public var value: Int { return Int(quantity) }
-    public let time: Date
-    
-    public init(value: Int, time: Date) {
-        self.quantity = Double(value)
+    public typealias ValueType = Int
+    public typealias UnitType = EnergyUnit
+    public typealias TimeType = Date
+
+    public static let defaultUnit: UnitType = .kilocalorie
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
         self.time = time
-    }
-    
-    public var unitString: String {
-        return "step"
-    }
-
-    public init?(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
-        self.time = sample.startDate
     }
 }
 
