@@ -24,139 +24,98 @@ public struct BodyFatPercentage: HealthQuantityItem {
     }
 }
 
-public struct BodyMassIndex {
-    internal static let identifier: HKQuantityTypeIdentifier = .bodyMassIndex
-    internal let hkUnit: HKUnit = .count()
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct BodyMass: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .bodyMass
 
-    public let quantity: Double
-    public let time: Date
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Weight
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date) {
-        self.quantity = quantity
+    public static let defaultUnit: UnitType = .kilogram
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
         self.time = time
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
-        self.time = sample.startDate
-    }
-
-    public var unitString: String {
-        return ""
     }
 }
 
-public struct LeanBodyMass {
-    internal static let identifier: HKQuantityTypeIdentifier = .leanBodyMass
-    internal var hkUnit: HKUnit { return unit.hkUnit }
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct BodyMassIndex: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .bodyMassIndex
 
-    public static var defaultUnit: HealthUnit.Weight = .kilogram
-    public let quantity: Double
-    public let time: Date
-    public let unit: HealthUnit.Weight
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Count
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date, unit: HealthUnit.Weight = LeanBodyMass.defaultUnit) {
-        self.quantity = quantity
-        self.time = time
+    public static let defaultUnit: UnitType = .count
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
         self.unit = unit
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.unit = LeanBodyMass.defaultUnit
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
-        self.time = sample.startDate
-    }
-
-    public var unitString: String {
-        return unit.string
+        self.time = time
     }
 }
 
-public struct BodyHeight {
-    internal static let identifier: HKQuantityTypeIdentifier = .height
-    internal var hkUnit: HKUnit { return unit.hkUnit }
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct LeanBodyMass: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .leanBodyMass
 
-    public static var defaultUnit: HealthUnit.Length = .centimeter
-    public let quantity: Double
-    public let time: Date
-    public let unit: HealthUnit.Length
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Weight
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date, unit: HealthUnit.Length = BodyHeight.defaultUnit) {
-        self.quantity = quantity
-        self.time = time
+    public static let defaultUnit: UnitType = .kilogram
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
         self.unit = unit
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.unit = BodyHeight.defaultUnit
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
-        self.time = sample.startDate
-    }
-
-    public var unitString: String {
-        return unit.string
+        self.time = time
     }
 }
 
-public struct BodyMass {
-    internal static let identifier: HKQuantityTypeIdentifier = .bodyMass
-    internal var hkUnit: HKUnit { return unit.hkUnit }
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct BodyHeight: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .height
 
-    public static var defaultUnit: HealthUnit.Weight = .kilogram
-    public let quantity: Double
-    public let time: Date
-    public let unit: HealthUnit.Weight
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Length
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date, unit: HealthUnit.Weight = BodyMass.defaultUnit) {
-        self.quantity = quantity
-        self.time = time
+    public static let defaultUnit: UnitType = .centimeter
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
         self.unit = unit
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.unit = BodyMass.defaultUnit
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
-        self.time = sample.startDate
-    }
-
-    public var unitString: String {
-        return unit.string
+        self.time = time
     }
 }
 
 @available(iOS 11.0, *)
-public struct WaistCircumference {
-    internal static let identifier: HKQuantityTypeIdentifier = .waistCircumference
-    internal var hkUnit: HKUnit { return unit.hkUnit }
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct WaistCircumference: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .waistCircumference
 
-    public static let defaultUnit: HealthUnit.Length = .centimeter
-    public let quantity: Double
-    public let time: Date
-    public let unit: HealthUnit.Length
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Length
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date, unit: HealthUnit.Length = WaistCircumference.defaultUnit) {
-        self.quantity = quantity
-        self.time = time
+    public static let defaultUnit: UnitType = .centimeter
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
         self.unit = unit
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.unit = WaistCircumference.defaultUnit
-        self.quantity = sample.quantity.doubleValue(for: unit.hkUnit)
-        self.time = sample.startDate
-    }
-
-    public var unitString: String {
-        return unit.string
+        self.time = time
     }
 }

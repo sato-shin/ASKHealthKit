@@ -11,6 +11,7 @@ public protocol HealthUnitConvertible {
 
 public class HealthUnit {
     public enum Weight: HealthUnitConvertible {
+        case gram
         case kilogram
         case pound
         case stone
@@ -18,6 +19,7 @@ public class HealthUnit {
 
         public var hkUnit: HKUnit {
             switch self {
+            case .gram: return .gram()
             case .kilogram: return .gramUnit(with: .kilo)
             case .pound: return .pound()
             case .stone: return .stone()
@@ -27,6 +29,7 @@ public class HealthUnit {
 
         internal var string: String {
             switch self {
+            case .gram: return "g"
             case .kilogram: return "kg"
             case .pound: return "lb"
             case .stone: return "st"
