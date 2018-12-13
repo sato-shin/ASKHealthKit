@@ -8,7 +8,7 @@ public struct BloodPressureDiastolic: HealthQuantityItem {
     public static let id: HKQuantityTypeIdentifier = .bloodPressureDiastolic
 
     public typealias ValueType = Int
-    public typealias UnitType = BloodPressureUnit
+    public typealias UnitType = HealthUnit.BloodPressure
     public typealias TimeType = Date
 
     public static let defaultUnit: UnitType = .millimeterOfMercury
@@ -27,7 +27,7 @@ public struct BloodPressureSystolic: HealthQuantityItem {
     public static let id: HKQuantityTypeIdentifier = .bloodPressureSystolic
 
     public typealias ValueType = Int
-    public typealias UnitType = BloodPressureUnit
+    public typealias UnitType = HealthUnit.BloodPressure
     public typealias TimeType = Date
 
     public static let defaultUnit: UnitType = .millimeterOfMercury

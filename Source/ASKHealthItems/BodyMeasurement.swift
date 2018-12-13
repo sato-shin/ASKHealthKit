@@ -5,23 +5,22 @@
 import Foundation
 import HealthKit
 
-public struct BodyFatPercentage {
-    internal static let identifier: HKQuantityTypeIdentifier = .bodyFatPercentage
-    internal let hkUnit: HKUnit = .percent()
-    internal var start: Date { return time }
-    internal var end: Date { return time }
+public struct BodyFatPercentage: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .bodyFatPercentage
 
-    public let quantity: Double
-    public let time: Date
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Percent
+    public typealias TimeType = Date
 
-    public init(quantity: Double, time: Date) {
-        self.quantity = quantity / 100
+    public static let defaultUnit: UnitType = .percent
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
         self.time = time
-    }
-
-    public init(sample: HKQuantitySample) {
-        self.quantity = sample.quantity.doubleValue(for: hkUnit) * 100
-        self.time = sample.startDate
     }
 }
 
@@ -55,12 +54,12 @@ public struct LeanBodyMass {
     internal var start: Date { return time }
     internal var end: Date { return time }
 
-    public static var defaultUnit: WeightUnit = .kilogram
+    public static var defaultUnit: HealthUnit.Weight = .kilogram
     public let quantity: Double
     public let time: Date
-    public let unit: WeightUnit
+    public let unit: HealthUnit.Weight
 
-    public init(quantity: Double, time: Date, unit: WeightUnit = LeanBodyMass.defaultUnit) {
+    public init(quantity: Double, time: Date, unit: HealthUnit.Weight = LeanBodyMass.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
@@ -83,12 +82,12 @@ public struct BodyHeight {
     internal var start: Date { return time }
     internal var end: Date { return time }
 
-    public static var defaultUnit: LengthUnit = .centimeter
+    public static var defaultUnit: HealthUnit.Length = .centimeter
     public let quantity: Double
     public let time: Date
-    public let unit: LengthUnit
+    public let unit: HealthUnit.Length
 
-    public init(quantity: Double, time: Date, unit: LengthUnit = BodyHeight.defaultUnit) {
+    public init(quantity: Double, time: Date, unit: HealthUnit.Length = BodyHeight.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
@@ -111,12 +110,12 @@ public struct BodyMass {
     internal var start: Date { return time }
     internal var end: Date { return time }
 
-    public static var defaultUnit: WeightUnit = .kilogram
+    public static var defaultUnit: HealthUnit.Weight = .kilogram
     public let quantity: Double
     public let time: Date
-    public let unit: WeightUnit
+    public let unit: HealthUnit.Weight
 
-    public init(quantity: Double, time: Date, unit: WeightUnit = BodyMass.defaultUnit) {
+    public init(quantity: Double, time: Date, unit: HealthUnit.Weight = BodyMass.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
@@ -140,12 +139,12 @@ public struct WaistCircumference {
     internal var start: Date { return time }
     internal var end: Date { return time }
 
-    public static let defaultUnit: LengthUnit = .centimeter
+    public static let defaultUnit: HealthUnit.Length = .centimeter
     public let quantity: Double
     public let time: Date
-    public let unit: LengthUnit
+    public let unit: HealthUnit.Length
 
-    public init(quantity: Double, time: Date, unit: LengthUnit = WaistCircumference.defaultUnit) {
+    public init(quantity: Double, time: Date, unit: HealthUnit.Length = WaistCircumference.defaultUnit) {
         self.quantity = quantity
         self.time = time
         self.unit = unit
