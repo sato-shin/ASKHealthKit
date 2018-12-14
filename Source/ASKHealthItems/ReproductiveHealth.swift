@@ -101,7 +101,7 @@ public struct SexualActivity: HealthCategoryItem {
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date
-    public typealias OptionType = Void
+    public typealias OptionType = Metadata.SexualActivity
 
     public let value: ValueType
     public let time: TimeType
@@ -111,6 +111,11 @@ public struct SexualActivity: HealthCategoryItem {
         self.value = value
         self.time = time
         self.option = option
+    }
+
+    public static func convert(object: HKObject) -> SexualActivity {
+        let object = object as! HKCategorySample
+        return self.init(time: object.startDate, option: OptionType(object.metadata?[HKMetadataKeySexualActivityProtectionUsed] as? Bool))
     }
 }
 

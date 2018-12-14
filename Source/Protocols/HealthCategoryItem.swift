@@ -19,6 +19,7 @@ public protocol HealthCategoryItem: HealthItem {
 
     var data: Int { get }
     var date: DateInterval { get }
+    var metadata: [String: Any]? { get }
 }
 extension HealthCategoryItem {
     public static var hkObjectType: HKObjectType {
@@ -45,7 +46,7 @@ extension HealthCategoryItem {
         return HKCategorySample(
                 type: HKSampleType.categoryType(forIdentifier: Self.id)!,
                 value: data, start: date.start, end: date.end,
-                device: nil, metadata: nil)
+                device: nil, metadata: metadata)
     }
 }
 extension HealthCategoryItem where ValueType: HealthCategoryValueProtocol {
@@ -61,6 +62,15 @@ extension HealthCategoryItem where ValueType == Category.NotApplicable {
 extension HealthCategoryItem where OptionType == Void {
     public init(value: ValueType, time: TimeType) {
         self.init(value: value, time: time, option: ())
+    }
+
+    public var metadata: [String: Any]? {
+        return nil
+    }
+}
+extension HealthCategoryItem where OptionType: MetadataProtocol {
+    public var metadata: [String: Any]? {
+        return option.metadata
     }
 }
 extension HealthCategoryItem where ValueType == Category.NotApplicable, OptionType == Void {
