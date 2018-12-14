@@ -15,4 +15,5 @@ class MyHealthStore: ASKHealthStore {
     let wheelchairPushCount = HealthItemStore<WheelchairPushCount>(sharing: .rw)
     let vo2max = HealthItemStore<VO2Max>(sharing: .rw)
     let appleStandHour = HealthItemStore<AppleStandHour>(sharing: .r)
+    let sexualActivity = HealthItemStore<SexualActivity>(sharing: .rw)
 }

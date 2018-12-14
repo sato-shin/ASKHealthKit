@@ -7,13 +7,15 @@ import HealthKit
 public protocol HealthCategoryItem: HealthItem {
     associatedtype ValueType
     associatedtype TimeType
+    associatedtype OptionType
 
     static var id: HKCategoryTypeIdentifier { get }
 
     var value: ValueType { get }
     var time: TimeType { get }
+    var option: OptionType { get }
 
-    init(value: ValueType, time: TimeType)
+    init(value: ValueType, time: TimeType, option: OptionType)
 
     var data: Int { get }
     var date: DateInterval { get }
@@ -52,8 +54,18 @@ extension HealthCategoryItem where ValueType: HealthCategoryValueProtocol {
     }
 }
 extension HealthCategoryItem where ValueType == Category.NotApplicable {
+    public init(time: TimeType, option: OptionType) {
+        self.init(value: Category.NotApplicable(), time: time, option: option)
+    }
+}
+extension HealthCategoryItem where OptionType == Void {
+    public init(value: ValueType, time: TimeType) {
+        self.init(value: value, time: time, option: ())
+    }
+}
+extension HealthCategoryItem where ValueType == Category.NotApplicable, OptionType == Void {
     public init(time: TimeType) {
-        self.init(value: Category.NotApplicable(), time: time)
+        self.init(value: Category.NotApplicable(), time: time, option: ())
     }
 }
 extension HealthCategoryItem where TimeType == Date {
@@ -66,23 +78,16 @@ extension HealthCategoryItem where TimeType == DateInterval {
         return time
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == Date {
+extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == Date, OptionType == Void {
     public static func convert(object: HKObject) -> Self {
         let object = object as! HKCategorySample
         return self.init(time: object.startDate)
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == DateInterval {
+extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == DateInterval, OptionType == Void {
     public static func convert(object: HKObject) -> Self {
         let object = object as! HKCategorySample
         return self.init(time: DateInterval(start: object.startDate, end: object.endDate))
-    }
-}
-extension HealthCategoryItem where ValueType == Category.SleepAnalysis, TimeType == DateInterval {
-    public static func convert(object: HKObject) -> Self {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: DateInterval(start: object.startDate, end: object.endDate))
     }
 }
 
@@ -129,6 +134,96 @@ public struct Category {
             switch value {
             case HKCategoryValueAppleStandHour.idle.rawValue: self = .idle
             case HKCategoryValueAppleStandHour.stood.rawValue: self = .stood
+            default: return nil
+            }
+        }
+    }
+
+    public enum CervicalMucusQuality: HealthCategoryValueProtocol {
+        case dry
+        case sticky
+        case creamy
+        case watery
+        case eggWhite
+
+        public var rawValue: Int {
+            switch self {
+            case .dry: return HKCategoryValueCervicalMucusQuality.dry.rawValue
+            case .sticky: return HKCategoryValueCervicalMucusQuality.sticky.rawValue
+            case .creamy: return HKCategoryValueCervicalMucusQuality.creamy.rawValue
+            case .watery: return HKCategoryValueCervicalMucusQuality.watery.rawValue
+            case .eggWhite: return HKCategoryValueCervicalMucusQuality.eggWhite.rawValue
+            }
+        }
+
+        internal init?(value: Int) {
+            switch value {
+            case HKCategoryValueCervicalMucusQuality.dry.rawValue: self = .dry
+            case HKCategoryValueCervicalMucusQuality.sticky.rawValue: self = .sticky
+            case HKCategoryValueCervicalMucusQuality.creamy.rawValue: self = .creamy
+            case HKCategoryValueCervicalMucusQuality.watery.rawValue: self = .watery
+            case HKCategoryValueCervicalMucusQuality.eggWhite.rawValue: self = .eggWhite
+            default: return nil
+            }
+        }
+    }
+
+    public enum MenstrualFlow: HealthCategoryValueProtocol {
+        case unspecified
+        case light
+        case medium
+        case heavy
+        @available(iOS 12.0, *) case none
+
+        public var rawValue: Int {
+            switch self {
+            case .unspecified: return HKCategoryValueMenstrualFlow.unspecified.rawValue
+            case .light: return HKCategoryValueMenstrualFlow.light.rawValue
+            case .medium: return HKCategoryValueMenstrualFlow.medium.rawValue
+            case .heavy: return HKCategoryValueMenstrualFlow.heavy.rawValue
+            case .none:
+                if #available(iOS 12.0, *) {
+                    return HKCategoryValueMenstrualFlow.none.rawValue
+                } else {
+                    return -1
+                }
+            }
+        }
+
+        internal init?(value: Int) {
+            switch value {
+            case HKCategoryValueMenstrualFlow.unspecified.rawValue: self = .unspecified
+            case HKCategoryValueMenstrualFlow.light.rawValue: self = .light
+            case HKCategoryValueMenstrualFlow.medium.rawValue: self = .medium
+            case HKCategoryValueMenstrualFlow.heavy.rawValue: self = .heavy
+            default:
+                if #available(iOS 12.0, *), HKCategoryValueMenstrualFlow.none.rawValue == value {
+                    self = .none
+                } else {
+                    return nil
+                }
+            }
+        }
+    }
+
+    public enum OvulationTestResult: HealthCategoryValueProtocol {
+        case negative
+        case positive
+        case indeterminate
+
+        public var rawValue: Int {
+            switch self {
+            case .negative: return HKCategoryValueOvulationTestResult.negative.rawValue
+            case .positive: return HKCategoryValueOvulationTestResult.positive.rawValue
+            case .indeterminate: return HKCategoryValueOvulationTestResult.indeterminate.rawValue
+            }
+        }
+
+        internal init?(value: Int) {
+            switch value {
+            case HKCategoryValueOvulationTestResult.negative.rawValue: self = .negative
+            case HKCategoryValueOvulationTestResult.positive.rawValue: self = .positive
+            case HKCategoryValueOvulationTestResult.indeterminate.rawValue: self = .indeterminate
             default: return nil
             }
         }

@@ -10,12 +10,15 @@ public struct MindfulTime: HealthCategoryItem {
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = DateInterval
+    public typealias OptionType = Void
 
     public let value: ValueType
     public let time: TimeType
+    public let option: OptionType
 
-    public init(value: ValueType, time: TimeType) {
+    public init(value: ValueType, time: TimeType, option: OptionType) {
         self.value = value
         self.time = time
+        self.option = option
     }
 }

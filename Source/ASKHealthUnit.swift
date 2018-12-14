@@ -38,6 +38,20 @@ public class HealthUnit {
         }
     }
 
+    public enum Temperature: HealthUnitConvertible {
+        case celsius
+        case fahrenheit
+        case kelvin
+
+        public var hkUnit: HKUnit {
+            switch self {
+            case .celsius: return .degreeCelsius()
+            case .fahrenheit: return .degreeFahrenheit()
+            case .kelvin: return .kelvin()
+            }
+        }
+    }
+
     public enum Count: HealthUnitConvertible {
         case count
         public var hkUnit: HKUnit {
