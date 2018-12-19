@@ -74,6 +74,12 @@ extension HealthQuantityItem where ValueType == Double, UnitType: HealthUnitConv
         return Self.init(value: object.quantity.doubleValue(for: defaultUnit.hkUnit), time: object.startDate)
     }
 }
+extension HealthQuantityItem where ValueType == Double, UnitType: HealthUnitConvertible, TimeType == DateInterval {
+    public static func convert(object: HKObject) -> Self {
+        let object = object as! HKQuantitySample
+        return Self.init(value: object.quantity.doubleValue(for: defaultUnit.hkUnit), time: DateInterval(start: object.startDate, end: object.endDate))
+    }
+}
 extension HealthQuantityItem where ValueType == Int, UnitType: HealthUnitConvertible {
     public var data: HKQuantity {
         return HKQuantity(unit: unit.hkUnit, doubleValue: Double(value))
@@ -83,5 +89,11 @@ extension HealthQuantityItem where ValueType == Int, UnitType: HealthUnitConvert
     public static func convert(object: HKObject) -> Self {
         let object = object as! HKQuantitySample
         return Self.init(value: Int(object.quantity.doubleValue(for: defaultUnit.hkUnit)), time: object.startDate)
+    }
+}
+extension HealthQuantityItem where ValueType == Int, UnitType: HealthUnitConvertible, TimeType == DateInterval {
+    public static func convert(object: HKObject) -> Self {
+        let object = object as! HKQuantitySample
+        return Self.init(value: Int(object.quantity.doubleValue(for: defaultUnit.hkUnit)), time: DateInterval(start: object.startDate, end: object.endDate))
     }
 }

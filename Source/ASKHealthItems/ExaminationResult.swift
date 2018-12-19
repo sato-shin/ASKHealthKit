@@ -2,32 +2,81 @@
 // Copyright (c) 2018 Asken Inc. All rights reserved.
 //
 
-import Foundation
 import HealthKit
 
-public struct UVExposure {
-    internal static let identifier: HKQuantityTypeIdentifier = .uvExposure
-    internal let hkUnit: HKUnit = .count()
-    internal var quantity: Double { return Double(value) }
+public struct BloodAlcoholContent: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .bloodAlcoholContent
 
-    public var value: Int
-    public var start: Date
-    public var end: Date
-    
-    public init(value: Int, start: Date, end: Date) {
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.Percent
+    public typealias TimeType = Date
+
+    public static let defaultUnit: UnitType = .percent
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
         self.value = value
-        self.start = start
-        self.end = end
+        self.unit = unit
+        self.time = time
     }
-    
-    public var unitString: String {
-        return ""
+}
+
+public struct BloodGlucose: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .bloodGlucose
+
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.BloodGlucose
+    public typealias TimeType = Date
+
+    public static let defaultUnit: UnitType = .mg_dl
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
+        self.time = time
     }
-    
-    public init(sample: HKQuantitySample) {
-        self.value = Int(sample.quantity.doubleValue(for: hkUnit))
-        self.start = sample.startDate
-        self.end = sample.endDate
+}
+
+public struct ElectrodermalActivity: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .electrodermalActivity
+
+    public typealias ValueType = Double
+    public typealias UnitType = HealthUnit.BloodGlucose
+    public typealias TimeType = Date
+
+    public static let defaultUnit: UnitType = .mg_dl
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
+        self.time = time
+    }
+}
+
+public struct UVExposure: HealthQuantityItem {
+    public static let id: HKQuantityTypeIdentifier = .uvExposure
+
+    public typealias ValueType = Int
+    public typealias UnitType = HealthUnit.Count
+    public typealias TimeType = DateInterval
+
+    public static let defaultUnit: UnitType = .count
+    public let value: ValueType
+    public let unit: UnitType
+    public let time: TimeType
+
+    public init(value: ValueType, unit: UnitType, time: TimeType) {
+        self.value = value
+        self.unit = unit
+        self.time = time
     }
 }
 

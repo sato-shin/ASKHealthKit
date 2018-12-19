@@ -9,7 +9,7 @@ public struct EnergyIntake: HealthQuantityItem {
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Energy
-    public typealias TimeType = Date
+    public typealias TimeType = DateInterval
 
     public static let defaultUnit: UnitType = .kilocalorie
     public let value: ValueType

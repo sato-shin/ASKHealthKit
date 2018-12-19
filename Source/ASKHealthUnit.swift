@@ -141,6 +141,17 @@ public class HealthUnit {
         }
     }
 
+    public enum BloodGlucose: HealthUnitConvertible {
+        case mg_dl
+        case mmol_l
+        public var hkUnit: HKUnit {
+            switch self {
+            case .mg_dl: return HKUnit.gramUnit(with: .milli).unitDivided(by: .literUnit(with: .deci))
+            case .mmol_l: return HKUnit.moleUnit(with: .milli, molarMass: HKUnitMolarMassBloodGlucose).unitDivided(by: .liter())
+            }
+        }
+    }
+
     public enum Nutrient: HealthUnitConvertible {
         case g
         case mg

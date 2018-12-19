@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func write(_ sender: Any) {
-        let energy = EnergyIntake(value: 10, time: Date())
+        let energy = EnergyIntake(value: 10, time: DateInterval(start: Date(), duration: 10000))
         store.energyStore.write(energy) { success, error in
             print(success)
         }
@@ -57,10 +57,20 @@ class ViewController: UIViewController {
         store.sexualActivity.write(sexual) { success, error in
             print(success)
         }
+
+        let content = BloodAlcoholContent(value: 0.001, time: Date())
+        store.bloodAlcoholContent.write(content) { success, error in
+            print(success)
+        }
+
+        let glucose = BloodGlucose(value: 1, time: Date())
+        store.bloodGlucose.write(glucose) { success, error in
+            print(success)
+        }
     }
     
     @IBAction func read(_ sender: Any) {
-        store.sexualActivity.read(start: nil, end: nil, limit: nil) { items, error in
+        store.energyStore.read(start: nil, end: nil, limit: nil) { items, error in
             print(items)
         }
     }

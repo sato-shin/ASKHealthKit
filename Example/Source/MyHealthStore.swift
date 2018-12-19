@@ -16,4 +16,6 @@ class MyHealthStore: ASKHealthStore {
     let vo2max = HealthItemStore<VO2Max>(sharing: .rw)
     let appleStandHour = HealthItemStore<AppleStandHour>(sharing: .r)
     let sexualActivity = HealthItemStore<SexualActivity>(sharing: .rw)
+    let bloodAlcoholContent = HealthItemStore<BloodAlcoholContent>(sharing: .rw)
+    let bloodGlucose = HealthItemStore<BloodGlucose>(sharing: .rw)
 }
