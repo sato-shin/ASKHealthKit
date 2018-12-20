@@ -56,7 +56,7 @@ open class ASKHealthStore: NSObject {
         return (writeItems, readItems)
     }
 
-    public var shouldRequestAuthorization: AuthorizationStatus {
+    open var shouldRequestAuthorization: AuthorizationStatus {
         let items = authorizationItems
         let types = items.read.union(items.write)
         let statuses = types.map { ASKHealthKit.store.authorizationStatus(for: $0) }
@@ -70,44 +70,18 @@ open class ASKHealthStore: NSObject {
         }
     }
 
+    open func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+        let items = authorizationItems
+
+        ASKHealthKit.store.requestAuthorization(toShare: items.write, read: items.read) { success, error in
+            completion(success, ASKHealthError(from: error))
+        }
+    }
+
     public enum AuthorizationStatus {
         case empty
         case lack
         case full
-    }
-
-    public func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
-        var count: UInt32 = 0
-        let ivars = class_copyIvarList(self.classForCoder, &count)
-        var writeItems = Set<HKSampleType>()
-        var readItems = Set<HKObjectType>()
-
-        for i in (0..<Int(count)) {
-            guard let ivar = ivars?[i],
-                  let property = object_getIvar(self, ivar) as? HealthItemStoreProtocol else {
-                continue
-            }
-
-            switch property.sharing {
-            case .r:
-                property.readableAuthorizationTypes.forEach { type in
-                    readItems.insert(type)
-                }
-            case .w:
-                property.writableAuthorizationTypes.forEach { type in
-                    writeItems.insert(type)
-                }
-            case .rw:
-                property.writableAuthorizationTypes.forEach { type in
-                    writeItems.insert(type)
-                    readItems.insert(type)
-                }
-            }
-        }
-
-        ASKHealthKit.store.requestAuthorization(toShare: writeItems, read: readItems) { success, error in
-            completion(success, ASKHealthError(from: error))
-        }
     }
 }
 
