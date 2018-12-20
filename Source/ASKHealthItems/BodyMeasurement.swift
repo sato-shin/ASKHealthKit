@@ -25,13 +25,13 @@ public struct BodyFatPercentage: HealthQuantityItem {
 }
 
 public struct BodyMass: HealthQuantityItem {
-    public static var id: HKQuantityTypeIdentifier = .bodyMass
+    public static let id: HKQuantityTypeIdentifier = .bodyMass
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Weight
     public typealias TimeType = Date
 
-    public static let defaultUnit: UnitType = .kilogram
+    public static var defaultUnit: UnitType = .kilogram
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
@@ -63,13 +63,13 @@ public struct BodyMassIndex: HealthQuantityItem {
 }
 
 public struct LeanBodyMass: HealthQuantityItem {
-    public static var id: HKQuantityTypeIdentifier = .leanBodyMass
+    public static let id: HKQuantityTypeIdentifier = .leanBodyMass
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Weight
     public typealias TimeType = Date
 
-    public static let defaultUnit: UnitType = .kilogram
+    public static var defaultUnit: UnitType = .kilogram
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
@@ -82,13 +82,13 @@ public struct LeanBodyMass: HealthQuantityItem {
 }
 
 public struct BodyHeight: HealthQuantityItem {
-    public static var id: HKQuantityTypeIdentifier = .height
+    public static let id: HKQuantityTypeIdentifier = .height
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Length
     public typealias TimeType = Date
 
-    public static let defaultUnit: UnitType = .centimeter
+    public static var defaultUnit: UnitType = .centimeter
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
