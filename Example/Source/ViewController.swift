@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import HealthKit
 import ASKHealthKit
 
 class ViewController: UIViewController {
@@ -12,6 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(HKWorkoutTypeIdentifier)
         store.requestAuthorization { success, error in
             print("Energy writing status: \(success)")
         }

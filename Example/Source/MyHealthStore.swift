@@ -18,4 +18,6 @@ class MyHealthStore: ASKHealthStore {
     let sexualActivity = HealthItemStore<SexualActivity>(sharing: .rw)
     let bloodAlcoholContent = HealthItemStore<BloodAlcoholContent>(sharing: .rw)
     let bloodGlucose = HealthItemStore<BloodGlucose>(sharing: .rw)
+    
+    let step = HealthItemStore<StepCount>(sharing: .rw)
 }

@@ -56,7 +56,7 @@ open class ASKHealthStore: NSObject {
         return (writeItems, readItems)
     }
 
-    open var shouldRequestAuthorization: AuthorizationStatus {
+    open var authorizationStatus: AuthorizationStatus {
         let items = authorizationItems
         let types = items.read.union(items.write)
         let statuses = types.map { ASKHealthKit.store.authorizationStatus(for: $0) }
