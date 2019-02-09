@@ -4,8 +4,8 @@
 
 import HealthKit
 
-public struct BloodPressureDiastolic: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .bloodPressureDiastolic
+public struct BloodPressureDiastolic: QuantityHealthItem {
+    public static let id: Item.Identifier = .bloodPressureDiastolic
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.BloodPressure
@@ -23,8 +23,8 @@ public struct BloodPressureDiastolic: HealthQuantityItem {
     }
 }
 
-public struct BloodPressureSystolic: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .bloodPressureSystolic
+public struct BloodPressureSystolic: QuantityHealthItem {
+    public static let id: Item.Identifier = .bloodPressureSystolic
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.BloodPressure
@@ -42,51 +42,51 @@ public struct BloodPressureSystolic: HealthQuantityItem {
     }
 }
 
-public struct BloodPressure: HealthCorrelationItem {
-    public static let id: HKCorrelationTypeIdentifier = .bloodPressure
-
-    public typealias ValueType = (
-            diastolic: BloodPressureDiastolic,
-            systolic:  BloodPressureSystolic
-    )
-    public typealias TimeType = Date
-
-    public let value: ValueType
-    public let time: TimeType
-
-    public init(value: (diastolic: BloodPressureDiastolic, systolic: BloodPressureSystolic), time: Date) {
-        self.value = value
-        self.time = time
-    }
-
-    public init(diastolic: Int, systolic: Int, time: Date) {
-        self.value = (
-                diastolic: BloodPressureDiastolic(value: diastolic, time: time),
-                systolic: BloodPressureSystolic(value: systolic, time: time)
-        )
-        self.time = time
-    }
-
-    public static func convert(object: HKObject) -> BloodPressure {
-        let object = object as! HKCorrelation
-        let diastolicType = BloodPressureDiastolic.hkObjectType
-        let diastolicObject = object.objects(for: diastolicType).first as! HKQuantitySample
-        let systolicType = BloodPressureSystolic.hkObjectType
-        let systolicObject = object.objects(for: systolicType).first as! HKQuantitySample
-        return BloodPressure(
-                diastolic: Int(diastolicObject.quantity.doubleValue(for: BloodPressureDiastolic.defaultUnit.hkUnit)),
-                systolic: Int(systolicObject.quantity.doubleValue(for: BloodPressureSystolic.defaultUnit.hkUnit)),
-                time: object.startDate
-        )
-    }
-
-    public var data: Set<HKSample> {
-        return [value.diastolic.hkSample, value.systolic.hkSample]
-    }
-    public static var writableAuthorizationTypes: Set<HKSampleType> {
-        return BloodPressureDiastolic.writableAuthorizationTypes.union(BloodPressureSystolic.writableAuthorizationTypes)
-    }
-    public static var readableAuthorizationTypes: Set<HKObjectType> {
-        return BloodPressureDiastolic.readableAuthorizationTypes.union(BloodPressureSystolic.readableAuthorizationTypes)
-    }
-}
+//public struct BloodPressure: CorrelationHealthItem {
+//    public static let id: Item.Identifier = .bloodPressure
+//
+//    public typealias ValueType = (
+//            diastolic: BloodPressureDiastolic,
+//            systolic:  BloodPressureSystolic
+//    )
+//    public typealias TimeType = Date
+//
+//    public let value: ValueType
+//    public let time: TimeType
+//
+//    public init(value: (diastolic: BloodPressureDiastolic, systolic: BloodPressureSystolic), time: Date) {
+//        self.value = value
+//        self.time = time
+//    }
+//
+//    public init(diastolic: Int, systolic: Int, time: Date) {
+//        self.value = (
+//                diastolic: BloodPressureDiastolic(value: diastolic, time: time),
+//                systolic: BloodPressureSystolic(value: systolic, time: time)
+//        )
+//        self.time = time
+//    }
+//
+//    public static func convert(object: HKObject) -> BloodPressure {
+//        let object = object as! HKCorrelation
+//        let diastolicType = BloodPressureDiastolic.hkObjectType
+//        let diastolicObject = object.objects(for: diastolicType).first as! HKQuantitySample
+//        let systolicType = BloodPressureSystolic.hkObjectType
+//        let systolicObject = object.objects(for: systolicType).first as! HKQuantitySample
+//        return BloodPressure(
+//                diastolic: Int(diastolicObject.quantity.doubleValue(for: BloodPressureDiastolic.defaultUnit.hkUnit)),
+//                systolic: Int(systolicObject.quantity.doubleValue(for: BloodPressureSystolic.defaultUnit.hkUnit)),
+//                time: object.startDate
+//        )
+//    }
+//
+//    public var data: Set<HKSample> {
+//        return [value.diastolic.hkSample, value.systolic.hkSample]
+//    }
+//    public static var writableAuthorizationTypes: Set<HKSampleType> {
+//        return BloodPressureDiastolic.writableAuthorizationTypes.union(BloodPressureSystolic.writableAuthorizationTypes)
+//    }
+//    public static var readableAuthorizationTypes: Set<HKObjectType> {
+//        return BloodPressureDiastolic.readableAuthorizationTypes.union(BloodPressureSystolic.readableAuthorizationTypes)
+//    }
+//}

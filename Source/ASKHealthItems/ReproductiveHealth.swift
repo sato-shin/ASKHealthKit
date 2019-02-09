@@ -5,8 +5,8 @@
 import Foundation
 import HealthKit
 
-public struct BasalBodyTemperature: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .basalBodyTemperature
+public struct BasalBodyTemperature: QuantityHealthItem {
+    public static let id: Item.Identifier = .basalBodyTemperature
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Temperature
@@ -24,8 +24,8 @@ public struct BasalBodyTemperature: HealthQuantityItem {
     }
 }
 
-public struct CervicalMucusQuality: HealthCategoryItem {
-    public static let id: HKCategoryTypeIdentifier = .cervicalMucusQuality
+public struct CervicalMucusQuality: CategoryHealthItem {
+    public static let id: Item.Identifier = .cervicalMucusQuality
 
     public typealias ValueType = Category.CervicalMucusQuality
     public typealias TimeType = Date
@@ -48,8 +48,8 @@ public struct CervicalMucusQuality: HealthCategoryItem {
     }
 }
 
-public struct MenstrualFlow: HealthCategoryItem {
-    public static var id: HKCategoryTypeIdentifier = .menstrualFlow
+public struct MenstrualFlow: CategoryHealthItem {
+    public static var id: Item.Identifier = .menstrualFlow
 
     public typealias ValueType = Category.MenstrualFlow
     public typealias TimeType = Date
@@ -72,8 +72,8 @@ public struct MenstrualFlow: HealthCategoryItem {
     }
 }
 
-public struct OvulationTestResult: HealthCategoryItem {
-    public static var id: HKCategoryTypeIdentifier = .ovulationTestResult
+public struct OvulationTestResult: CategoryHealthItem {
+    public static var id: Item.Identifier = .ovulationTestResult
 
     public typealias ValueType = Category.OvulationTestResult
     public typealias TimeType = Date
@@ -96,8 +96,8 @@ public struct OvulationTestResult: HealthCategoryItem {
     }
 }
 
-public struct SexualActivity: HealthCategoryItem {
-    public static var id: HKCategoryTypeIdentifier = .sexualActivity
+public struct SexualActivity: CategoryHealthItem {
+    public static var id: Item.Identifier = .sexualActivity
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date
@@ -119,8 +119,8 @@ public struct SexualActivity: HealthCategoryItem {
     }
 }
 
-public struct IntermenstrualBleeding: HealthCategoryItem {
-    public static let id: HKCategoryTypeIdentifier = .intermenstrualBleeding
+public struct IntermenstrualBleeding: CategoryHealthItem {
+    public static let id: Item.Identifier = .intermenstrualBleeding
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date

@@ -4,8 +4,8 @@
 
 import HealthKit
 
-public struct BloodAlcoholContent: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .bloodAlcoholContent
+public struct BloodAlcoholContent: QuantityHealthItem {
+    public static let id: Item.Identifier = .bloodAlcoholContent
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Percent
@@ -23,8 +23,8 @@ public struct BloodAlcoholContent: HealthQuantityItem {
     }
 }
 
-public struct BloodGlucose: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .bloodGlucose
+public struct BloodGlucose: QuantityHealthItem {
+    public static let id: Item.Identifier = .bloodGlucose
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.BloodGlucose
@@ -42,8 +42,8 @@ public struct BloodGlucose: HealthQuantityItem {
     }
 }
 
-public struct ElectrodermalActivity: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .electrodermalActivity
+public struct ElectrodermalActivity: QuantityHealthItem {
+    public static let id: Item.Identifier = .electrodermalActivity
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.BloodGlucose
@@ -61,8 +61,8 @@ public struct ElectrodermalActivity: HealthQuantityItem {
     }
 }
 
-public struct UVExposure: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .uvExposure
+public struct UVExposure: QuantityHealthItem {
+    public static let id: Item.Identifier = .uvExposure
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -80,59 +80,58 @@ public struct UVExposure: HealthQuantityItem {
     }
 }
 
-@available(iOS 11.0, *)
-public struct InsulinDelivery {
-    internal static var identifier: HKQuantityTypeIdentifier = .insulinDelivery
-    internal var hkUnit: HKUnit = .internationalUnit()
-
-    public let quantity: Double
-    public let start: Date
-    public let end: Date
-    public let purpose: Purpose
-    
-    public init(quantity: Double, start: Date, end: Date, purpose: Purpose) {
-        self.quantity = quantity
-        self.start = start
-        self.end = end
-        self.purpose = purpose
-    }
-    
-    public var hkObject: HKObject? {
-        guard let hkType = HKSampleType.quantityType(forIdentifier: InsulinDelivery.identifier) else { return nil }
-        
-        let hkQuantity = HKQuantity(unit: hkUnit, doubleValue: quantity)
-        let metadata: [String: Any] = [HKMetadataKeyInsulinDeliveryReason: NSNumber(integerLiteral: purpose.value)]
-        return HKQuantitySample(type: hkType, quantity: hkQuantity, start: start, end: end, device: nil, metadata: metadata)
-    }
-    
-    public init?(sample: HKQuantitySample) {
-        guard let purposeValue = sample.metadata?[HKMetadataKeyInsulinDeliveryReason] as? Int,
-            let purpose = Purpose(value: purposeValue) else {
-                return nil
-        }
-        self.quantity = sample.quantity.doubleValue(for: hkUnit)
-        self.start = sample.startDate
-        self.end = sample.endDate
-        self.purpose = purpose
-    }
-    
-    public enum Purpose {
-        case basal
-        case bolus
-        
-        internal var value: Int {
-            switch self {
-            case .basal: return HKInsulinDeliveryReason.basal.rawValue
-            case .bolus: return HKInsulinDeliveryReason.bolus.rawValue
-            }
-        }
-        
-        internal init?(value: Int) {
-            switch value {
-            case HKInsulinDeliveryReason.basal.rawValue: self = .basal
-            case HKInsulinDeliveryReason.bolus.rawValue: self = .bolus
-            default: return nil
-            }
-        }
-    }
-}
+//@available(iOS 11.0, *)
+//public struct InsulinDelivery: QuantityHealthItem {
+//    public static var id: Item.Identifier = .insulinDelivery
+//
+//    public let quantity: Double
+//    public let start: Date
+//    public let end: Date
+//    public let purpose: Purpose
+//
+//    public init(quantity: Double, start: Date, end: Date, purpose: Purpose) {
+//        self.quantity = quantity
+//        self.start = start
+//        self.end = end
+//        self.purpose = purpose
+//    }
+//
+//    public var hkObject: HKObject? {
+//        guard let hkType = HKSampleType.quantityType(forIdentifier: InsulinDelivery.identifier) else { return nil }
+//
+//        let hkQuantity = HKQuantity(unit: hkUnit, doubleValue: quantity)
+//        let metadata: [String: Any] = [HKMetadataKeyInsulinDeliveryReason: NSNumber(integerLiteral: purpose.value)]
+//        return HKQuantitySample(type: hkType, quantity: hkQuantity, start: start, end: end, device: nil, metadata: metadata)
+//    }
+//
+//    public init?(sample: HKQuantitySample) {
+//        guard let purposeValue = sample.metadata?[HKMetadataKeyInsulinDeliveryReason] as? Int,
+//            let purpose = Purpose(value: purposeValue) else {
+//                return nil
+//        }
+//        self.quantity = sample.quantity.doubleValue(for: hkUnit)
+//        self.start = sample.startDate
+//        self.end = sample.endDate
+//        self.purpose = purpose
+//    }
+//
+//    public enum Purpose {
+//        case basal
+//        case bolus
+//
+//        internal var value: Int {
+//            switch self {
+//            case .basal: return HKInsulinDeliveryReason.basal.rawValue
+//            case .bolus: return HKInsulinDeliveryReason.bolus.rawValue
+//            }
+//        }
+//
+//        internal init?(value: Int) {
+//            switch value {
+//            case HKInsulinDeliveryReason.basal.rawValue: self = .basal
+//            case HKInsulinDeliveryReason.bolus.rawValue: self = .bolus
+//            default: return nil
+//            }
+//        }
+//    }
+//}

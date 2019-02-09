@@ -5,8 +5,8 @@
 import Foundation
 import HealthKit
 
-public struct EnergyBurned: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .activeEnergyBurned
+public struct EnergyBurned: QuantityHealthItem {
+    public static let id: Item.Identifier = .activeEnergyBurned
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Energy
@@ -24,8 +24,8 @@ public struct EnergyBurned: HealthQuantityItem {
     }
 }
 
-public struct ExerciseMinute: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .appleExerciseTime
+public struct ExerciseMinute: QuantityHealthItem {
+    public static let id: Item.Identifier = .appleExerciseTime
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Time
@@ -43,8 +43,8 @@ public struct ExerciseMinute: HealthQuantityItem {
     }
 }
 
-public struct RestingEnergy: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .basalEnergyBurned
+public struct RestingEnergy: QuantityHealthItem {
+    public static let id: Item.Identifier = .basalEnergyBurned
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Energy
@@ -62,8 +62,8 @@ public struct RestingEnergy: HealthQuantityItem {
     }
 }
 
-public struct CyclingDistance: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .distanceCycling
+public struct CyclingDistance: QuantityHealthItem {
+    public static let id: Item.Identifier = .distanceCycling
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Distance
@@ -82,8 +82,8 @@ public struct CyclingDistance: HealthQuantityItem {
 }
 
 @available(iOS 11.2, *)
-public struct DownhillSnowSportsDistance: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .distanceDownhillSnowSports
+public struct DownhillSnowSportsDistance: QuantityHealthItem {
+    public static let id: Item.Identifier = .distanceDownhillSnowSports
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Distance
@@ -101,8 +101,8 @@ public struct DownhillSnowSportsDistance: HealthQuantityItem {
     }
 }
 
-public struct SwimmingDistance: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .distanceSwimming
+public struct SwimmingDistance: QuantityHealthItem {
+    public static let id: Item.Identifier = .distanceSwimming
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Distance
@@ -120,8 +120,8 @@ public struct SwimmingDistance: HealthQuantityItem {
     }
 }
 
-public struct WalkingRunningDistance: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .distanceWalkingRunning
+public struct WalkingRunningDistance: QuantityHealthItem {
+    public static let id: Item.Identifier = .distanceWalkingRunning
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Distance
@@ -139,8 +139,8 @@ public struct WalkingRunningDistance: HealthQuantityItem {
     }
 }
 
-public struct WheelchairDistance: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .distanceWheelchair
+public struct WheelchairDistance: QuantityHealthItem {
+    public static let id: Item.Identifier = .distanceWheelchair
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Distance
@@ -158,8 +158,8 @@ public struct WheelchairDistance: HealthQuantityItem {
     }
 }
 
-public struct FlightsClimbed: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .flightsClimbed
+public struct FlightsClimbed: QuantityHealthItem {
+    public static let id: Item.Identifier = .flightsClimbed
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -177,8 +177,8 @@ public struct FlightsClimbed: HealthQuantityItem {
     }
 }
 
-public struct NikeFuel: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .nikeFuel
+public struct NikeFuel: QuantityHealthItem {
+    public static let id: Item.Identifier = .nikeFuel
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -196,8 +196,8 @@ public struct NikeFuel: HealthQuantityItem {
     }
 }
 
-public struct WheelchairPushCount: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .pushCount
+public struct WheelchairPushCount: QuantityHealthItem {
+    public static let id: Item.Identifier = .pushCount
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -215,8 +215,8 @@ public struct WheelchairPushCount: HealthQuantityItem {
     }
 }
 
-public struct StepCount: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .stepCount
+public struct StepCount: QuantityHealthItem {
+    public static let id: Item.Identifier = .stepCount
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -234,8 +234,8 @@ public struct StepCount: HealthQuantityItem {
     }
 }
 
-public struct SwimmingStrokeCount: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .swimmingStrokeCount
+public struct SwimmingStrokeCount: QuantityHealthItem {
+    public static let id: Item.Identifier = .swimmingStrokeCount
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -253,9 +253,9 @@ public struct SwimmingStrokeCount: HealthQuantityItem {
     }
 }
 
-@available(iOS 11.0, *)
-public struct VO2Max: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .vo2Max
+@available(iOS 11.2, *)
+public struct VO2Max: QuantityHealthItem {
+    public static let id: Item.Identifier = .vo2Max
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.VO2Max
@@ -273,8 +273,8 @@ public struct VO2Max: HealthQuantityItem {
     }
 }
 
-public struct AppleStandHour: HealthCategoryItem {
-    public static let id: HKCategoryTypeIdentifier = .appleStandHour
+public struct AppleStandHour: CategoryHealthItem {
+    public static let id: Item.Identifier = .appleStandHour
 
     public typealias ValueType = Category.AppleStandHour
     public typealias TimeType = DateInterval

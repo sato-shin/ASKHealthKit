@@ -22,6 +22,7 @@
 		00FFDEE320F84B34005AB2FE /* ASKHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FFDED920F84B34005AB2FE /* ASKHealthKit.framework */; };
 		00FFDEE820F84B34005AB2FE /* ASKHealthKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */; };
 		00FFDEEA20F84B34005AB2FE /* ASKHealthKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AF7CA4040D716EB7A5335BF8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA41D0185E539EF8602ED /* Item.swift */; };
 		AF7CA4BD428D26093F7D3B83 /* ASKHealthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */; };
 		AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */; };
 		AF7CA5BDB46F586FE6BC25BC /* HealthCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA2C4AB13FD6C666A4D15 /* HealthCategoryItem.swift */; };
@@ -63,6 +64,7 @@
 		AF7CA273B3FA72B4AECAD4BD /* ASKHealthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthError.swift; sourceTree = "<group>"; };
 		AF7CA2C4AB13FD6C666A4D15 /* HealthCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCategoryItem.swift; sourceTree = "<group>"; };
 		AF7CA38FD7E01A9FA3601D8F /* HealthQuantityItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthQuantityItem.swift; sourceTree = "<group>"; };
+		AF7CA41D0185E539EF8602ED /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		AF7CA583B74FD0381A6F33BE /* HealthCorrelationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCorrelationItem.swift; sourceTree = "<group>"; };
 		AF7CA626EA84FCADB8FF60D4 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthUnit.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				AF7CA273B3FA72B4AECAD4BD /* ASKHealthError.swift */,
 				AF7CA0219DB9BA6847AC792E /* Protocols */,
 				AF7CA626EA84FCADB8FF60D4 /* Metadata.swift */,
+				AF7CA41D0185E539EF8602ED /* Item.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				AF7CA5BDB46F586FE6BC25BC /* HealthCategoryItem.swift in Sources */,
 				AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */,
 				AF7CAD5B02574E16E336BBA7 /* Metadata.swift in Sources */,
+				AF7CA4040D716EB7A5335BF8 /* Item.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

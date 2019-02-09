@@ -4,11 +4,9 @@
 
 import HealthKit
 
-public protocol HealthCorrelationItem: HealthItem {
+public protocol CorrelationHealthItem: HealthItem {
     associatedtype ValueType
     associatedtype TimeType
-
-    static var id: HKCorrelationTypeIdentifier { get }
 
     var value: ValueType { get }
     var time: TimeType { get }
@@ -18,28 +16,7 @@ public protocol HealthCorrelationItem: HealthItem {
     var data: Set<HKSample> { get }
     var date: DateInterval { get }
 }
-extension HealthCorrelationItem {
-    public static var hkObjectType: HKObjectType {
-        return hkSampleType
-    }
-
-    public static var hkSampleType: HKSampleType {
-        return HKSampleType.correlationType(forIdentifier: Self.id)!
-    }
-
-    public var hkObject: HKObject {
-        return hkSample
-    }
-
-    public var hkSample: HKSample {
-        return HKCorrelation(
-                type: HKCorrelationType.correlationType(forIdentifier: Self.id)!,
-                start: date.start, end: date.end, objects: data,
-                device: nil, metadata: nil
-        )
-    }
-}
-extension HealthCorrelationItem where TimeType == Date {
+extension CorrelationHealthItem where TimeType == Date {
     public var date: DateInterval {
         return DateInterval(start: time, end: time)
     }

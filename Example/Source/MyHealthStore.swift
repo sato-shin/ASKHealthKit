@@ -10,7 +10,7 @@ class MyHealthStore: ASKHealthStore {
     let intermenstrualBleedingStore = HealthItemStore<IntermenstrualBleeding>(sharing: .rw)
     let sleepAnalysis = HealthItemStore<SleepAnalysis>(sharing: .rw)
     let mindfulTime = HealthItemStore<MindfulTime>(sharing: .rw)
-    let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
+//    let bloodPressure = HealthItemStore<BloodPressure>(sharing: .rw)
     let exerciseMinute = HealthItemStore<ExerciseMinute>(sharing: .r)
     let wheelchairPushCount = HealthItemStore<WheelchairPushCount>(sharing: .rw)
     let vo2max = HealthItemStore<VO2Max>(sharing: .rw)

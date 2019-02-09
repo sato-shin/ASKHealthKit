@@ -4,8 +4,8 @@
 
 import HealthKit
 
-public struct EnergyIntake: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryEnergyConsumed
+public struct EnergyIntake: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryEnergyConsumed
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Energy
@@ -23,8 +23,8 @@ public struct EnergyIntake: HealthQuantityItem {
     }
 }
 
-public struct Protein: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryProtein
+public struct Protein: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryProtein
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -42,8 +42,8 @@ public struct Protein: HealthQuantityItem {
     }
 }
 
-public struct Carbohydrate: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryCarbohydrates
+public struct Carbohydrate: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryCarbohydrates
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -61,8 +61,8 @@ public struct Carbohydrate: HealthQuantityItem {
     }
 }
 
-public struct Fiber: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFiber
+public struct Fiber: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFiber
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -80,8 +80,8 @@ public struct Fiber: HealthQuantityItem {
     }
 }
 
-public struct Sugar: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietarySugar
+public struct Sugar: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietarySugar
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -99,8 +99,8 @@ public struct Sugar: HealthQuantityItem {
     }
 }
 
-public struct Cholesterol: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryCholesterol
+public struct Cholesterol: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryCholesterol
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -118,8 +118,8 @@ public struct Cholesterol: HealthQuantityItem {
     }
 }
 
-public struct MonounsaturatedFat: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFatMonounsaturated
+public struct MonounsaturatedFat: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFatMonounsaturated
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -137,8 +137,8 @@ public struct MonounsaturatedFat: HealthQuantityItem {
     }
 }
 
-public struct PolyunsaturatedFat: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFatPolyunsaturated
+public struct PolyunsaturatedFat: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFatPolyunsaturated
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -156,8 +156,8 @@ public struct PolyunsaturatedFat: HealthQuantityItem {
     }
 }
 
-public struct SaturatedFat: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFatSaturated
+public struct SaturatedFat: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFatSaturated
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -175,8 +175,8 @@ public struct SaturatedFat: HealthQuantityItem {
     }
 }
 
-public struct TotalFat: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFatTotal
+public struct TotalFat: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFatTotal
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -194,8 +194,8 @@ public struct TotalFat: HealthQuantityItem {
     }
 }
 
-public struct Biotin: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryBiotin
+public struct Biotin: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryBiotin
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -213,8 +213,8 @@ public struct Biotin: HealthQuantityItem {
     }
 }
 
-public struct Folate: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryFolate
+public struct Folate: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryFolate
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -232,8 +232,8 @@ public struct Folate: HealthQuantityItem {
     }
 }
 
-public struct Niacin: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryNiacin
+public struct Niacin: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryNiacin
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -251,8 +251,8 @@ public struct Niacin: HealthQuantityItem {
     }
 }
 
-public struct PantothenicAcid: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryPantothenicAcid
+public struct PantothenicAcid: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryPantothenicAcid
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -270,8 +270,8 @@ public struct PantothenicAcid: HealthQuantityItem {
     }
 }
 
-public struct Thiamin: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryThiamin
+public struct Thiamin: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryThiamin
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -289,8 +289,8 @@ public struct Thiamin: HealthQuantityItem {
     }
 }
 
-public struct VitaminA: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminA
+public struct VitaminA: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminA
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -308,8 +308,8 @@ public struct VitaminA: HealthQuantityItem {
     }
 }
 
-public struct Riboflavin: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryRiboflavin
+public struct Riboflavin: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryRiboflavin
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -327,8 +327,8 @@ public struct Riboflavin: HealthQuantityItem {
     }
 }
 
-public struct VitaminB6: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminB6
+public struct VitaminB6: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminB6
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -346,8 +346,8 @@ public struct VitaminB6: HealthQuantityItem {
     }
 }
 
-public struct VitaminB12: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminB12
+public struct VitaminB12: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminB12
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -365,8 +365,8 @@ public struct VitaminB12: HealthQuantityItem {
     }
 }
 
-public struct VitaminC: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminC
+public struct VitaminC: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminC
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -384,8 +384,8 @@ public struct VitaminC: HealthQuantityItem {
     }
 }
 
-public struct VitaminD: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminD
+public struct VitaminD: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminD
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -403,8 +403,8 @@ public struct VitaminD: HealthQuantityItem {
     }
 }
 
-public struct VitaminE: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminE
+public struct VitaminE: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminE
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -422,8 +422,8 @@ public struct VitaminE: HealthQuantityItem {
     }
 }
 
-public struct VitaminK: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryVitaminK
+public struct VitaminK: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryVitaminK
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -441,8 +441,8 @@ public struct VitaminK: HealthQuantityItem {
     }
 }
 
-public struct Calcium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryCalcium
+public struct Calcium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryCalcium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -460,8 +460,8 @@ public struct Calcium: HealthQuantityItem {
     }
 }
 
-public struct Chloride: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryChloride
+public struct Chloride: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryChloride
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -479,8 +479,8 @@ public struct Chloride: HealthQuantityItem {
     }
 }
 
-public struct Chromium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryChromium
+public struct Chromium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryChromium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -498,8 +498,8 @@ public struct Chromium: HealthQuantityItem {
     }
 }
 
-public struct Copper: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryCopper
+public struct Copper: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryCopper
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -517,8 +517,8 @@ public struct Copper: HealthQuantityItem {
     }
 }
 
-public struct Iodine: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryIodine
+public struct Iodine: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryIodine
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -536,8 +536,8 @@ public struct Iodine: HealthQuantityItem {
     }
 }
 
-public struct Iron: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryIron
+public struct Iron: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryIron
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -555,8 +555,8 @@ public struct Iron: HealthQuantityItem {
     }
 }
 
-public struct Magnesium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryMagnesium
+public struct Magnesium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryMagnesium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -574,8 +574,8 @@ public struct Magnesium: HealthQuantityItem {
     }
 }
 
-public struct Manganese: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryManganese
+public struct Manganese: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryManganese
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -593,8 +593,8 @@ public struct Manganese: HealthQuantityItem {
     }
 }
 
-public struct Molybdenum: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryMolybdenum
+public struct Molybdenum: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryMolybdenum
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -612,8 +612,8 @@ public struct Molybdenum: HealthQuantityItem {
     }
 }
 
-public struct Phosphorus: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryPhosphorus
+public struct Phosphorus: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryPhosphorus
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -631,8 +631,8 @@ public struct Phosphorus: HealthQuantityItem {
     }
 }
 
-public struct Potassium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryPotassium
+public struct Potassium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryPotassium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -650,8 +650,8 @@ public struct Potassium: HealthQuantityItem {
     }
 }
 
-public struct Selenium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietarySelenium
+public struct Selenium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietarySelenium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -669,8 +669,8 @@ public struct Selenium: HealthQuantityItem {
     }
 }
 
-public struct Sodium: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietarySodium
+public struct Sodium: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietarySodium
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -688,8 +688,8 @@ public struct Sodium: HealthQuantityItem {
     }
 }
 
-public struct Zinc: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryZinc
+public struct Zinc: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryZinc
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient
@@ -707,8 +707,8 @@ public struct Zinc: HealthQuantityItem {
     }
 }
 
-public struct Water: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryWater
+public struct Water: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryWater
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Water
@@ -726,8 +726,8 @@ public struct Water: HealthQuantityItem {
     }
 }
 
-public struct Caffeine: HealthQuantityItem {
-    public static let id: HKQuantityTypeIdentifier = .dietaryCaffeine
+public struct Caffeine: QuantityHealthItem {
+    public static let id: Item.Identifier = .dietaryCaffeine
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Nutrient

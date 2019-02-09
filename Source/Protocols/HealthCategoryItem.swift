@@ -4,98 +4,64 @@
 
 import HealthKit
 
-public protocol HealthCategoryItem: HealthItem {
+public protocol CategoryHealthItem: HealthItem {
     associatedtype ValueType
     associatedtype TimeType
     associatedtype OptionType
-
-    static var id: HKCategoryTypeIdentifier { get }
 
     var value: ValueType { get }
     var time: TimeType { get }
     var option: OptionType { get }
 
     init(value: ValueType, time: TimeType, option: OptionType)
-
-    var data: Int { get }
-    var date: DateInterval { get }
-    var metadata: [String: Any]? { get }
 }
-extension HealthCategoryItem {
-    public static var hkObjectType: HKObjectType {
-        return hkSampleType
-    }
-
-    public static var hkSampleType: HKSampleType {
-        return HKSampleType.categoryType(forIdentifier: Self.id)!
-    }
-
-    public static var readableAuthorizationTypes: Set<HKObjectType> {
-        return writableAuthorizationTypes
-    }
-
-    public static var writableAuthorizationTypes: Set<HKSampleType> {
-        return [hkSampleType]
-    }
-
-    public var hkObject: HKObject {
-        return hkSample
-    }
-
-    public var hkSample: HKSample {
-        return HKCategorySample(
-                type: HKSampleType.categoryType(forIdentifier: Self.id)!,
-                value: data, start: date.start, end: date.end,
-                device: nil, metadata: metadata)
-    }
-}
-extension HealthCategoryItem where ValueType: HealthCategoryValueProtocol {
-    public var data: Int {
+extension CategoryHealthItem where ValueType: HealthCategoryValueProtocol {
+    var data: Int {
         return value.rawValue
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable {
+extension CategoryHealthItem where ValueType == Category.NotApplicable {
     public init(time: TimeType, option: OptionType) {
         self.init(value: Category.NotApplicable(), time: time, option: option)
     }
 }
-extension HealthCategoryItem where OptionType == Void {
+extension CategoryHealthItem where OptionType == Void {
     public init(value: ValueType, time: TimeType) {
         self.init(value: value, time: time, option: ())
     }
 
-    public var metadata: [String: Any]? {
+    var metadata: [String: Any]? {
         return nil
     }
 }
-extension HealthCategoryItem where OptionType: MetadataProtocol {
-    public var metadata: [String: Any]? {
+extension CategoryHealthItem where OptionType: MetadataProtocol {
+    var metadata: [String: Any]? {
         return option.metadata
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable, OptionType == Void {
+extension CategoryHealthItem where ValueType == Category.NotApplicable, OptionType == Void {
     public init(time: TimeType) {
         self.init(value: Category.NotApplicable(), time: time, option: ())
     }
 }
-extension HealthCategoryItem where TimeType == Date {
-    public var date: DateInterval {
+extension CategoryHealthItem where TimeType == Date {
+    var date: DateInterval {
         return DateInterval(start: time, end: time)
     }
 }
-extension HealthCategoryItem where TimeType == DateInterval {
-    public var date: DateInterval {
+extension CategoryHealthItem where TimeType == DateInterval {
+    var date: DateInterval {
         return time
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == Date, OptionType == Void {
-    public static func convert(object: HKObject) -> Self {
+extension CategoryHealthItem where ValueType == Category.NotApplicable, TimeType == Date, OptionType == Void {
+    static func convert(object: HKObject) -> Self {
         let object = object as! HKCategorySample
         return self.init(time: object.startDate)
     }
 }
-extension HealthCategoryItem where ValueType == Category.NotApplicable, TimeType == DateInterval, OptionType == Void {
-    public static func convert(object: HKObject) -> Self {
+extension CategoryHealthItem where ValueType == Category.NotApplicable, TimeType == DateInterval, OptionType == Void {
+    static func convert(object: HKObject) -> Self {
         let object = object as! HKCategorySample
         return self.init(time: DateInterval(start: object.startDate, end: object.endDate))
     }
