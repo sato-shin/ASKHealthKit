@@ -6,7 +6,7 @@ import HealthKit
 
 public protocol QuantityHealthItem: HealthItem {
     associatedtype ValueType
-    associatedtype UnitType
+    associatedtype UnitType: HealthUnitConvertible
     associatedtype TimeType
 
     static var defaultUnit: UnitType { get }
@@ -16,6 +16,10 @@ public protocol QuantityHealthItem: HealthItem {
     var time: TimeType { get }
 
     init(value: ValueType, unit: UnitType, time: TimeType)
+    init(_ sample: HKQuantitySample)
+
+    var rawValue: Double { get }
+    var rawTime: DateInterval { get }
 }
 extension QuantityHealthItem {
     public init(value: ValueType, time: TimeType) {
@@ -23,50 +27,50 @@ extension QuantityHealthItem {
     }
 }
 extension QuantityHealthItem where TimeType == Date {
-    var date: DateInterval {
+    public var rawTime: DateInterval {
         return DateInterval(start: time, end: time)
     }
 }
 extension QuantityHealthItem where TimeType == DateInterval {
-    var date: DateInterval {
+    public var rawTime: DateInterval {
         return time
     }
 }
-extension QuantityHealthItem where ValueType == Double, UnitType: HealthUnitConvertible {
-    var data: HKQuantity {
-        return HKQuantity(unit: unit.hkUnit, doubleValue: value)
+extension QuantityHealthItem where ValueType == Double {
+    public var rawValue: Double {
+        return value
+    }
+}
+extension QuantityHealthItem where ValueType == Int {
+    public var rawValue: Double {
+        return Double(value)
     }
 }
 extension QuantityHealthItem where ValueType == Double, UnitType: HealthUnitConvertible, TimeType == Date {
-    static func convert(object: HKObject) -> Self {
-        let object = object as! HKQuantitySample
-        return Self.init(value: object.quantity.doubleValue(for: defaultUnit.hkUnit), time: object.startDate)
+    public init(_ sample: HKQuantitySample) {
+        self = Self.init(
+                value: sample.quantity.doubleValue(for: Self.defaultUnit.hkUnit),
+                time: sample.startDate)
     }
 }
 extension QuantityHealthItem where ValueType == Double, UnitType: HealthUnitConvertible, TimeType == DateInterval {
-    static func convert(object: HKObject) -> Self {
-        let object = object as! HKQuantitySample
-        return Self.init(
-                value: object.quantity.doubleValue(for: defaultUnit.hkUnit),
-                time: DateInterval(start: object.startDate, end: object.endDate))
-    }
-}
-extension QuantityHealthItem where ValueType == Int, UnitType: HealthUnitConvertible {
-    var data: HKQuantity {
-        return HKQuantity(unit: unit.hkUnit, doubleValue: Double(value))
+    public init(_ sample: HKQuantitySample) {
+        self = Self.init(
+                value: sample.quantity.doubleValue(for: Self.defaultUnit.hkUnit),
+                time: DateInterval(start: sample.startDate, end: sample.endDate))
     }
 }
 extension QuantityHealthItem where ValueType == Int, UnitType: HealthUnitConvertible, TimeType == Date {
-    static func convert(object: HKObject) -> Self {
-        let object = object as! HKQuantitySample
-        return Self.init(value: Int(object.quantity.doubleValue(for: defaultUnit.hkUnit)), time: object.startDate)
+    public init(_ sample: HKQuantitySample) {
+        self = Self.init(
+                value: Int(sample.quantity.doubleValue(for: Self.defaultUnit.hkUnit)),
+                time: sample.startDate)
     }
 }
 extension QuantityHealthItem where ValueType == Int, UnitType: HealthUnitConvertible, TimeType == DateInterval {
-    static func convert(object: HKObject) -> Self {
-        let object = object as! HKQuantitySample
-        return Self.init(
-                value: Int(object.quantity.doubleValue(for: defaultUnit.hkUnit)),
-                time: DateInterval(start: object.startDate, end: object.endDate))
+    public init(_ sample: HKQuantitySample) {
+        self = Self.init(
+                value: Int(sample.quantity.doubleValue(for: Self.defaultUnit.hkUnit)),
+                time: DateInterval(start: sample.startDate, end: sample.endDate))
     }
 }

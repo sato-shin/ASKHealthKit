@@ -5,37 +5,64 @@
 import HealthKit
 
 public struct ItemIdentifier: Equatable {
-    let id: Any
+    internal let rawValue: Any
 
-    init(_ id: HKQuantityTypeIdentifier) {
-        self.id = id
+    private init(_ id: HKQuantityTypeIdentifier) {
+        self.rawValue = id
     }
-    init(_ id: HKCharacteristicTypeIdentifier) {
-        self.id = id
+    private init(_ id: HKCharacteristicTypeIdentifier) {
+        self.rawValue = id
     }
-    init(_ id: HKCorrelationTypeIdentifier) {
-        self.id = id
+    private init(_ id: HKCategoryTypeIdentifier) {
+        self.rawValue = id
     }
-    init(_ id: HKCategoryTypeIdentifier) {
-        self.id = id
+    private init(_ id: HKCorrelationTypeIdentifier) {
+        self.rawValue = id
     }
 
     public static func ==(lhs: ItemIdentifier, rhs: ItemIdentifier) -> Bool {
-        if let lid = lhs.id as? HKQuantityTypeIdentifier, let rid = rhs.id as? HKQuantityTypeIdentifier {
+        if let lid = lhs.rawValue as? HKQuantityTypeIdentifier, let rid = rhs.rawValue as? HKQuantityTypeIdentifier {
+            return lid == rid
+        }
+        if let lid = lhs.rawValue as? HKCharacteristicTypeIdentifier, let rid = rhs.rawValue as? HKCharacteristicTypeIdentifier {
+            return lid == rid
+        }
+        if let lid = lhs.rawValue as? HKCategoryTypeIdentifier, let rid = rhs.rawValue as? HKCategoryTypeIdentifier {
+            return lid == rid
+        }
+        if let lid = lhs.rawValue as? HKCorrelationTypeIdentifier, let rid = rhs.rawValue as? HKCorrelationTypeIdentifier {
             return lid == rid
         }
         return false
     }
 
-    var writableAuthorizationTypes: Set<HKSampleType> {
-        if let type = id as? HKQuantityTypeIdentifier {
+    internal var writableAuthorizationTypes: Set<HKSampleType> {
+        if let type = rawValue as? HKQuantityTypeIdentifier {
             return [HKSampleType.quantityType(forIdentifier: type)!]
+        }
+        if let type = rawValue as? HKCategoryTypeIdentifier {
+            return [HKSampleType.categoryType(forIdentifier: type)!]
+        }
+        if let type = rawValue as? HKCorrelationTypeIdentifier { // todo: クラッシュする
+            return [HKSampleType.correlationType(forIdentifier: type)!]
         }
         return []
     }
 
-    var readableAuthorizationTypes: Set<HKObjectType> {
-        return writableAuthorizationTypes
+    internal var readableAuthorizationTypes: Set<HKObjectType> {
+        if let type = rawValue as? HKQuantityTypeIdentifier {
+            return [HKObjectType.quantityType(forIdentifier: type)!]
+        }
+        if let type = rawValue as? HKCategoryTypeIdentifier {
+            return [HKObjectType.categoryType(forIdentifier: type)!]
+        }
+        if let type = rawValue as? HKCorrelationTypeIdentifier { // todo: クラッシュする
+            return [HKObjectType.correlationType(forIdentifier: type)!]
+        }
+        if let type = rawValue as? HKCharacteristicTypeIdentifier {
+            return [HKObjectType.characteristicType(forIdentifier: type)!]
+        }
+        return []
     }
 }
 

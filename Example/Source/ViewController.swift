@@ -19,7 +19,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func write(_ sender: Any) {
-        let energy = EnergyIntake(value: 10, time: DateInterval(start: Date(), duration: 10000))
+        let energy = EnergyIntake(value: 10, time: Date())
+        self.store.energyStore.write(energy) { (b: Bool, v: ASKHealthError?) in
+            print(b)
+            print(v)
+        }
 //        store.energyStore.write(energy) { success, error in
 //            print(success)
 //        }
@@ -71,8 +75,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func read(_ sender: Any) {
-//        store.energyStore.read(start: nil, end: nil, limit: nil) { items, error in
-//            print(items)
-//        }
+        store.energyStore.read(start: nil, end: nil, limit: nil) { items, error in
+            print(items)
+        }
     }
 }
