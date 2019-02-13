@@ -5,7 +5,7 @@
 import HealthKit
 
 public struct BloodAlcoholContent: QuantityHealthItem {
-    public static let id: Item.Identifier = .bloodAlcoholContent
+    public static let id: ItemIdentifier = .bloodAlcoholContent
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Percent
@@ -24,7 +24,7 @@ public struct BloodAlcoholContent: QuantityHealthItem {
 }
 
 public struct BloodGlucose: QuantityHealthItem {
-    public static let id: Item.Identifier = .bloodGlucose
+    public static let id: ItemIdentifier = .bloodGlucose
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.BloodGlucose
@@ -43,7 +43,7 @@ public struct BloodGlucose: QuantityHealthItem {
 }
 
 public struct ElectrodermalActivity: QuantityHealthItem {
-    public static let id: Item.Identifier = .electrodermalActivity
+    public static let id: ItemIdentifier = .electrodermalActivity
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.BloodGlucose
@@ -62,7 +62,7 @@ public struct ElectrodermalActivity: QuantityHealthItem {
 }
 
 public struct UVExposure: QuantityHealthItem {
-    public static let id: Item.Identifier = .uvExposure
+    public static let id: ItemIdentifier = .uvExposure
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.Count
@@ -82,7 +82,7 @@ public struct UVExposure: QuantityHealthItem {
 
 //@available(iOS 11.0, *)
 //public struct InsulinDelivery: QuantityHealthItem {
-//    public static var id: Item.Identifier = .insulinDelivery
+//    public static var id: ItemIdentifier = .insulinDelivery
 //
 //    public let quantity: Double
 //    public let start: Date

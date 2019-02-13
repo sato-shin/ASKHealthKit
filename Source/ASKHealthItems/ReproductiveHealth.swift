@@ -6,7 +6,7 @@ import Foundation
 import HealthKit
 
 public struct BasalBodyTemperature: QuantityHealthItem {
-    public static let id: Item.Identifier = .basalBodyTemperature
+    public static let id: ItemIdentifier = .basalBodyTemperature
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Temperature
@@ -25,7 +25,7 @@ public struct BasalBodyTemperature: QuantityHealthItem {
 }
 
 public struct CervicalMucusQuality: CategoryHealthItem {
-    public static let id: Item.Identifier = .cervicalMucusQuality
+    public static let id: ItemIdentifier = .cervicalMucusQuality
 
     public typealias ValueType = Category.CervicalMucusQuality
     public typealias TimeType = Date
@@ -49,7 +49,7 @@ public struct CervicalMucusQuality: CategoryHealthItem {
 }
 
 public struct MenstrualFlow: CategoryHealthItem {
-    public static var id: Item.Identifier = .menstrualFlow
+    public static var id: ItemIdentifier = .menstrualFlow
 
     public typealias ValueType = Category.MenstrualFlow
     public typealias TimeType = Date
@@ -73,7 +73,7 @@ public struct MenstrualFlow: CategoryHealthItem {
 }
 
 public struct OvulationTestResult: CategoryHealthItem {
-    public static var id: Item.Identifier = .ovulationTestResult
+    public static var id: ItemIdentifier = .ovulationTestResult
 
     public typealias ValueType = Category.OvulationTestResult
     public typealias TimeType = Date
@@ -97,7 +97,7 @@ public struct OvulationTestResult: CategoryHealthItem {
 }
 
 public struct SexualActivity: CategoryHealthItem {
-    public static var id: Item.Identifier = .sexualActivity
+    public static var id: ItemIdentifier = .sexualActivity
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date
@@ -120,7 +120,7 @@ public struct SexualActivity: CategoryHealthItem {
 }
 
 public struct IntermenstrualBleeding: CategoryHealthItem {
-    public static let id: Item.Identifier = .intermenstrualBleeding
+    public static let id: ItemIdentifier = .intermenstrualBleeding
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = Date

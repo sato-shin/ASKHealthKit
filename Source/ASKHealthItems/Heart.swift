@@ -5,7 +5,7 @@
 import HealthKit
 
 public struct BloodPressureDiastolic: QuantityHealthItem {
-    public static let id: Item.Identifier = .bloodPressureDiastolic
+    public static let id: ItemIdentifier = .bloodPressureDiastolic
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.BloodPressure
@@ -24,7 +24,7 @@ public struct BloodPressureDiastolic: QuantityHealthItem {
 }
 
 public struct BloodPressureSystolic: QuantityHealthItem {
-    public static let id: Item.Identifier = .bloodPressureSystolic
+    public static let id: ItemIdentifier = .bloodPressureSystolic
 
     public typealias ValueType = Int
     public typealias UnitType = HealthUnit.BloodPressure
@@ -43,7 +43,7 @@ public struct BloodPressureSystolic: QuantityHealthItem {
 }
 
 //public struct BloodPressure: CorrelationHealthItem {
-//    public static let id: Item.Identifier = .bloodPressure
+//    public static let id: ItemIdentifier = .bloodPressure
 //
 //    public typealias ValueType = (
 //            diastolic: BloodPressureDiastolic,

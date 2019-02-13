@@ -3,5 +3,5 @@
 //
 
 public protocol HealthItem {
-    static var id: Item.Identifier { get }
+    static var id: ItemIdentifier { get }
 }

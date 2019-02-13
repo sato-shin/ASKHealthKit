@@ -6,7 +6,7 @@ import Foundation
 import HealthKit
 
 public struct MindfulTime: CategoryHealthItem {
-    public static let id: Item.Identifier = .mindfulSession
+    public static let id: ItemIdentifier = .mindfulSession
 
     public typealias ValueType = Category.NotApplicable
     public typealias TimeType = DateInterval

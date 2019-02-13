@@ -6,7 +6,7 @@ import Foundation
 import HealthKit
 
 public struct BodyFatPercentage: QuantityHealthItem {
-    public static let id: Item.Identifier = .bodyFatPercentage
+    public static let id: ItemIdentifier = .bodyFatPercentage
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Percent
@@ -25,7 +25,7 @@ public struct BodyFatPercentage: QuantityHealthItem {
 }
 
 public struct BodyMass: QuantityHealthItem {
-    public static let id: Item.Identifier = .bodyMass
+    public static let id: ItemIdentifier = .bodyMass
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Weight
@@ -44,7 +44,7 @@ public struct BodyMass: QuantityHealthItem {
 }
 
 public struct BodyMassIndex: QuantityHealthItem {
-    public static let id: Item.Identifier = .bodyMassIndex
+    public static let id: ItemIdentifier = .bodyMassIndex
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Count
@@ -63,7 +63,7 @@ public struct BodyMassIndex: QuantityHealthItem {
 }
 
 public struct LeanBodyMass: QuantityHealthItem {
-    public static let id: Item.Identifier = .leanBodyMass
+    public static let id: ItemIdentifier = .leanBodyMass
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Weight
@@ -82,7 +82,7 @@ public struct LeanBodyMass: QuantityHealthItem {
 }
 
 public struct BodyHeight: QuantityHealthItem {
-    public static let id: Item.Identifier = .height
+    public static let id: ItemIdentifier = .height
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Length
@@ -102,7 +102,7 @@ public struct BodyHeight: QuantityHealthItem {
 
 @available(iOS 11.0, *)
 public struct WaistCircumference: QuantityHealthItem {
-    public static let id: Item.Identifier = .waistCircumference
+    public static let id: ItemIdentifier = .waistCircumference
 
     public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Length

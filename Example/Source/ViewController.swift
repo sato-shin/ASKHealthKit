@@ -12,15 +12,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print(HKWorkoutTypeIdentifier)
-//        store.requestAuthorization { success, error in
-//            print("Energy writing status: \(success)")
-//        }
+
+        store.requestAuthorization { success, error in
+            print("Energy writing status: \(success)")
+        }
     }
     
     @IBAction func write(_ sender: Any) {
-//        let energy = EnergyIntake(value: 10, time: DateInterval(start: Date(), duration: 10000))
+        let energy = EnergyIntake(value: 10, time: DateInterval(start: Date(), duration: 10000))
 //        store.energyStore.write(energy) { success, error in
 //            print(success)
 //        }

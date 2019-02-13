@@ -6,7 +6,7 @@ import Foundation
 import HealthKit
 
 public struct SleepAnalysis: CategoryHealthItem {
-    public static let id: Item.Identifier = .sleepAnalysis
+    public static let id: ItemIdentifier = .sleepAnalysis
 
     public typealias ValueType = Category.SleepAnalysis
     public typealias TimeType = DateInterval
