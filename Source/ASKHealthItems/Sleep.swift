@@ -8,7 +8,7 @@ import HealthKit
 public struct SleepAnalysis: CategoryHealthItem {
     public static let id: ItemIdentifier = .sleepAnalysis
 
-    public typealias ValueType = Category.SleepAnalysis
+    public typealias ValueType = ASKHealthCategoryValue.SleepAnalysis
     public typealias TimeType = DateInterval
     public typealias OptionType = Void
 
@@ -20,11 +20,5 @@ public struct SleepAnalysis: CategoryHealthItem {
         self.value = value
         self.time = time
         self.option = option
-    }
-
-    public static func convert(object: HKObject) -> SleepAnalysis {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: DateInterval(start: object.startDate, end: object.endDate))
     }
 }

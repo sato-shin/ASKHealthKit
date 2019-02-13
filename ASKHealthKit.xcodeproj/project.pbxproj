@@ -22,6 +22,7 @@
 		00FFDEE320F84B34005AB2FE /* ASKHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FFDED920F84B34005AB2FE /* ASKHealthKit.framework */; };
 		00FFDEE820F84B34005AB2FE /* ASKHealthKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFDEE720F84B34005AB2FE /* ASKHealthKitTests.swift */; };
 		00FFDEEA20F84B34005AB2FE /* ASKHealthKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FFDEDC20F84B34005AB2FE /* ASKHealthKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AF7CA148EC5B0460A161B133 /* ASKHealthCategoryValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAF5010189A2E6D25220A /* ASKHealthCategoryValue.swift */; };
 		AF7CA4040D716EB7A5335BF8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CA41D0185E539EF8602ED /* Item.swift */; };
 		AF7CA4BD428D26093F7D3B83 /* ASKHealthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */; };
 		AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */; };
@@ -69,6 +70,7 @@
 		AF7CA626EA84FCADB8FF60D4 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		AF7CAD84278270F22E7A40B0 /* ASKHealthUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthUnit.swift; sourceTree = "<group>"; };
 		AF7CAF2D688F4AC4E77EA71B /* HealthItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthItem.swift; sourceTree = "<group>"; };
+		AF7CAF5010189A2E6D25220A /* ASKHealthCategoryValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASKHealthCategoryValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				AF7CA0219DB9BA6847AC792E /* Protocols */,
 				AF7CA626EA84FCADB8FF60D4 /* Metadata.swift */,
 				AF7CA41D0185E539EF8602ED /* Item.swift */,
+				AF7CAF5010189A2E6D25220A /* ASKHealthCategoryValue.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				AF7CA579DAAE00BAA8D32528 /* HealthItem.swift in Sources */,
 				AF7CAD5B02574E16E336BBA7 /* Metadata.swift in Sources */,
 				AF7CA4040D716EB7A5335BF8 /* Item.swift in Sources */,
+				AF7CA148EC5B0460A161B133 /* ASKHealthCategoryValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

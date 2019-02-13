@@ -276,7 +276,7 @@ public struct VO2Max: QuantityHealthItem {
 public struct AppleStandHour: CategoryHealthItem {
     public static let id: ItemIdentifier = .appleStandHour
 
-    public typealias ValueType = Category.AppleStandHour
+    public typealias ValueType = ASKHealthCategoryValue.AppleStandHour
     public typealias TimeType = DateInterval
     public typealias OptionType = Void
 

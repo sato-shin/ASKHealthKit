@@ -27,7 +27,7 @@ public struct BasalBodyTemperature: QuantityHealthItem {
 public struct CervicalMucusQuality: CategoryHealthItem {
     public static let id: ItemIdentifier = .cervicalMucusQuality
 
-    public typealias ValueType = Category.CervicalMucusQuality
+    public typealias ValueType = ASKHealthCategoryValue.CervicalMucusQuality
     public typealias TimeType = Date
     public typealias OptionType = Void
 
@@ -51,7 +51,7 @@ public struct CervicalMucusQuality: CategoryHealthItem {
 public struct MenstrualFlow: CategoryHealthItem {
     public static var id: ItemIdentifier = .menstrualFlow
 
-    public typealias ValueType = Category.MenstrualFlow
+    public typealias ValueType = ASKHealthCategoryValue.MenstrualFlow
     public typealias TimeType = Date
     public typealias OptionType = Void
 
@@ -75,7 +75,7 @@ public struct MenstrualFlow: CategoryHealthItem {
 public struct OvulationTestResult: CategoryHealthItem {
     public static var id: ItemIdentifier = .ovulationTestResult
 
-    public typealias ValueType = Category.OvulationTestResult
+    public typealias ValueType = ASKHealthCategoryValue.OvulationTestResult
     public typealias TimeType = Date
     public typealias OptionType = Void
 
@@ -99,7 +99,7 @@ public struct OvulationTestResult: CategoryHealthItem {
 public struct SexualActivity: CategoryHealthItem {
     public static var id: ItemIdentifier = .sexualActivity
 
-    public typealias ValueType = Category.NotApplicable
+    public typealias ValueType = ASKHealthCategoryValue.NotApplicable
     public typealias TimeType = Date
     public typealias OptionType = Metadata.SexualActivity
 
@@ -122,7 +122,7 @@ public struct SexualActivity: CategoryHealthItem {
 public struct IntermenstrualBleeding: CategoryHealthItem {
     public static let id: ItemIdentifier = .intermenstrualBleeding
 
-    public typealias ValueType = Category.NotApplicable
+    public typealias ValueType = ASKHealthCategoryValue.NotApplicable
     public typealias TimeType = Date
     public typealias OptionType = Void
 

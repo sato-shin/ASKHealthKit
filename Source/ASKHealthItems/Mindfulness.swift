@@ -8,7 +8,7 @@ import HealthKit
 public struct MindfulTime: CategoryHealthItem {
     public static let id: ItemIdentifier = .mindfulSession
 
-    public typealias ValueType = Category.NotApplicable
+    public typealias ValueType = ASKHealthCategoryValue.NotApplicable
     public typealias TimeType = DateInterval
     public typealias OptionType = Void
 
