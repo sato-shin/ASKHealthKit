@@ -56,7 +56,7 @@ open class ASKHealthStore: NSObject {
         return (writeItems, readItems)
     }
 
-    open var authorizationStatus: AuthorizationStatus {
+    public var authorizationStatus: AuthorizationStatus {
         let items = authorizationItems
         let types = items.read.union(items.write)
         let statuses = types.map { ASKHealthKit.store.authorizationStatus(for: $0) }
@@ -70,11 +70,24 @@ open class ASKHealthStore: NSObject {
         }
     }
 
-    open func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+    public func requestAuthorization(completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         let items = authorizationItems
 
         ASKHealthKit.store.requestAuthorization(toShare: items.write, read: items.read) { success, error in
             completion(success, ASKHealthError(from: error))
+        }
+    }
+
+    public func write<T: HealthItem>(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+        let objects: [HKObject] = items.compactMap { item in
+            if let sample = (item as? QuantitySampleConvertible)?.sample {
+                return sample
+            }
+            return nil
+        }
+        ASKHealthKit.store.save(objects) { success, error in
+            let e = success ? nil : ASKHealthError(from: error)
+            completion(success, e)
         }
     }
 

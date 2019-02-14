@@ -13,15 +13,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(store.energyStore.canWrite)
+
         store.requestAuthorization { success, error in
             print("Energy writing status: \(success)")
         }
+
         print(store.authorizationStatus)
     }
     
     @IBAction func write(_ sender: Any) {
         let energy = EnergyIntake(value: 10, time: Date(), metadata: ["Meal": "lunch"])
         store.energyStore.write(energy) { success, error in
+            print(success)
+        }
+
+        store.write([energy, energy]) { success, error in
             print(success)
         }
     }
