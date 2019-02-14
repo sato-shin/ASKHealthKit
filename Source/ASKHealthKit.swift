@@ -78,7 +78,7 @@ open class ASKHealthStore: NSObject {
         }
     }
 
-    public func write<T: HealthItem>(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+    public func write(_ items: [HealthItem], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         let objects: [HKObject] = items.compactMap { item in
             if let sample = (item as? QuantitySampleConvertible)?.sample {
                 return sample

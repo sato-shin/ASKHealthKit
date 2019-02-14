@@ -28,7 +28,11 @@ class ViewController: UIViewController {
             print(success)
         }
 
-        store.write([energy, energy]) { success, error in
+        let hoge: [HealthItem] = [
+            EnergyIntake(value: 10, time: Date()),
+            Protein(value: 10, time: Date())
+        ]
+        store.write(hoge) { success, error in
             print(success)
         }
     }
