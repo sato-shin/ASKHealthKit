@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         store.requestAuthorization { success, error in
             print("Energy writing status: \(success)")
         }
+        print(store.authorizationStatus)
     }
     
     @IBAction func write(_ sender: Any) {

@@ -158,6 +158,14 @@ extension HealthItemStore where T: QuantityHealthItem {
             completion(success, count, ASKHealthError(from: error))
         }
     }
+
+    public var canWrite: Bool {
+        guard let identifier = T.id.rawValue as? HKQuantityTypeIdentifier,
+              let type = HKObjectType.quantityType(forIdentifier: identifier) else {
+            return false
+        }
+        return ASKHealthKit.store.authorizationStatus(for: type) == .sharingAuthorized
+    }
 }
 
 extension HealthItemStore where T: CategoryHealthItem {
