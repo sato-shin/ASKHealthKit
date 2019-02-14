@@ -15,11 +15,13 @@ public struct BloodPressureDiastolic: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -34,11 +36,13 @@ public struct BloodPressureSystolic: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 

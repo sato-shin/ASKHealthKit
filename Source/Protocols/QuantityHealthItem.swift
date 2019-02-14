@@ -15,15 +15,17 @@ public protocol QuantityHealthItem: HealthItem {
     var unit: UnitType { get }
     var time: TimeType { get }
 
-    init(value: ValueType, unit: UnitType, time: TimeType)
+    var metadata: [String: Any]? { get set }
+    
+    init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]?)
     init(_ sample: HKQuantitySample)
 
     var rawValue: Double { get }
     var rawTime: DateInterval { get }
 }
 extension QuantityHealthItem {
-    public init(value: ValueType, time: TimeType) {
-        self.init(value: value, unit: Self.defaultUnit, time: time)
+    public init(value: ValueType, time: TimeType, metadata: [String: Any]? = nil) {
+        self.init(value: value, unit: Self.defaultUnit, time: time, metadata: metadata)
     }
 }
 extension QuantityHealthItem where TimeType == Date {

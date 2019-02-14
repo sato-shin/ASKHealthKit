@@ -104,29 +104,6 @@ open class HealthItemStore<T: HealthItem>: HealthItemStoreProtocol {
     internal var writableAuthorizationTypes: Set<HKSampleType> {
         return T.id.writableAuthorizationTypes
     }
-
-//    public func read(in date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-//        read(start: nil, end: date, limit: 1, completion)
-//    }
-//
-//    public func readLatest(from date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-//        read(start: nil, end: date, limit: 1, completion)
-//    }
-//
-//    public func readAll(_ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-//        read(start: nil, end: nil, limit: nil, completion)
-//    }
-
-    public func delete(start: Date?, end: Date?, _ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
-//        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-//        ASKHealthKit.store.deleteObjects(of: T.hkObjectType, predicate: predicate) { success, count, error in
-//            completion(success, count, ASKHealthError(from: error))
-//        }
-    }
-
-    public func deleteAll(_ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
-        delete(start: nil, end: nil, completion)
-    }
 }
 
 extension HealthItemStore where T: QuantityHealthItem {
@@ -137,7 +114,7 @@ extension HealthItemStore where T: QuantityHealthItem {
                 return nil
             }
             let quantity = HKQuantity(unit: item.unit.hkUnit, doubleValue: item.rawValue)
-            return HKQuantitySample(type: type, quantity: quantity, start: item.rawTime.start, end: item.rawTime.end, device: nil, metadata: nil)
+            return HKQuantitySample(type: type, quantity: quantity, start: item.rawTime.start, end: item.rawTime.end, device: nil, metadata: item.metadata)
         }
         ASKHealthKit.store.save(objects) { success, error in
             let e = success ? nil : ASKHealthError(from: error)
@@ -169,6 +146,17 @@ extension HealthItemStore where T: QuantityHealthItem {
 
     public func write(_ item: T, withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         write([item], withCompletion: completion)
+    }
+
+    public func delete(start: Date?, end: Date?, _ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
+        guard let identifier = T.id.rawValue as? HKQuantityTypeIdentifier,
+              let type = HKQuantityType.quantityType(forIdentifier: identifier) else {
+            return
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        ASKHealthKit.store.deleteObjects(of: type, predicate: predicate) { success, count, error in
+            completion(success, count, ASKHealthError(from: error))
+        }
     }
 }
 

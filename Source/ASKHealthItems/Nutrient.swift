@@ -15,11 +15,13 @@ public struct EnergyIntake: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -34,11 +36,13 @@ public struct Protein: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -53,11 +57,13 @@ public struct Carbohydrate: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -72,11 +78,13 @@ public struct Fiber: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -91,11 +99,13 @@ public struct Sugar: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -110,11 +120,13 @@ public struct Cholesterol: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -129,11 +141,13 @@ public struct MonounsaturatedFat: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -148,11 +162,13 @@ public struct PolyunsaturatedFat: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -167,11 +183,13 @@ public struct SaturatedFat: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -186,11 +204,13 @@ public struct TotalFat: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -205,11 +225,13 @@ public struct Biotin: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -224,11 +246,13 @@ public struct Folate: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -243,11 +267,13 @@ public struct Niacin: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -262,11 +288,13 @@ public struct PantothenicAcid: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -281,11 +309,13 @@ public struct Thiamin: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -300,11 +330,13 @@ public struct VitaminA: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -319,11 +351,13 @@ public struct Riboflavin: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -338,11 +372,13 @@ public struct VitaminB6: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -357,11 +393,13 @@ public struct VitaminB12: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -376,11 +414,13 @@ public struct VitaminC: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -395,11 +435,13 @@ public struct VitaminD: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -414,11 +456,13 @@ public struct VitaminE: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -433,11 +477,13 @@ public struct VitaminK: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -452,11 +498,13 @@ public struct Calcium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -471,11 +519,13 @@ public struct Chloride: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -490,11 +540,13 @@ public struct Chromium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -509,11 +561,13 @@ public struct Copper: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -528,11 +582,13 @@ public struct Iodine: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -547,11 +603,13 @@ public struct Iron: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -566,11 +624,13 @@ public struct Magnesium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -585,11 +645,13 @@ public struct Manganese: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -604,11 +666,13 @@ public struct Molybdenum: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -623,11 +687,13 @@ public struct Phosphorus: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -642,11 +708,13 @@ public struct Potassium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -661,11 +729,13 @@ public struct Selenium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -680,11 +750,13 @@ public struct Sodium: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -699,11 +771,13 @@ public struct Zinc: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -718,11 +792,13 @@ public struct Water: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
 
@@ -737,10 +813,12 @@ public struct Caffeine: QuantityHealthItem {
     public let value: ValueType
     public let unit: UnitType
     public let time: TimeType
+    public var metadata: [String: Any]?
 
-    public init(value: ValueType, unit: UnitType, time: TimeType) {
+    public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
+        self.metadata = metadata
     }
 }
