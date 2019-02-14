@@ -105,36 +105,17 @@ open class HealthItemStore<T: HealthItem>: HealthItemStoreProtocol {
         return T.id.writableAuthorizationTypes
     }
 
-    public func read(start: Date?, end: Date?, limit: Int?, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-//        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-//        let limit = limit ?? HKObjectQueryNoLimit
-//        let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
-//        var objects = [T]()
-//        let query = HKSampleQuery(sampleType:T.id.writableAuthorizationTypes.first!, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
-//            guard error == nil else {
-//                completion([], ASKHealthError(from: error))
-//                return
-//            }
-//            samples?.forEach { (sample: HKSample) in
-//                let object = T.convert(object: sample)
-//                objects.append(object)
-//            }
-//            completion(objects, nil)
-//        }
-//        ASKHealthKit.store.execute(query)
-    }
-
-    public func read(in date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-        read(start: nil, end: date, limit: 1, completion)
-    }
-
-    public func readLatest(from date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-        read(start: nil, end: date, limit: 1, completion)
-    }
-
-    public func readAll(_ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
-        read(start: nil, end: nil, limit: nil, completion)
-    }
+//    public func read(in date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
+//        read(start: nil, end: date, limit: 1, completion)
+//    }
+//
+//    public func readLatest(from date: Date, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
+//        read(start: nil, end: date, limit: 1, completion)
+//    }
+//
+//    public func readAll(_ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
+//        read(start: nil, end: nil, limit: nil, completion)
+//    }
 
     public func delete(start: Date?, end: Date?, _ completion: @escaping (_ success: Bool, _ count: Int, _ error: ASKHealthError?) -> Void) {
 //        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
@@ -152,11 +133,11 @@ extension HealthItemStore where T: QuantityHealthItem {
     public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         let objects: [HKObject] = items.compactMap { item in
             guard let identifier = T.id.rawValue as? HKQuantityTypeIdentifier,
-                  let hkIdentifier = HKQuantityType.quantityType(forIdentifier: identifier) else {
+                  let type = HKQuantityType.quantityType(forIdentifier: identifier) else {
                 return nil
             }
             let quantity = HKQuantity(unit: item.unit.hkUnit, doubleValue: item.rawValue)
-            return HKQuantitySample(type: hkIdentifier, quantity: quantity, start: item.rawTime.start, end: item.rawTime.end, device: nil, metadata: nil)
+            return HKQuantitySample(type: type, quantity: quantity, start: item.rawTime.start, end: item.rawTime.end, device: nil, metadata: nil)
         }
         ASKHealthKit.store.save(objects) { success, error in
             let e = success ? nil : ASKHealthError(from: error)
@@ -179,6 +160,48 @@ extension HealthItemStore where T: QuantityHealthItem {
             }
             let objects: [T] = samples.compactMap { sample in
                 guard let sample = sample as? HKQuantitySample else { return nil }
+                return T(sample)
+            }
+            completion(objects, nil)
+        }
+        ASKHealthKit.store.execute(query)
+    }
+
+    public func write(_ item: T, withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+        write([item], withCompletion: completion)
+    }
+}
+
+extension HealthItemStore where T: CategoryHealthItem {
+    public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
+        let objects: [HKObject] = items.compactMap { item in
+            guard let identifier = T.id.rawValue as? HKCategoryTypeIdentifier,
+                  let type = HKCategoryType.categoryType(forIdentifier: identifier) else {
+                return nil
+            }
+            return HKCategorySample(type: type, value: item.value.rawValue, start: item.rawTime.start, end: item.rawTime.end, device: nil, metadata: nil)
+        }
+        ASKHealthKit.store.save(objects) { success, error in
+            let e = success ? nil : ASKHealthError(from: error)
+            completion(success, e)
+        }
+    }
+
+    public func read(start: Date?, end: Date?, limit: Int?, _ completion: @escaping (_ items: [T], _ error: ASKHealthError?) -> Void) {
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let limit = limit ?? HKObjectQueryNoLimit
+        let sort = [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
+        let query = HKSampleQuery(sampleType:T.id.writableAuthorizationTypes.first!, predicate: predicate, limit: limit, sortDescriptors: sort) { _, samples, error in
+            guard error == nil else {
+                completion([], ASKHealthError(from: error))
+                return
+            }
+            guard let samples = samples else {
+                completion([], nil)
+                return
+            }
+            let objects: [T] = samples.compactMap { sample in
+                guard let sample = sample as? HKCategorySample else { return nil }
                 return T(sample)
             }
             completion(objects, nil)

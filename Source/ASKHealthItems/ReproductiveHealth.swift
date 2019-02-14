@@ -40,12 +40,6 @@ public struct CervicalMucusQuality: CategoryHealthItem {
         self.time = time
         self.option = option
     }
-
-    public static func convert(object: HKObject) -> CervicalMucusQuality {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: object.startDate)
-    }
 }
 
 public struct MenstrualFlow: CategoryHealthItem {
@@ -64,12 +58,6 @@ public struct MenstrualFlow: CategoryHealthItem {
         self.time = time
         self.option = option
     }
-
-    public static func convert(object: HKObject) -> MenstrualFlow {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: object.startDate)
-    }
 }
 
 public struct OvulationTestResult: CategoryHealthItem {
@@ -87,12 +75,6 @@ public struct OvulationTestResult: CategoryHealthItem {
         self.value = value
         self.time = time
         self.option = option
-    }
-
-    public static func convert(object: HKObject) -> OvulationTestResult {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: object.startDate)
     }
 }
 
@@ -113,9 +95,10 @@ public struct SexualActivity: CategoryHealthItem {
         self.option = option
     }
 
-    public static func convert(object: HKObject) -> SexualActivity {
-        let object = object as! HKCategorySample
-        return self.init(time: object.startDate, option: OptionType(object.metadata?[HKMetadataKeySexualActivityProtectionUsed] as? Bool))
+    public init(_ sample: HKCategorySample) {
+        self.value = ASKHealthCategoryValue.NotApplicable()
+        self.time = sample.startDate
+        self.option = Metadata.SexualActivity(sample.metadata?[HKMetadataKeySexualActivityProtectionUsed] as? Bool)
     }
 }
 

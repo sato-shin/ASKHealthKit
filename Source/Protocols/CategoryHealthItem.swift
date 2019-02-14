@@ -15,6 +15,18 @@ public protocol CategoryHealthItem: HealthItem {
 
     init(value: ValueType, time: TimeType, option: OptionType)
     init(_ sample: HKCategorySample)
+
+    var rawTime: DateInterval { get }
+}
+extension CategoryHealthItem where TimeType == Date {
+    public var rawTime: DateInterval {
+        return DateInterval(start: time, end: time)
+    }
+}
+extension CategoryHealthItem where TimeType == DateInterval {
+    public var rawTime: DateInterval {
+        return time
+    }
 }
 extension CategoryHealthItem where ValueType == ASKHealthCategoryValue.NotApplicable {
     public init(time: TimeType, option: OptionType) {

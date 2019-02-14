@@ -289,10 +289,4 @@ public struct AppleStandHour: CategoryHealthItem {
         self.time = time
         self.option = option
     }
-
-    public static func convert(object: HKObject) -> AppleStandHour {
-        let object = object as! HKCategorySample
-        let value = ValueType(value: object.value)!
-        return self.init(value: value, time: DateInterval(start: object.startDate, end: object.endDate))
-    }
 }
