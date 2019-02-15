@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct BodyFatPercentage: QuantityHealthItem {
+public struct BodyFatPercentage: QuantityHealthSample {
     public static let id: ItemIdentifier = .bodyFatPercentage
 
     public typealias ValueType = Double
@@ -28,7 +28,7 @@ public struct BodyFatPercentage: QuantityHealthItem {
     }
 }
 
-public struct BodyMass: QuantityHealthItem {
+public struct BodyMass: QuantityHealthSample {
     public static let id: ItemIdentifier = .bodyMass
 
     public typealias ValueType = Double
@@ -51,7 +51,7 @@ public struct BodyMass: QuantityHealthItem {
     }
 }
 
-public struct BodyMassIndex: QuantityHealthItem {
+public struct BodyMassIndex: QuantityHealthSample {
     public static let id: ItemIdentifier = .bodyMassIndex
 
     public typealias ValueType = Double
@@ -74,7 +74,7 @@ public struct BodyMassIndex: QuantityHealthItem {
     }
 }
 
-public struct LeanBodyMass: QuantityHealthItem {
+public struct LeanBodyMass: QuantityHealthSample {
     public static let id: ItemIdentifier = .leanBodyMass
 
     public typealias ValueType = Double
@@ -97,7 +97,7 @@ public struct LeanBodyMass: QuantityHealthItem {
     }
 }
 
-public struct BodyHeight: QuantityHealthItem {
+public struct BodyHeight: QuantityHealthSample {
     public static let id: ItemIdentifier = .height
 
     public typealias ValueType = Double
@@ -121,7 +121,7 @@ public struct BodyHeight: QuantityHealthItem {
 }
 
 @available(iOS 11.0, *)
-public struct WaistCircumference: QuantityHealthItem {
+public struct WaistCircumference: QuantityHealthSample {
     public static let id: ItemIdentifier = .waistCircumference
 
     public typealias ValueType = Double
