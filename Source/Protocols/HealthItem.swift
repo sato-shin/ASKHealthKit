@@ -9,5 +9,5 @@ public protocol HealthItem {
 }
 
 public struct HealthSource {
-    var productBundleId: String
+    public var productBundleId: String
 }
