@@ -16,12 +16,14 @@ public struct BloodPressureDiastolic: QuantityHealthItem {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -37,12 +39,14 @@ public struct BloodPressureSystolic: QuantityHealthItem {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 

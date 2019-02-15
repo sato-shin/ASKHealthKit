@@ -11,6 +11,8 @@ internal protocol QuantitySampleConvertible {
 
     static var id: ItemIdentifier { get }
     var metadata: [String: Any]? { get set }
+    var source: HealthSource { get set }
+
     var rawValue: Double { get }
     var rawTime: DateInterval { get }
     var rawUnit: HKUnit { get }
@@ -37,7 +39,8 @@ public protocol QuantityHealthItem: HealthItem {
     var unit: UnitType { get }
     var time: TimeType { get }
     var metadata: [String: Any]? { get set }
-    
+    var source: HealthSource { get }
+
     init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]?)
     init(_ sample: HKQuantitySample)
 

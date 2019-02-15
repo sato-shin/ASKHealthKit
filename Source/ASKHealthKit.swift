@@ -150,7 +150,9 @@ extension HealthItemStore where T: QuantityHealthItem {
             }
             let objects: [T] = samples.compactMap { sample in
                 guard let sample = sample as? HKQuantitySample else { return nil }
-                return T(sample)
+                var obj = T(sample) as? QuantitySampleConvertible
+                obj?.source = HealthSource(productBundleId: sample.sourceRevision.source.bundleIdentifier)
+                return obj as? T
             }
             completion(objects, nil)
         }

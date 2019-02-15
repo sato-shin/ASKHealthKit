@@ -7,3 +7,7 @@ import HealthKit
 public protocol HealthItem {
     static var id: ItemIdentifier { get }
 }
+
+public struct HealthSource {
+    var productBundleId: String
+}

@@ -16,12 +16,14 @@ public struct EnergyIntake: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -37,12 +39,14 @@ public struct Protein: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -58,12 +62,14 @@ public struct Carbohydrate: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -79,12 +85,14 @@ public struct Fiber: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -100,12 +108,14 @@ public struct Sugar: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -121,12 +131,14 @@ public struct Cholesterol: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -142,12 +154,14 @@ public struct MonounsaturatedFat: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -163,12 +177,14 @@ public struct PolyunsaturatedFat: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -184,12 +200,14 @@ public struct SaturatedFat: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -205,12 +223,14 @@ public struct TotalFat: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -226,12 +246,14 @@ public struct Biotin: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -247,12 +269,14 @@ public struct Folate: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -268,12 +292,14 @@ public struct Niacin: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -289,12 +315,14 @@ public struct PantothenicAcid: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -310,12 +338,14 @@ public struct Thiamin: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -331,12 +361,14 @@ public struct VitaminA: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -352,12 +384,14 @@ public struct Riboflavin: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -373,12 +407,14 @@ public struct VitaminB6: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -394,12 +430,14 @@ public struct VitaminB12: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -415,12 +453,14 @@ public struct VitaminC: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -436,12 +476,14 @@ public struct VitaminD: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -457,12 +499,14 @@ public struct VitaminE: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -478,12 +522,14 @@ public struct VitaminK: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -499,12 +545,14 @@ public struct Calcium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -520,12 +568,14 @@ public struct Chloride: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -541,12 +591,14 @@ public struct Chromium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -562,12 +614,14 @@ public struct Copper: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -583,12 +637,14 @@ public struct Iodine: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -604,12 +660,14 @@ public struct Iron: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -625,12 +683,14 @@ public struct Magnesium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -646,12 +706,14 @@ public struct Manganese: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -667,12 +729,14 @@ public struct Molybdenum: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -688,12 +752,14 @@ public struct Phosphorus: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -709,12 +775,14 @@ public struct Potassium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -730,12 +798,14 @@ public struct Selenium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -751,12 +821,14 @@ public struct Sodium: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -772,12 +844,14 @@ public struct Zinc: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -793,12 +867,14 @@ public struct Water: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
 
@@ -814,11 +890,13 @@ public struct Caffeine: QuantityHealthSample {
     public let unit: UnitType
     public let time: TimeType
     public var metadata: [String: Any]?
+    public internal(set) var source: HealthSource
 
     public init(value: ValueType, unit: UnitType, time: TimeType, metadata: [String: Any]? = nil) {
         self.value = value
         self.unit = unit
         self.time = time
         self.metadata = metadata
+        self.source = HealthSource(productBundleId: Bundle.main.bundleIdentifier ?? "")
     }
 }
