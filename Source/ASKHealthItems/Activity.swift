@@ -8,7 +8,7 @@ import HealthKit
 public struct EnergyBurned: QuantityHealthSample {
     public static let id: ItemIdentifier = .activeEnergyBurned
 
-    public typealias ValueType = Int
+    public typealias ValueType = Double
     public typealias UnitType = HealthUnit.Energy
     public typealias TimeType = Date
 
