@@ -5,7 +5,7 @@
 import Foundation
 import HealthKit
 
-public struct EnergyBurned: QuantityHealthItem {
+public struct EnergyBurned: QuantityHealthSample {
     public static let id: ItemIdentifier = .activeEnergyBurned
 
     public typealias ValueType = Int
@@ -28,7 +28,7 @@ public struct EnergyBurned: QuantityHealthItem {
     }
 }
 
-public struct ExerciseMinute: QuantityHealthItem {
+public struct ExerciseMinute: QuantityHealthSample {
     public static let id: ItemIdentifier = .appleExerciseTime
 
     public typealias ValueType = Int
@@ -51,7 +51,7 @@ public struct ExerciseMinute: QuantityHealthItem {
     }
 }
 
-public struct RestingEnergy: QuantityHealthItem {
+public struct RestingEnergy: QuantityHealthSample {
     public static let id: ItemIdentifier = .basalEnergyBurned
 
     public typealias ValueType = Double
@@ -74,7 +74,7 @@ public struct RestingEnergy: QuantityHealthItem {
     }
 }
 
-public struct CyclingDistance: QuantityHealthItem {
+public struct CyclingDistance: QuantityHealthSample {
     public static let id: ItemIdentifier = .distanceCycling
 
     public typealias ValueType = Double
@@ -98,7 +98,7 @@ public struct CyclingDistance: QuantityHealthItem {
 }
 
 @available(iOS 11.2, *)
-public struct DownhillSnowSportsDistance: QuantityHealthItem {
+public struct DownhillSnowSportsDistance: QuantityHealthSample {
     public static let id: ItemIdentifier = .distanceDownhillSnowSports
 
     public typealias ValueType = Double
@@ -121,7 +121,7 @@ public struct DownhillSnowSportsDistance: QuantityHealthItem {
     }
 }
 
-public struct SwimmingDistance: QuantityHealthItem {
+public struct SwimmingDistance: QuantityHealthSample {
     public static let id: ItemIdentifier = .distanceSwimming
 
     public typealias ValueType = Double
@@ -144,7 +144,7 @@ public struct SwimmingDistance: QuantityHealthItem {
     }
 }
 
-public struct WalkingRunningDistance: QuantityHealthItem {
+public struct WalkingRunningDistance: QuantityHealthSample {
     public static let id: ItemIdentifier = .distanceWalkingRunning
 
     public typealias ValueType = Double
@@ -167,7 +167,7 @@ public struct WalkingRunningDistance: QuantityHealthItem {
     }
 }
 
-public struct WheelchairDistance: QuantityHealthItem {
+public struct WheelchairDistance: QuantityHealthSample {
     public static let id: ItemIdentifier = .distanceWheelchair
 
     public typealias ValueType = Double
@@ -190,7 +190,7 @@ public struct WheelchairDistance: QuantityHealthItem {
     }
 }
 
-public struct FlightsClimbed: QuantityHealthItem {
+public struct FlightsClimbed: QuantityHealthSample {
     public static let id: ItemIdentifier = .flightsClimbed
 
     public typealias ValueType = Int
@@ -213,7 +213,7 @@ public struct FlightsClimbed: QuantityHealthItem {
     }
 }
 
-public struct NikeFuel: QuantityHealthItem {
+public struct NikeFuel: QuantityHealthSample {
     public static let id: ItemIdentifier = .nikeFuel
 
     public typealias ValueType = Int
@@ -236,7 +236,7 @@ public struct NikeFuel: QuantityHealthItem {
     }
 }
 
-public struct WheelchairPushCount: QuantityHealthItem {
+public struct WheelchairPushCount: QuantityHealthSample {
     public static let id: ItemIdentifier = .pushCount
 
     public typealias ValueType = Int
@@ -259,7 +259,7 @@ public struct WheelchairPushCount: QuantityHealthItem {
     }
 }
 
-public struct StepCount: QuantityHealthItem {
+public struct StepCount: QuantityHealthSample {
     public static let id: ItemIdentifier = .stepCount
 
     public typealias ValueType = Int
@@ -282,7 +282,7 @@ public struct StepCount: QuantityHealthItem {
     }
 }
 
-public struct SwimmingStrokeCount: QuantityHealthItem {
+public struct SwimmingStrokeCount: QuantityHealthSample {
     public static let id: ItemIdentifier = .swimmingStrokeCount
 
     public typealias ValueType = Int
@@ -306,7 +306,7 @@ public struct SwimmingStrokeCount: QuantityHealthItem {
 }
 
 @available(iOS 11.2, *)
-public struct VO2Max: QuantityHealthItem {
+public struct VO2Max: QuantityHealthSample {
     public static let id: ItemIdentifier = .vo2Max
 
     public typealias ValueType = Double
