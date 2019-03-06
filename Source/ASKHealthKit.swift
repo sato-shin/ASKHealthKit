@@ -119,6 +119,22 @@ open class HealthItemStore<T: HealthItem>: HealthItemStoreProtocol {
     }
 }
 
+extension HealthItemStore where T == StepCount {
+    public func read(start: Date, end: Date, _ completion: @escaping (_ items: T?, _ error: ASKHealthError?) -> Void) {
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let type = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
+            guard error == nil else {
+                completion(nil, ASKHealthError(from: error))
+                return
+            }
+            let sum: Int = Int(result?.sumQuantity()?.doubleValue(for: .count()) ?? 0)
+            completion(StepCount(value: sum, time: start), nil)
+        }
+        ASKHealthKit.store.execute(query)
+    }
+}
+
 extension HealthItemStore where T: QuantityHealthItem {
     public func write(_ items: [T], withCompletion completion: @escaping (_ success: Bool, _ error: ASKHealthError?) -> Void) {
         let objects: [HKObject] = items.compactMap { item in
